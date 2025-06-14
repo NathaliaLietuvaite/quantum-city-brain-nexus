@@ -1,11 +1,6 @@
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Car, Brain, Shield, Zap, Users, TrendingUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Progress } from '@/components/ui/progress';
 import HeroSection from '@/components/HeroSection';
 import ConceptOverview from '@/components/ConceptOverview';
 import SystemArchitecture from '@/components/SystemArchitecture';
@@ -13,6 +8,7 @@ import TransitionStrategy from '@/components/TransitionStrategy';
 import FreedomMatrix from '@/components/FreedomMatrix';
 import EconomicAnalysis from '@/components/EconomicAnalysis';
 import SpeedComparison from '@/components/SpeedComparison';
+import QuantumFoundation from '@/components/QuantumFoundation';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -23,9 +19,12 @@ const Index = () => {
       
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeSection} onValueChange={setActiveSection} className="space-y-8">
-          <TabsList className="grid grid-cols-6 w-full bg-black/20 backdrop-blur-md">
+          <TabsList className="grid grid-cols-7 w-full bg-black/20 backdrop-blur-md">
             <TabsTrigger value="overview" className="data-[state=active]:bg-purple-600">
               Überblick
+            </TabsTrigger>
+            <TabsTrigger value="quantum" className="data-[state=active]:bg-purple-600">
+              Quantum-Basis
             </TabsTrigger>
             <TabsTrigger value="architecture" className="data-[state=active]:bg-purple-600">
               Architektur
@@ -46,6 +45,10 @@ const Index = () => {
 
           <TabsContent value="overview" className="space-y-8">
             <ConceptOverview />
+          </TabsContent>
+
+          <TabsContent value="quantum" className="space-y-8">
+            <QuantumFoundation />
           </TabsContent>
 
           <TabsContent value="architecture" className="space-y-8">
