@@ -1,31 +1,40 @@
-
 import { motion } from 'framer-motion';
-import { Car, Brain, Zap, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Car, Brain, Zap, ExternalLink, Ghost } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
 
 const HeroSection = () => {
+  const { t } = useI18n();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background animation */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
+      {/* Video Background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover opacity-20"
+          src="/PQMS_V12M.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/80 to-slate-900/90" />
       </div>
 
       {/* Floating particles */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-60"
+            className="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-40"
             animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
-              opacity: [0.6, 1, 0.6],
+              x: [0, 80, 0],
+              y: [0, -80, 0],
+              opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 3,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 3,
             }}
             style={{
               left: `${Math.random() * 100}%`,
@@ -42,60 +51,59 @@ const HeroSection = () => {
           transition={{ duration: 1 }}
           className="space-y-8"
         >
-          {/* Reference to parent project */}
+          {/* PQMS Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center space-x-2 bg-purple-600/20 backdrop-blur-md border border-purple-400/30 rounded-full px-6 py-3">
-              <Brain className="w-5 h-5 text-purple-300" />
-              <span className="text-purple-200 text-sm">Teil des Quantenkommunikations-Projekts</span>
-              <a 
-                href="https://github.com/NathaliaLietuvaite/Quantenkommunikation" 
-                target="_blank" 
+            <div className="inline-flex items-center space-x-2 bg-cyan-600/15 backdrop-blur-md border border-cyan-400/25 rounded-full px-6 py-3">
+              <Ghost className="w-5 h-5 text-cyan-300" />
+              <span className="text-cyan-200 text-sm">{t('hero.badge')}</span>
+              <a
+                href="https://github.com/NathaliaLietuvaite/Quantenkommunikation"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 text-purple-300 hover:text-purple-100 transition-colors"
+                className="flex items-center space-x-1 text-cyan-300 hover:text-cyan-100 transition-colors"
               >
                 <ExternalLink className="w-4 h-4" />
-                <span className="text-xs">GitHub</span>
+                <span className="text-xs">{t('hero.github')}</span>
               </a>
             </div>
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Quantum City-Brain
+          <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-blue-300 to-purple-400 bg-clip-text text-transparent">
+            {t('hero.title')}
           </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Die Revolution des Verkehrs durch entkörperte Fahrzeuge und 
-            dreistufige Quantenintelligenz mit vollständiger Freiheitsmatrix
+
+          <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            {t('hero.subtitle')}
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2 bg-blue-600/20 backdrop-blur-md border border-blue-400/30 rounded-lg px-6 py-3"
+              className="flex items-center space-x-2 bg-cyan-600/15 backdrop-blur-md border border-cyan-400/25 rounded-lg px-6 py-3"
             >
-              <Car className="w-6 h-6 text-blue-300" />
-              <span className="text-blue-200">Entkörperte Fahrzeuge</span>
+              <Car className="w-6 h-6 text-cyan-300" />
+              <span className="text-cyan-200">{t('hero.tag1')}</span>
             </motion.div>
-            
+
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2 bg-purple-600/20 backdrop-blur-md border border-purple-400/30 rounded-lg px-6 py-3"
+              className="flex items-center space-x-2 bg-blue-600/15 backdrop-blur-md border border-blue-400/25 rounded-lg px-6 py-3"
             >
-              <Brain className="w-6 h-6 text-purple-300" />
-              <span className="text-purple-200">Dreistufiges Brain</span>
+              <Brain className="w-6 h-6 text-blue-300" />
+              <span className="text-blue-200">{t('hero.tag2')}</span>
             </motion.div>
-            
+
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-2 bg-pink-600/20 backdrop-blur-md border border-pink-400/30 rounded-lg px-6 py-3"
+              className="flex items-center space-x-2 bg-purple-600/15 backdrop-blur-md border border-purple-400/25 rounded-lg px-6 py-3"
             >
-              <Zap className="w-6 h-6 text-pink-300" />
-              <span className="text-pink-200">Freiheitsmatrix</span>
+              <Zap className="w-6 h-6 text-purple-300" />
+              <span className="text-purple-200">{t('hero.tag3')}</span>
             </motion.div>
           </div>
 
@@ -107,16 +115,16 @@ const HeroSection = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-cyan-400">99.9%</div>
-                <div className="text-gray-400">Unfallreduktion</div>
+                <div className="text-3xl font-bold text-cyan-400">{t('hero.stat1.value')}</div>
+                <div className="text-gray-400">{t('hero.stat1.label')}</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-purple-400">&lt;1ms</div>
-                <div className="text-gray-400">Quanten-Latenz</div>
+                <div className="text-3xl font-bold text-blue-400">{t('hero.stat2.value')}</div>
+                <div className="text-gray-400">{t('hero.stat2.label')}</div>
               </div>
               <div className="space-y-2">
-                <div className="text-3xl font-bold text-pink-400">±20%</div>
-                <div className="text-gray-400">Freiheitsgrad</div>
+                <div className="text-3xl font-bold text-purple-400">{t('hero.stat3.value')}</div>
+                <div className="text-gray-400">{t('hero.stat3.label')}</div>
               </div>
             </div>
           </motion.div>
