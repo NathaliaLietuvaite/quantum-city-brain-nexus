@@ -9,6 +9,7 @@ import QuantumFoundation from '@/components/QuantumFoundation';
 import GhostSection from '@/components/GhostSection';
 import ComparisonSection from '@/components/ComparisonSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
 
 const Index = () => {
@@ -18,6 +19,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
       <LanguageSwitcher />
+      <MarkdownExport />
       <HeroSection />
 
       <div className="container mx-auto px-4 py-8">
