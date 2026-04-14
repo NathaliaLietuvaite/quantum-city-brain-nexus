@@ -43,12 +43,12 @@ const ConceptOverview = () => {
         <h2 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
           {t('overview.title')}
         </h2>
-        <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">{t('overview.subtitle')}</p>
+        <p className="text-lg text-gray-200 max-w-4xl mx-auto leading-relaxed">{t('overview.subtitle')}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {concepts.map((concept, index) => (
           <motion.div key={concept.titleKey} initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.15, duration: 0.6 }}>
-            <Card className="bg-black/40 backdrop-blur-md border-white/10 h-full hover:bg-black/60 transition-colors">
+            <Card className="bg-slate-900/80 backdrop-blur-md border-white/15 h-full hover:bg-slate-900/90 transition-colors">
               <CardHeader>
                 <div className="flex items-center space-x-4">
                   <div className={`p-3 rounded-lg bg-gradient-to-r ${concept.color}`}>
@@ -63,7 +63,7 @@ const ConceptOverview = () => {
               <CardContent>
                 <ul className="space-y-2">
                   {concept.features.map((fKey) => (
-                    <li key={fKey} className="flex items-start space-x-2 text-gray-300">
+                    <li key={fKey} className="flex items-start space-x-2 text-gray-200">
                       <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0" />
                       <span className="text-sm">{t(fKey)}</span>
                     </li>
