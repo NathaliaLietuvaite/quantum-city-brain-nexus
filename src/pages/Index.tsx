@@ -59,6 +59,7 @@ const Index = () => {
           <TabsContent value="freedom"><FreedomMatrix /></TabsContent>
           <TabsContent value="economics"><EconomicAnalysis /></TabsContent>
           <TabsContent value="comparison"><ComparisonSection /></TabsContent>
+          <TabsContent value="verarubin"><VeraRubinSection /></TabsContent>
         </Tabs>
       </div>
     </div>
