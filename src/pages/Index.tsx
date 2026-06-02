@@ -47,6 +47,9 @@ const Index = () => {
             <TabsTrigger value="comparison" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
               {t('nav.comparison')}
             </TabsTrigger>
+            <TabsTrigger value="verarubin" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+              {t('nav.verarubin')}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview"><ConceptOverview /></TabsContent>
