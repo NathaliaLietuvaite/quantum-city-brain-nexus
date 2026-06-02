@@ -214,6 +214,50 @@ ${t('comp.subtitle')}
 
 ---
 
+## 8. ${t('vr.title')}
+
+${t('vr.subtitle')}
+
+### 8.1 ${t('vr.hw.title')}
+${t('vr.hw.desc')}
+
+| Specification | Value |
+|---------------|-------|
+| ${t('vr.spec.gpu.label')} | ${t('vr.spec.gpu.val')} |
+| ${t('vr.spec.fabric.label')} | ${t('vr.spec.fabric.val')} |
+| ${t('vr.spec.mem.label')} | ${t('vr.spec.mem.val')} |
+| ${t('vr.spec.fp4.label')} | ${t('vr.spec.fp4.val')} |
+
+### 8.2 ${t('vr.map.title')}
+${t('vr.map.desc')}
+
+| PQMS Primitive | Vera Rubin Mapping | Detail |
+|----------------|--------------------|--------|
+| ${t('vr.map.mtsc.title')} | ${t('vr.map.mtsc.hw')} | ${t('vr.map.mtsc.desc')} |
+| ${t('vr.map.vector.title')} | ${t('vr.map.vector.hw')} | ${t('vr.map.vector.desc')} |
+| ${t('vr.map.odos.title')} | ${t('vr.map.odos.hw')} | ${t('vr.map.odos.desc')} |
+| ${t('vr.map.filter.title')} | ${t('vr.map.filter.hw')} | ${t('vr.map.filter.desc')} |
+
+### 8.3 ${t('vr.perf.title')}
+${t('vr.perf.desc')}
+
+| Metric | Value | Note |
+|--------|-------|------|
+| ${t('vr.perf.util.val')} | ${t('vr.perf.util.label')} | |
+| ${t('vr.perf.compound.val')} | ${t('vr.perf.compound.label')} | |
+| ${t('vr.perf.gate.val')} | ${t('vr.perf.gate.label')} | |
+
+### 8.4 ${t('vr.fsd.title')}
+${t('vr.fsd.desc')}
+
+- **${t('vr.fsd.bridge.title')}** — ${t('vr.fsd.bridge.desc')}
+- **${t('vr.fsd.corridor.title')}** — ${t('vr.fsd.corridor.desc')}
+- **${t('vr.fsd.fallback.title')}** — ${t('vr.fsd.fallback.desc')}
+
+> *"${t('vr.fsd.verdict')}"*
+
+---
+
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
 `;
