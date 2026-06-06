@@ -9,6 +9,7 @@ import QuantumFoundation from '@/components/QuantumFoundation';
 import GhostSection from '@/components/GhostSection';
 import ComparisonSection from '@/components/ComparisonSection';
 import VeraRubinSection from '@/components/VeraRubinSection';
+import N3USection from '@/components/N3USection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
