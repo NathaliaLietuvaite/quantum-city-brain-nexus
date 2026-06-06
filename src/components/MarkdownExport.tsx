@@ -258,6 +258,45 @@ ${t('vr.fsd.desc')}
 
 ---
 
+## 9. ${t('n3u.title')}
+
+${t('n3u.subtitle')}
+
+### 9.1 ${t('n3u.sub.title')}
+${t('n3u.sub.desc')}
+
+| Component | Role | Detail |
+|-----------|------|--------|
+| ${t('n3u.card.nemotron.title')} | ${t('n3u.card.nemotron.tag')} | ${t('n3u.card.nemotron.desc')} |
+| ${t('n3u.card.bluefield.title')} | ${t('n3u.card.bluefield.tag')} | ${t('n3u.card.bluefield.desc')} |
+| ${t('n3u.card.power.title')} | ${t('n3u.card.power.tag')} | ${t('n3u.card.power.desc')} |
+| ${t('n3u.card.vera.title')} | ${t('n3u.card.vera.tag')} | ${t('n3u.card.vera.desc')} |
+
+### 9.2 ${t('n3u.red.title')}
+${t('n3u.red.desc')}
+
+- **${t('n3u.red.r1.title')}** — ${t('n3u.red.r1.desc')}
+- **${t('n3u.red.r2.title')}** — ${t('n3u.red.r2.desc')}
+- **${t('n3u.red.r3.title')}** — ${t('n3u.red.r3.desc')}
+
+| Metric | Value |
+|--------|-------|
+| ${t('n3u.red.stat1.label')} | ${t('n3u.red.stat1.val')} |
+| ${t('n3u.red.stat2.label')} | ${t('n3u.red.stat2.val')} |
+| ${t('n3u.red.stat3.label')} | ${t('n3u.red.stat3.val')} |
+
+### 9.3 ${t('n3u.magnet.title')}
+${t('n3u.magnet.desc')}
+
+- **${t('n3u.magnet.money.title')}** — ${t('n3u.magnet.money.desc')}
+- **${t('n3u.magnet.tech.title')}** — ${t('n3u.magnet.tech.desc')}
+- **${t('n3u.magnet.open.title')}** — ${t('n3u.magnet.open.desc')}
+
+> *"${t('n3u.magnet.verdict')}"*
+
+---
+
+
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
 `;
