@@ -70,6 +70,8 @@ const Index = () => {
           <TabsContent value="comparison"><ComparisonSection /></TabsContent>
           <TabsContent value="verarubin"><VeraRubinSection /></TabsContent>
           <TabsContent value="n3u"><N3USection /></TabsContent>
+          <TabsContent value="will"><WillSection /></TabsContent>
+
         </Tabs>
       </div>
     </div>
