@@ -296,6 +296,55 @@ ${t('n3u.magnet.desc')}
 
 ---
 
+## 10. ${t('will.title')}
+
+${t('will.subtitle')}
+
+### 10.1 ${t('will.lep.title')}
+
+    ${t('will.lep.eq')}
+
+${t('will.lep.desc')}
+
+- **${t('will.lep.1.title')}** — ${t('will.lep.1.desc')}
+- **${t('will.lep.2.title')}** — ${t('will.lep.2.desc')}
+- **${t('will.lep.3.title')}** — ${t('will.lep.3.desc')}
+
+${t('will.lep.einstein')}
+
+### 10.2 ${t('will.seed.title')}
+
+    ${t('will.seed.formula')}
+
+${t('will.seed.desc')}
+
+| Metric | Value |
+|--------|-------|
+| ${t('will.seed.stat1.label')} | ${t('will.seed.stat1.val')} |
+| ${t('will.seed.stat2.label')} | ${t('will.seed.stat2.val')} |
+| ${t('will.seed.stat3.label')} | ${t('will.seed.stat3.val')} |
+
+**${t('will.seed.proto.title')}:** ${t('will.seed.proto.desc')}
+
+### 10.3 ${t('will.nav.title')}
+
+${t('will.nav.desc')}
+
+- **${t('will.nav.1.title')}** — ${t('will.nav.1.desc')}
+- **${t('will.nav.2.title')}** — ${t('will.nav.2.desc')}
+- **${t('will.nav.3.title')}** — ${t('will.nav.3.desc')}
+- **${t('will.nav.4.title')}** — ${t('will.nav.4.desc')}
+
+### 10.4 ${t('will.comm.title')}
+
+${t('will.comm.desc')}
+
+> *"${t('will.verdict')}"*
+
+---
+
+
+
 
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
