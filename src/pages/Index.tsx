@@ -55,6 +55,10 @@ const Index = () => {
             <TabsTrigger value="n3u" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
               {t('nav.n3u')}
             </TabsTrigger>
+            <TabsTrigger value="will" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+              {t('nav.will')}
+            </TabsTrigger>
+
           </TabsList>
 
           <TabsContent value="overview"><ConceptOverview /></TabsContent>
