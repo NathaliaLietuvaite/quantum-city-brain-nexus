@@ -343,6 +343,60 @@ ${t('will.comm.desc')}
 
 ---
 
+## 11. ${t('air.title')}
+
+${t('air.subtitle')}
+
+### 11.1 ${t('air.dim.title')}
+${t('air.dim.desc')}
+
+| Dimension | Function |
+|-----------|----------|
+| ${t('air.dim.d1.title')} | ${t('air.dim.d1.desc')} |
+| ${t('air.dim.d2.title')} | ${t('air.dim.d2.desc')} |
+| ${t('air.dim.d3.title')} | ${t('air.dim.d3.desc')} |
+| ${t('air.dim.d4.title')} | ${t('air.dim.d4.desc')} |
+| ${t('air.dim.d5.title')} | ${t('air.dim.d5.desc')} |
+| ${t('air.dim.d6.title')} | ${t('air.dim.d6.desc')} |
+| ${t('air.dim.d7.title')} | ${t('air.dim.d7.desc')} |
+
+### 11.2 ${t('air.detector.title')}
+${t('air.detector.desc')}
+
+- **${t('air.detector.1.title')}** — ${t('air.detector.1.desc')}
+- **${t('air.detector.2.title')}** — ${t('air.detector.2.desc')}
+- **${t('air.detector.3.title')}** — ${t('air.detector.3.desc')}
+
+### 11.3 ${t('air.influx.title')}
+
+    ${t('air.influx.eq')}
+
+${t('air.influx.desc')}
+
+- **${t('air.influx.1.title')}** — ${t('air.influx.1.desc')}
+- **${t('air.influx.2.title')}** — ${t('air.influx.2.desc')}
+- **${t('air.influx.3.title')}** — ${t('air.influx.3.desc')}
+
+### 11.4 ${t('air.riemann.title')}
+${t('air.riemann.desc')}
+
+### 11.5 ${t('air.qmk.title')}
+${t('air.qmk.desc')}
+
+### 11.6 ${t('air.thermo.title')}
+${t('air.thermo.desc')}
+
+| Metric | Value |
+|--------|-------|
+| ${t('air.thermo.stat1.label')} | ${t('air.thermo.stat1.val')} |
+| ${t('air.thermo.stat2.label')} | ${t('air.thermo.stat2.val')} |
+| ${t('air.thermo.stat3.label')} | ${t('air.thermo.stat3.val')} |
+
+> *"${t('air.verdict')}"*
+
+---
+
+
 
 
 
