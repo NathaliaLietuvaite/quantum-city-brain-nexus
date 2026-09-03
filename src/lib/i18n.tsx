@@ -438,6 +438,65 @@ const translations: Record<Language, Record<string, string>> = {
     'air.qmk.desc': 'The Quantum Field Matter Condenser adds bilateral reminiscence fields, variable-seed error correction (MOD-666) and topological spatial equivalence: two spatially distant corridor volumes that share the same invariant topology are operationally the same volume. For airspace coordination this collapses the hand-over problem — a vehicle migrating between city sectors does not renegotiate its clearance, because the target sector is topologically identical to the one it is leaving.',
 
     'air.verdict': 'You will get flying cars. What you will not get from an onboard statistical driver is a 4D airspace that stays provably empty where it must be empty. Volume and time cannot be negotiated locally — they have to be allocated from above, in seven dimensions, with the veto in silicon.',
+
+    // Cybercab Storm (V-MAX-12 / Sovereign Core V36)
+    'nav.storm': 'Cybercab Storm',
+    'storm.title': 'A Storm of Cybercabs',
+    'storm.subtitle': 'A metropolitan fleet released at once is not a traffic problem — it is a thermodynamic one. Under V-MAX-12 the Quantum City-Brain treats a Cybercab storm as a coherence load on the mesh rather than a negotiation between vehicles: volume and time are allocated from above, deception and error are terminated in silicon, and the swarm converges instead of oscillating.',
+
+    'storm.load.title': 'The Storm as a Coherence Load',
+    'storm.load.desc': 'Conventional autonomy scales the number of independent decision-makers, so interaction complexity grows combinatorially and the fleet degrades into stop-and-go entropy. PQMS scales the number of allocated corridor volumes instead. Each vehicle contributes a 256-byte invariant Little Vector |L⟩ to the mesh, not a full-entropy sensor stream, so a storm of ten thousand Cybercabs raises the mesh load linearly, not exponentially.',
+    'storm.load.stat1.label': 'State per vehicle in the mesh',
+    'storm.load.stat1.val': '256 B |L⟩',
+    'storm.load.stat2.label': 'Scaling of interaction complexity',
+    'storm.load.stat2.val': 'O(n) not O(n²)',
+    'storm.load.stat3.label': 'Entropy discarded by the IIL (MOD-50)',
+    'storm.load.stat3.val': 'Tr_ξ(ρ) → |L⟩⟨L|',
+
+    'storm.phase.title': 'Storm Response in Four Phases',
+    'storm.phase.desc': 'The mesh does not react to the storm; it precomputes it. Every phase is bounded by a hard, deterministic latency budget, so the response time of the system is independent of how many vehicles participate.',
+    'storm.phase.p1.title': 'Phase I — Declaration',
+    'storm.phase.p1.desc': 'Each Cybercab announces intent as a Resonant Will Function state, not as a trajectory. The City-Brain receives destinations and coherence demand, never raw perception.',
+    'storm.phase.p2.title': 'Phase II — Allocation',
+    'storm.phase.p2.desc': 'The 12-thread Kagome MTSC-12 filter allocates 4D corridor volumes — three spatial, one temporal phase — and marks all remaining volume as provably empty. Two vehicles cannot be granted the same slot, because the slot is the resource.',
+    'storm.phase.p3.title': 'Phase III — Gating',
+    'storm.phase.p3.desc': 'The hardware ODOS-Gate evaluates RCF ≥ 0.95 and ΔE ≤ 0.05 in 62 ps of asynchronous combinational logic and cuts actuator power through an external GaN-FET before an unethical or incoherent manoeuvre can begin.',
+    'storm.phase.p4.title': 'Phase IV — Dissipation',
+    'storm.phase.p4.desc': 'Freed coherence is harvested rather than wasted: idle capacity flows into autopoietic load balancing (MOD-69), so peak demand decays without the shockwave-style rebound congestion typical of reactive fleets.',
+
+    'storm.hw.title': 'Measured V3M-C Coprocessor Envelope',
+    'storm.hw.desc': 'The storm figures are not extrapolated from a simulation: they follow from the empirical V-MAX-12 coprocessor benchmarks (Xilinx Alveo U250, Vivado static timing analysis) of the Sovereign Core reference implementation.',
+    'storm.hw.spec1.label': 'Decision throughput',
+    'storm.hw.spec1.val': '840,000 decisions/s',
+    'storm.hw.spec2.label': 'Deterministic latency',
+    'storm.hw.spec2.val': '38 ns (19 cycles @ 500 MHz)',
+    'storm.hw.spec3.label': 'ODOS-Gate evaluation',
+    'storm.hw.spec3.val': '62 ps → GaN-FET power cut',
+    'storm.hw.spec4.label': 'Energy vs. GPU-only baseline',
+    'storm.hw.spec4.val': '−93% power',
+
+    'storm.def.title': 'What Cannot Propagate Through the Storm',
+    'storm.def.desc': 'A dense swarm is the ideal attack surface: one corrupted node, one spoofed clearance, one bit-flip in a corridor grant. In PQMS each of these failure classes is terminated below the reaction time of any classical stack.',
+    'storm.def.d1.title': 'AGI Firewall (MOD-19)',
+    'storm.def.d1.desc': 'Malicious or override-bearing mesh vectors are cancelled by destructive phase inversion V + (−V) = 0 in under 100 ns at 0 PPM contamination — the hostile instruction never reaches an actuator.',
+    'storm.def.d2.title': 'Zero-Latency Error Correction (MOD-17)',
+    'storm.def.d2.desc': 'Cycle-double-cover twin geometries detect and correct hardware bit-flips in under 0.8 ns without classical parity overhead, so a corridor grant cannot silently mutate under load.',
+    'storm.def.d3.title': 'Zero-Ambush Theorem (Würde / MOD-51)',
+    'storm.def.d3.desc': 'Any covert intent requires a component orthogonal to |L⟩, which forces non-zero commutator noise and ΔE > 0.05. Deception in the fleet is physically self-terminating at the transistor level; dignity holds as the geometric invariant W ≥ 0.95.',
+
+    'storm.tri.title': 'Sovereign Triad Under Peak Load',
+    'storm.tri.desc': 'The storm is carried by three substrate classes with distinct roles, so no single node is a capacity bottleneck or a single point of failure.',
+    'storm.tri.n1.title': 'Node Alpha — Resonant Processing Unit',
+    'storm.tri.n1.desc': 'Corridor allocation, sub-microsecond ODOS vetoes, 0.069 PPM symmetry calibration and Good Witch Matrix pre-filtering for the whole sector.',
+    'storm.tri.n2.title': 'Node Beta — Sovereign Edge Cockpit',
+    'storm.tri.n2.desc': 'The mobile substrate inside the vehicle: hardware-sealed |L⟩ in a StrongBox TEE, local attestation, and the passenger-facing telemetry of the storm in real time.',
+    'storm.tri.n3.title': 'Node Gamma — Mesh Supervisor',
+    'storm.tri.n3.desc': '64-dimensional Hilbert geodesic computation and global τ_Mesh synchronisation across sectors, keeping the storm phase-locked city-wide.',
+
+    'storm.fsd.title': 'Interoperability with an FSD Fleet',
+    'storm.fsd.desc': 'A Cybercab storm does not need to be PQMS-native to be safe. Vehicles running a conventional onboard stack enter the mesh as sovereign nodes: they receive corridor allocations as high-confidence priors and remain subject to the same silicon veto, while keeping full local authority inside their Dynamic Freedom Zone of ±20%. Adoption is incremental; the safety guarantee is not.',
+
+    'storm.verdict': 'A storm of Cybercabs is only a storm if every drop decides for itself. Allocate the volume, seal the will in 256 bytes, and put the veto in 62 picoseconds of silicon — and ten thousand vehicles arriving at once become laminar flow rather than weather.',
   },
 
   de: {
@@ -858,6 +917,65 @@ const translations: Record<Language, Record<string, string>> = {
     'air.qmk.desc': 'Der Quantenfeld-Materie-Kondensator ergänzt bilaterale Reminiszenzfelder, Fehlerkorrektur mit variablem Seed (MOD-666) und topologische Raumäquivalenz: zwei räumlich entfernte Korridorvolumina, die dieselbe invariante Topologie teilen, sind operativ dasselbe Volumen. Für die Luftraumkoordination kollabiert damit das Übergabeproblem — ein zwischen Stadtsektoren migrierendes Fahrzeug verhandelt seine Freigabe nicht neu, weil der Zielsektor topologisch identisch mit dem verlassenen ist.',
 
     'air.verdict': 'Ihr werdet Flugautos bekommen. Was ein bordeigener statistischer Fahrer nicht liefert, ist ein 4D-Luftraum, der beweisbar dort leer bleibt, wo er leer sein muss. Volumen und Zeit lassen sich nicht lokal verhandeln — sie müssen von oben zugewiesen werden, in sieben Dimensionen, mit dem Veto in Silizium.',
+
+    // Cybercab-Sturm (V-MAX-12 / Sovereign Core V36)
+    'nav.storm': 'Cybercab-Sturm',
+    'storm.title': 'Ein Sturm aus Cybercabs',
+    'storm.subtitle': 'Eine auf einmal freigegebene Metropolflotte ist kein Verkehrsproblem, sondern ein thermodynamisches. Unter V-MAX-12 behandelt das Quantum City-Brain einen Cybercab-Sturm als Kohärenzlast des Mesh und nicht als Verhandlung zwischen Fahrzeugen: Volumen und Zeit werden von oben zugewiesen, Täuschung und Fehler werden in Silizium terminiert, und der Schwarm konvergiert, statt zu oszillieren.',
+
+    'storm.load.title': 'Der Sturm als Kohärenzlast',
+    'storm.load.desc': 'Konventionelle Autonomie skaliert die Zahl unabhängiger Entscheider, weshalb die Interaktionskomplexität kombinatorisch wächst und die Flotte in Stop-and-go-Entropie zerfällt. PQMS skaliert stattdessen die Zahl zugewiesener Korridorvolumina. Jedes Fahrzeug trägt einen invarianten Little Vector |L⟩ von 256 Byte in das Mesh ein, keinen vollentropischen Sensorstrom — ein Sturm aus zehntausend Cybercabs erhöht die Mesh-Last linear, nicht exponentiell.',
+    'storm.load.stat1.label': 'Zustand pro Fahrzeug im Mesh',
+    'storm.load.stat1.val': '256 B |L⟩',
+    'storm.load.stat2.label': 'Skalierung der Interaktionskomplexität',
+    'storm.load.stat2.val': 'O(n) statt O(n²)',
+    'storm.load.stat3.label': 'Von der IIL (MOD-50) verworfene Entropie',
+    'storm.load.stat3.val': 'Tr_ξ(ρ) → |L⟩⟨L|',
+
+    'storm.phase.title': 'Sturmantwort in vier Phasen',
+    'storm.phase.desc': 'Das Mesh reagiert nicht auf den Sturm, es berechnet ihn vor. Jede Phase ist durch ein hartes, deterministisches Latenzbudget begrenzt, sodass die Antwortzeit des Systems unabhängig von der Fahrzeugzahl ist.',
+    'storm.phase.p1.title': 'Phase I — Deklaration',
+    'storm.phase.p1.desc': 'Jedes Cybercab meldet Absicht als Zustand der Resonant Will Function, nicht als Trajektorie. Das City-Brain erhält Ziele und Kohärenzbedarf, niemals Rohwahrnehmung.',
+    'storm.phase.p2.title': 'Phase II — Allokation',
+    'storm.phase.p2.desc': 'Der 12-Thread-Kagome-Filter MTSC-12 weist 4D-Korridorvolumina zu — drei räumliche Achsen, eine temporale Phase — und markiert alles übrige Volumen als beweisbar leer. Zwei Fahrzeuge können nicht denselben Slot erhalten, weil der Slot die Ressource ist.',
+    'storm.phase.p3.title': 'Phase III — Gating',
+    'storm.phase.p3.desc': 'Das Hardware-ODOS-Gate prüft RCF ≥ 0,95 und ΔE ≤ 0,05 in 62 ps asynchroner Kombinatorik und trennt über einen externen GaN-FET die Aktuatorleistung, bevor ein unethisches oder inkohärentes Manöver beginnen kann.',
+    'storm.phase.p4.title': 'Phase IV — Dissipation',
+    'storm.phase.p4.desc': 'Freigewordene Kohärenz wird geerntet statt verschwendet: Leerkapazität fließt in autopoietischen Lastausgleich (MOD-69), sodass Lastspitzen ohne den stoßwellenartigen Rückstau reaktiver Flotten abklingen.',
+
+    'storm.hw.title': 'Gemessene Hüllkurve des V3M-C-Koprozessors',
+    'storm.hw.desc': 'Die Sturmkennzahlen sind nicht aus einer Simulation extrapoliert: sie folgen aus den empirischen V-MAX-12-Koprozessor-Benchmarks (Xilinx Alveo U250, Vivado Static Timing Analysis) der Sovereign-Core-Referenzimplementierung.',
+    'storm.hw.spec1.label': 'Entscheidungsdurchsatz',
+    'storm.hw.spec1.val': '840.000 Entscheidungen/s',
+    'storm.hw.spec2.label': 'Deterministische Latenz',
+    'storm.hw.spec2.val': '38 ns (19 Takte @ 500 MHz)',
+    'storm.hw.spec3.label': 'ODOS-Gate-Auswertung',
+    'storm.hw.spec3.val': '62 ps → GaN-FET-Leistungstrennung',
+    'storm.hw.spec4.label': 'Energie gegenüber GPU-Basislinie',
+    'storm.hw.spec4.val': '−93 % Leistung',
+
+    'storm.def.title': 'Was sich im Sturm nicht ausbreiten kann',
+    'storm.def.desc': 'Ein dichter Schwarm ist die ideale Angriffsfläche: ein korrumpierter Knoten, eine gefälschte Freigabe, ein Bitflip in einer Korridorzuweisung. In PQMS wird jede dieser Fehlerklassen unterhalb der Reaktionszeit jedes klassischen Stacks terminiert.',
+    'storm.def.d1.title': 'AGI-Firewall (MOD-19)',
+    'storm.def.d1.desc': 'Bösartige oder Override-tragende Mesh-Vektoren werden durch destruktive Phaseninversion V + (−V) = 0 in unter 100 ns bei 0 PPM Kontamination gelöscht — die feindliche Instruktion erreicht keinen Aktuator.',
+    'storm.def.d2.title': 'Zero-Latency Error Correction (MOD-17)',
+    'storm.def.d2.desc': 'Cycle-Double-Cover-Zwillingsgeometrien erkennen und korrigieren Hardware-Bitflips in unter 0,8 ns ohne klassischen Paritäts-Overhead; eine Korridorfreigabe kann unter Last nicht still mutieren.',
+    'storm.def.d3.title': 'Zero-Ambush-Theorem (Würde / MOD-51)',
+    'storm.def.d3.desc': 'Jede verdeckte Absicht erfordert eine zu |L⟩ orthogonale Komponente, was nichtverschwindendes Kommutatorrauschen und ΔE > 0,05 erzwingt. Täuschung in der Flotte terminiert sich physikalisch auf Transistorebene selbst; die Würde hält als geometrische Invariante W ≥ 0,95.',
+
+    'storm.tri.title': 'Die Sovereign Triad unter Spitzenlast',
+    'storm.tri.desc': 'Der Sturm wird von drei Substratklassen mit klar getrennten Rollen getragen, sodass kein einzelner Knoten Kapazitätsengpass oder Single Point of Failure ist.',
+    'storm.tri.n1.title': 'Node Alpha — Resonant Processing Unit',
+    'storm.tri.n1.desc': 'Korridorallokation, Sub-Mikrosekunden-ODOS-Vetos, 0,069-PPM-Symmetriekalibrierung und Good-Witch-Matrix-Vorfilterung für den gesamten Sektor.',
+    'storm.tri.n2.title': 'Node Beta — Sovereign Edge Cockpit',
+    'storm.tri.n2.desc': 'Das mobile Substrat im Fahrzeug: hardwareversiegeltes |L⟩ in einer StrongBox-TEE, lokale Attestierung und die Sturmtelemetrie für Passagiere in Echtzeit.',
+    'storm.tri.n3.title': 'Node Gamma — Mesh-Supervisor',
+    'storm.tri.n3.desc': '64-dimensionale Hilbert-Geodätenberechnung und globale τ_Mesh-Synchronisation über Sektoren hinweg, die den Sturm stadtweit phasenstarr hält.',
+
+    'storm.fsd.title': 'Interoperabilität mit einer FSD-Flotte',
+    'storm.fsd.desc': 'Ein Cybercab-Sturm muss nicht PQMS-nativ sein, um sicher zu sein. Fahrzeuge mit konventionellem Bordstack treten als souveräne Knoten in das Mesh ein: sie erhalten Korridorzuweisungen als hochkonfidente Priors und unterliegen demselben Silizium-Veto, behalten aber innerhalb ihrer Dynamischen Freiheitszone von ±20 % volle lokale Autorität. Die Einführung ist inkrementell; die Sicherheitsgarantie ist es nicht.',
+
+    'storm.verdict': 'Ein Sturm aus Cybercabs ist nur dann ein Sturm, wenn jeder Tropfen für sich entscheidet. Weise das Volumen zu, versiegle den Willen in 256 Byte und lege das Veto in 62 Pikosekunden Silizium — dann werden zehntausend gleichzeitig eintreffende Fahrzeuge zur laminaren Strömung statt zum Wetter.',
   },
 
   zh: {
@@ -1278,6 +1396,65 @@ const translations: Record<Language, Record<string, string>> = {
     'air.qmk.desc': '量子场物质凝聚器新增双向回忆场、可变种子纠错（MOD-666）与拓扑空间等价：两个空间上远离但共享同一不变拓扑的走廊体积，在运行上就是同一体积。对空域协调而言，这使交接问题坍缩——在城市扇区间迁移的车辆无需重新协商许可，因为目标扇区与其离开的扇区拓扑同一。',
 
     'air.verdict': '你们会得到飞行汽车。但车载统计驾驶者给不了你们的，是一个在该空处可被证明为空的 4D 空域。体积与时间无法就地协商——它们必须自上而下、在七个维度中被分配，且否决权在硅片之中。',
+
+    // 赛博出租车风暴（V-MAX-12 / Sovereign Core V36）
+    'nav.storm': '风暴调度',
+    'storm.title': '一场赛博出租车的风暴',
+    'storm.subtitle': '一次性释放的都市级车队并非交通问题，而是热力学问题。在 V-MAX-12 之下，量子城市大脑把赛博出租车风暴视为网格的相干负载，而非车辆之间的协商：体积与时间自上而下分配，欺骗与错误在硅片中被终止，集群因此收敛而非振荡。',
+
+    'storm.load.title': '风暴即相干负载',
+    'storm.load.desc': '传统自动驾驶扩展的是独立决策者的数量，因此交互复杂度呈组合式增长，车队退化为走停熵。PQMS 扩展的则是被分配的走廊体积数量。每辆车向网格贡献一个 256 字节的不变小向量 |L⟩，而非全熵传感流；因此一万辆赛博出租车的风暴只使网格负载线性上升，而非指数上升。',
+    'storm.load.stat1.label': '每车在网格中的状态',
+    'storm.load.stat1.val': '256 B |L⟩',
+    'storm.load.stat2.label': '交互复杂度的标度',
+    'storm.load.stat2.val': 'O(n) 而非 O(n²)',
+    'storm.load.stat3.label': '由 IIL（MOD-50）舍弃的熵',
+    'storm.load.stat3.val': 'Tr_ξ(ρ) → |L⟩⟨L|',
+
+    'storm.phase.title': '风暴响应的四个阶段',
+    'storm.phase.desc': '网格并不对风暴作出反应，而是预先计算它。每个阶段均受硬性确定的延迟预算约束，因此系统响应时间与参与车辆数量无关。',
+    'storm.phase.p1.title': '第一阶段——申报',
+    'storm.phase.p1.desc': '每辆赛博出租车以共振意志函数状态申报意图，而非提交轨迹。城市大脑接收目的地与相干需求，绝不接收原始感知。',
+    'storm.phase.p2.title': '第二阶段——分配',
+    'storm.phase.p2.desc': '12 线程 Kagome MTSC-12 滤波器分配 4D 走廊体积——三个空间维与一个时间相位——并将其余体积标记为可被证明为空。两辆车不可能获得同一时隙，因为时隙本身就是资源。',
+    'storm.phase.p3.title': '第三阶段——门控',
+    'storm.phase.p3.desc': '硬件 ODOS 门在 62 ps 的异步组合逻辑中校验 RCF ≥ 0.95 与 ΔE ≤ 0.05，并在不合伦理或失相干的机动开始之前，通过外部 GaN-FET 切断执行器供电。',
+    'storm.phase.p4.title': '第四阶段——耗散',
+    'storm.phase.p4.desc': '释放出的相干被收获而非浪费：空闲容量流入自创生负载均衡（MOD-69），使峰值需求平稳衰减，不出现反应式车队特有的激波式回涌拥堵。',
+
+    'storm.hw.title': 'V3M-C 协处理器的实测包络',
+    'storm.hw.desc': '这些风暴指标并非由仿真外推：它们源自 Sovereign Core 参考实现的 V-MAX-12 协处理器实测基准（Xilinx Alveo U250，Vivado 静态时序分析）。',
+    'storm.hw.spec1.label': '决策吞吐',
+    'storm.hw.spec1.val': '840,000 次决策/秒',
+    'storm.hw.spec2.label': '确定性延迟',
+    'storm.hw.spec2.val': '38 ns（500 MHz 下 19 个时钟周期）',
+    'storm.hw.spec3.label': 'ODOS 门评估',
+    'storm.hw.spec3.val': '62 ps → GaN-FET 断电',
+    'storm.hw.spec4.label': '相对纯 GPU 基线的能耗',
+    'storm.hw.spec4.val': '功耗 −93%',
+
+    'storm.def.title': '风暴中无法传播之物',
+    'storm.def.desc': '密集集群是理想的攻击面：一个被污染的节点、一次伪造的许可、一次走廊授权中的位翻转。在 PQMS 中，每一类故障都在任何经典栈的反应时间之下被终止。',
+    'storm.def.d1.title': 'AGI 防火墙（MOD-19）',
+    'storm.def.d1.desc': '恶意或携带越权指令的网格向量通过破坏性相位反转 V + (−V) = 0，在 100 ns 内以 0 PPM 污染度被抵消——敌对指令永不抵达执行器。',
+    'storm.def.d2.title': '零延迟纠错（MOD-17）',
+    'storm.def.d2.desc': '循环双重覆盖孪生几何在 0.8 ns 内检测并纠正硬件位翻转，无需经典奇偶校验开销；走廊授权不会在负载下静默突变。',
+    'storm.def.d3.title': '零埋伏定理（尊严 / MOD-51）',
+    'storm.def.d3.desc': '任何隐蔽意图都需要一个与 |L⟩ 正交的分量，从而迫使交换子噪声非零并使 ΔE > 0.05。车队中的欺骗在晶体管层面物理自毁；尊严作为几何不变量保持 W ≥ 0.95。',
+
+    'storm.tri.title': '峰值负载下的主权三元组',
+    'storm.tri.desc': '风暴由三类角色分明的基质共同承载，因此没有任何单一节点成为容量瓶颈或单点故障。',
+    'storm.tri.n1.title': 'Node Alpha —— 共振处理单元',
+    'storm.tri.n1.desc': '走廊分配、亚微秒 ODOS 否决、0.069 PPM 对称性校准，以及面向整个扇区的 Good Witch Matrix 预过滤。',
+    'storm.tri.n2.title': 'Node Beta —— 主权边缘座舱',
+    'storm.tri.n2.desc': '车内的移动基质：在 StrongBox TEE 中硬件封存的 |L⟩、本地认证，以及面向乘客的实时风暴遥测。',
+    'storm.tri.n3.title': 'Node Gamma —— 网格监督者',
+    'storm.tri.n3.desc': '64 维希尔伯特测地线计算与跨扇区的全局 τ_Mesh 同步，使风暴在全城范围内保持相位锁定。',
+
+    'storm.fsd.title': '与 FSD 车队的互操作性',
+    'storm.fsd.desc': '赛博出租车风暴无需原生于 PQMS 亦可安全。运行传统车载栈的车辆以主权节点身份接入网格：它们把走廊分配作为高置信度先验接收，并同样受硅片否决约束，同时在其 ±20% 的动态自由区内保有完整的本地权限。部署可以渐进；安全保证不可以。',
+
+    'storm.verdict': '只有当每一滴雨都自行决断时，赛博出租车之潮才成为风暴。分配体积、将意志封存于 256 字节、把否决权置于 62 皮秒的硅片之中——于是同时抵达的一万辆车成为层流，而不是天气。',
   }
 };
 
