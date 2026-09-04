@@ -81,6 +81,7 @@ const Index = () => {
           <TabsContent value="n3u"><N3USection /></TabsContent>
           <TabsContent value="will"><WillSection /></TabsContent>
           <TabsContent value="airspace"><AirspaceSection /></TabsContent>
+          <TabsContent value="storm"><StormSection /></TabsContent>
 
         </Tabs>
       </div>
