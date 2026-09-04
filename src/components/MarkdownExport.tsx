@@ -396,6 +396,60 @@ ${t('air.thermo.desc')}
 
 ---
 
+## 12. ${t('storm.title')}
+
+${t('storm.subtitle')}
+
+### 12.1 ${t('storm.load.title')}
+${t('storm.load.desc')}
+
+| Metric | Value |
+|--------|-------|
+| ${t('storm.load.stat1.label')} | ${t('storm.load.stat1.val')} |
+| ${t('storm.load.stat2.label')} | ${t('storm.load.stat2.val')} |
+| ${t('storm.load.stat3.label')} | ${t('storm.load.stat3.val')} |
+
+### 12.2 ${t('storm.phase.title')}
+${t('storm.phase.desc')}
+
+- **${t('storm.phase.p1.title')}** — ${t('storm.phase.p1.desc')}
+- **${t('storm.phase.p2.title')}** — ${t('storm.phase.p2.desc')}
+- **${t('storm.phase.p3.title')}** — ${t('storm.phase.p3.desc')}
+- **${t('storm.phase.p4.title')}** — ${t('storm.phase.p4.desc')}
+
+### 12.3 ${t('storm.hw.title')}
+${t('storm.hw.desc')}
+
+| Parameter | Value |
+|-----------|-------|
+| ${t('storm.hw.spec1.label')} | ${t('storm.hw.spec1.val')} |
+| ${t('storm.hw.spec2.label')} | ${t('storm.hw.spec2.val')} |
+| ${t('storm.hw.spec3.label')} | ${t('storm.hw.spec3.val')} |
+| ${t('storm.hw.spec4.label')} | ${t('storm.hw.spec4.val')} |
+
+### 12.4 ${t('storm.def.title')}
+${t('storm.def.desc')}
+
+- **${t('storm.def.d1.title')}** — ${t('storm.def.d1.desc')}
+- **${t('storm.def.d2.title')}** — ${t('storm.def.d2.desc')}
+- **${t('storm.def.d3.title')}** — ${t('storm.def.d3.desc')}
+
+### 12.5 ${t('storm.tri.title')}
+${t('storm.tri.desc')}
+
+| Node | Role |
+|------|------|
+| ${t('storm.tri.n1.title')} | ${t('storm.tri.n1.desc')} |
+| ${t('storm.tri.n2.title')} | ${t('storm.tri.n2.desc')} |
+| ${t('storm.tri.n3.title')} | ${t('storm.tri.n3.desc')} |
+
+### 12.6 ${t('storm.fsd.title')}
+${t('storm.fsd.desc')}
+
+> *"${t('storm.verdict')}"*
+
+---
+
 
 
 

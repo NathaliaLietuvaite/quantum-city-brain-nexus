@@ -12,6 +12,7 @@ import VeraRubinSection from '@/components/VeraRubinSection';
 import N3USection from '@/components/N3USection';
 import WillSection from '@/components/WillSection';
 import AirspaceSection from '@/components/AirspaceSection';
+import StormSection from '@/components/StormSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
@@ -28,7 +29,7 @@ const Index = () => {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeSection} onValueChange={setActiveSection} className="space-y-8">
-          <TabsList className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-11 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
+          <TabsList className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
             <TabsTrigger value="overview" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
               {t('nav.overview')}
             </TabsTrigger>
@@ -62,6 +63,9 @@ const Index = () => {
             <TabsTrigger value="airspace" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
               {t('nav.air')}
             </TabsTrigger>
+            <TabsTrigger value="storm" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+              {t('nav.storm')}
+            </TabsTrigger>
 
 
           </TabsList>
@@ -77,6 +81,7 @@ const Index = () => {
           <TabsContent value="n3u"><N3USection /></TabsContent>
           <TabsContent value="will"><WillSection /></TabsContent>
           <TabsContent value="airspace"><AirspaceSection /></TabsContent>
+          <TabsContent value="storm"><StormSection /></TabsContent>
 
         </Tabs>
       </div>
