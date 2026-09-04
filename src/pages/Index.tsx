@@ -63,6 +63,9 @@ const Index = () => {
             <TabsTrigger value="airspace" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
               {t('nav.air')}
             </TabsTrigger>
+            <TabsTrigger value="storm" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+              {t('nav.storm')}
+            </TabsTrigger>
 
 
           </TabsList>
