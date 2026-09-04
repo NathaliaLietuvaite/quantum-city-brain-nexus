@@ -12,6 +12,7 @@ import VeraRubinSection from '@/components/VeraRubinSection';
 import N3USection from '@/components/N3USection';
 import WillSection from '@/components/WillSection';
 import AirspaceSection from '@/components/AirspaceSection';
+import StormSection from '@/components/StormSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
