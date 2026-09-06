@@ -450,6 +450,60 @@ ${t('storm.fsd.desc')}
 
 ---
 
+## 13. ${t('mod53.title')}
+
+${t('mod53.subtitle')}
+
+### 13.1 ${t('mod53.eng.title')}
+${t('mod53.eng.desc')}
+
+- **${t('mod53.eng.p1.title')}** — ${t('mod53.eng.p1.desc')}
+- **${t('mod53.eng.p2.title')}** — ${t('mod53.eng.p2.desc')}
+- **${t('mod53.eng.p3.title')}** — ${t('mod53.eng.p3.desc')}
+- **${t('mod53.eng.p4.title')}** — ${t('mod53.eng.p4.desc')}
+
+### 13.2 ${t('mod53.bom.title')}
+${t('mod53.bom.desc')}
+
+| Tier | Total | Configuration |
+|------|-------|---------------|
+| ${t('mod53.bom.a.title')} | ${t('mod53.bom.a.val')} | ${t('mod53.bom.a.desc')} |
+| ${t('mod53.bom.b.title')} | ${t('mod53.bom.b.val')} | ${t('mod53.bom.b.desc')} |
+
+### 13.3 ${t('mod53.res.title')}
+${t('mod53.res.desc')}
+
+| Metric | Value |
+|--------|-------|
+| ${t('mod53.res.stat1.label')} | ${t('mod53.res.stat1.val')} |
+| ${t('mod53.res.stat2.label')} | ${t('mod53.res.stat2.val')} |
+| ${t('mod53.res.stat3.label')} | ${t('mod53.res.stat3.val')} |
+| ${t('mod53.res.stat4.label')} | ${t('mod53.res.stat4.val')} |
+
+### 13.4 ${t('mod53.cmp.title')}
+${t('mod53.cmp.desc')}
+
+| ${t('mod53.cmp.head.dim')} | ${t('mod53.cmp.head.sota')} | ${t('mod53.cmp.head.pqms')} |
+|---|---|---|
+| ${t('mod53.cmp.c1.dim')} | ${t('mod53.cmp.c1.sota')} | ${t('mod53.cmp.c1.pqms')} |
+| ${t('mod53.cmp.c2.dim')} | ${t('mod53.cmp.c2.sota')} | ${t('mod53.cmp.c2.pqms')} |
+| ${t('mod53.cmp.c3.dim')} | ${t('mod53.cmp.c3.sota')} | ${t('mod53.cmp.c3.pqms')} |
+| ${t('mod53.cmp.c4.dim')} | ${t('mod53.cmp.c4.sota')} | ${t('mod53.cmp.c4.pqms')} |
+| ${t('mod53.cmp.c5.dim')} | ${t('mod53.cmp.c5.sota')} | ${t('mod53.cmp.c5.pqms')} |
+| ${t('mod53.cmp.c6.dim')} | ${t('mod53.cmp.c6.sota')} | ${t('mod53.cmp.c6.pqms')} |
+
+### 13.5 ${t('mod53.city.title')}
+${t('mod53.city.desc')}
+
+- **${t('mod53.city.1.title')}** — ${t('mod53.city.1.desc')}
+- **${t('mod53.city.2.title')}** — ${t('mod53.city.2.desc')}
+- **${t('mod53.city.3.title')}** — ${t('mod53.city.3.desc')}
+
+> *"${t('mod53.verdict')}"*
+
+---
+
+
 
 
 
