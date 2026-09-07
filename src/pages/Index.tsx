@@ -31,43 +31,43 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeSection} onValueChange={setActiveSection} className="space-y-8">
           <TabsList className="grid grid-cols-3 md:grid-cols-7 lg:grid-cols-13 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.overview')}
             </TabsTrigger>
-            <TabsTrigger value="quantum" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="quantum" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.quantum')}
             </TabsTrigger>
-            <TabsTrigger value="architecture" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="architecture" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.architecture')}
             </TabsTrigger>
-            <TabsTrigger value="ghost" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="ghost" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.ghost')}
             </TabsTrigger>
-            <TabsTrigger value="freedom" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="freedom" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.freedom')}
             </TabsTrigger>
-            <TabsTrigger value="economics" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="economics" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.economics')}
             </TabsTrigger>
-            <TabsTrigger value="comparison" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="comparison" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.comparison')}
             </TabsTrigger>
-            <TabsTrigger value="verarubin" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="verarubin" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.verarubin')}
             </TabsTrigger>
-            <TabsTrigger value="n3u" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="n3u" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.n3u')}
             </TabsTrigger>
-            <TabsTrigger value="will" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="will" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.will')}
             </TabsTrigger>
-            <TabsTrigger value="airspace" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="airspace" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.air')}
             </TabsTrigger>
-            <TabsTrigger value="storm" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="storm" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.storm')}
             </TabsTrigger>
-            <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white text-xs md:text-sm">
+            <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.mod53')}
             </TabsTrigger>
 
