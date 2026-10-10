@@ -503,10 +503,108 @@ ${t('mod53.city.desc')}
 
 ---
 
+## 14. ${t('dmc.title')}
 
+${t('dmc.subtitle')}
 
+### 14.1 ${t('dmc.lag.title')}
+${t('dmc.lag.desc')}
 
+| Metric | Value |
+|--------|-------|
+${['stat1','stat2','stat3'].map(s => `| ${t(`dmc.lag.${s}.label`)} | ${t(`dmc.lag.${s}.val`)} |`).join('\n')}
 
+### 14.2 ${t('dmc.nct.title')}
+${t('dmc.nct.desc')}
+
+${['n1','n2','n3','n4'].map(s => `- **${t(`dmc.nct.${s}.title`)}** — ${t(`dmc.nct.${s}.desc`)}`).join('\n')}
+
+### 14.3 ${t('dmc.hw.title')}
+${t('dmc.hw.desc')}
+
+| Parameter | Value |
+|-----------|-------|
+${['spec1','spec2','spec3','spec4'].map(s => `| ${t(`dmc.hw.${s}.label`)} | ${t(`dmc.hw.${s}.val`)} |`).join('\n')}
+
+### 14.4 ${t('dmc.mod55.title')}
+${t('dmc.mod55.desc')}
+
+${['m1','m2','m3'].map(s => `- **${t(`dmc.mod55.${s}.title`)}** — ${t(`dmc.mod55.${s}.desc`)}`).join('\n')}
+
+### 14.5 ${t('dmc.city.title')}
+${t('dmc.city.desc')}
+
+> *"${t('dmc.verdict')}"*
+
+---
+
+## 15. ${t('brain.title')}
+
+${t('brain.subtitle')}
+
+### 15.1 ${t('brain.sensor.title')}
+${t('brain.sensor.desc')}
+
+| Metric | Value |
+|--------|-------|
+${['stat1','stat2','stat3','stat4'].map(s => `| ${t(`brain.sensor.${s}.label`)} | ${t(`brain.sensor.${s}.val`)} |`).join('\n')}
+
+### 15.2 ${t('brain.modes.title')}
+${t('brain.modes.desc')}
+
+${['m0','m1','m2','m3'].map(s => `- **${t(`brain.modes.${s}.title`)}** — ${t(`brain.modes.${s}.desc`)}`).join('\n')}
+
+### 15.3 ${t('brain.hw.title')}
+${t('brain.hw.desc')}
+
+| Parameter | Value |
+|-----------|-------|
+${['spec1','spec2','spec3','spec4'].map(s => `| ${t(`brain.hw.${s}.label`)} | ${t(`brain.hw.${s}.val`)} |`).join('\n')}
+
+### 15.4 ${t('brain.city.title')}
+${t('brain.city.desc')}
+
+> *"${t('brain.verdict')}"*
+
+---
+
+## 16. ${t('align.title')}
+
+${t('align.subtitle')}
+
+### 16.1 ${t('align.grav.title')}
+
+    ${t('align.grav.eq')}
+
+${t('align.grav.desc')}
+
+${['g1','g2','g3'].map(s => `- **${t(`align.grav.${s}.title`)}** — ${t(`align.grav.${s}.desc`)}`).join('\n')}
+
+> ${t('align.grav.quote')}
+
+### 16.2 ${t('align.bubble.title')}
+${t('align.bubble.desc')}
+
+${['b1','b2','b3','b4'].map(s => `- **${t(`align.bubble.${s}.title`)}** — ${t(`align.bubble.${s}.desc`)}`).join('\n')}
+
+### 16.3 ${t('align.grid.title')}
+${t('align.grid.desc')}
+
+${['t1','t2','t3'].map(s => `- **${t(`align.grid.${s}.title`)}** — ${t(`align.grid.${s}.desc`)}`).join('\n')}
+
+### 16.4 ${t('align.hw.title')}
+${t('align.hw.desc')}
+
+| Metric | Value |
+|--------|-------|
+${['stat1','stat2','stat3'].map(s => `| ${t(`align.hw.${s}.label`)} | ${t(`align.hw.${s}.val`)} |`).join('\n')}
+
+### 16.5 ${t('align.invite.title')}
+${t('align.invite.desc')}
+
+> *"${t('align.verdict')}"*
+
+---
 
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
