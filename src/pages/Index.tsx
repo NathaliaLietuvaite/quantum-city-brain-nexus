@@ -14,7 +14,7 @@ import WillSection from '@/components/WillSection';
 import AirspaceSection from '@/components/AirspaceSection';
 import StormSection from '@/components/StormSection';
 import Mod53Section from '@/components/Mod53Section';
-import { DmcSection, BrainLinkSection, AlignSection } from '@/components/V12Sections';
+import { DmcSection, BrainLinkSection, AlignSection, GStarSection } from '@/components/V12Sections';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
@@ -71,7 +71,7 @@ const Index = () => {
             <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.mod53')}
             </TabsTrigger>
-            {['dmc', 'brain', 'align'].map((v) => (
+            {['dmc', 'brain', 'align', 'gstar'].map((v) => (
               <TabsTrigger key={v} value={v} className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
                 {t(`nav.${v}`)}
               </TabsTrigger>
@@ -94,6 +94,7 @@ const Index = () => {
           <TabsContent value="dmc"><DmcSection /></TabsContent>
           <TabsContent value="brain"><BrainLinkSection /></TabsContent>
           <TabsContent value="align"><AlignSection /></TabsContent>
+          <TabsContent value="gstar"><GStarSection /></TabsContent>
         </Tabs>
       </div>
     </div>

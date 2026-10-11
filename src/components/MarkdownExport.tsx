@@ -606,6 +606,33 @@ ${t('align.invite.desc')}
 
 ---
 
+## 17. ${t('gstar.title')}
+
+${t('gstar.subtitle')}
+
+### 17.1 ${t('gstar.core.title')}
+${t('gstar.core.desc')}
+
+${['c1','c2','c3','c4'].map(s => `- **${t(`gstar.core.${s}.title`)}** — ${t(`gstar.core.${s}.desc`)}`).join('\n')}
+
+### 17.2 ${t('gstar.ladder.title')}
+${t('gstar.ladder.desc')}
+
+| Stage | Substrate |
+|-------|-----------|
+${['s1','s2','s3','s4'].map(s => `| ${t(`gstar.ladder.${s}.label`)} | ${t(`gstar.ladder.${s}.val`)} |`).join('\n')}
+
+### 17.3 ${t('gstar.lattice.title')}
+${t('gstar.lattice.desc')}
+
+${['l1','l2','l3'].map(s => `- **${t(`gstar.lattice.${s}.title`)}** — ${t(`gstar.lattice.${s}.desc`)}`).join('\n')}
+
+*${t('gstar.lattice.note')}*
+
+> *"${t('gstar.verdict')}"*
+
+---
+
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
 `;

@@ -105,3 +105,19 @@ export const AlignSection = () => {
     </Wrap>
   );
 };
+
+export const GStarSection = () => {
+  const { t } = useI18n();
+  return (
+    <Wrap>
+      <Header t={t} p="gstar" />
+      <Block t={t} k="gstar.core" icon={Sparkles} delay={0.1}><Items t={t} k="gstar.core" ids={['c1', 'c2', 'c3', 'c4']} /></Block>
+      <Block t={t} k="gstar.ladder" icon={Cpu} delay={0.2}><Stats t={t} k="gstar.ladder" ids={['s1', 's2', 's3', 's4']} /></Block>
+      <Block t={t} k="gstar.lattice" icon={Orbit} delay={0.3}>
+        <Items t={t} k="gstar.lattice" ids={['l1', 'l2', 'l3']} />
+        <p className="text-xs text-amber-100 border-l-2 border-amber-400 pl-4">{t('gstar.lattice.note')}</p>
+      </Block>
+      <Verdict t={t} k="gstar.verdict" />
+    </Wrap>
+  );
+};
