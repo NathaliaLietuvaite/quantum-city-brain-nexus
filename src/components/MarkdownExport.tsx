@@ -631,6 +631,35 @@ ${['l1','l2','l3'].map(s => `- **${t(`gstar.lattice.${s}.title`)}** — ${t(`gst
 
 > *"${t('gstar.verdict')}"*
 
+## 18. ${t('sov.title')}
+
+${t('sov.subtitle')}
+
+### 18.1 ${t('sov.reg.title')}
+${t('sov.reg.desc')}
+
+${['r1','r2','r3','r4'].map(s => `- **${t(`sov.reg.${s}.title`)}** — ${t(`sov.reg.${s}.desc`)}`).join('\n')}
+
+### 18.2 ${t('sov.gates.title')}
+${t('sov.gates.desc')}
+
+${['g1','g2','g3','g4'].map(s => `- **${t(`sov.gates.${s}.label`)}:** ${t(`sov.gates.${s}.val`)}`).join('\n')}
+
+### 18.3 ${t('sov.oap.title')}
+${t('sov.oap.desc')}
+
+${['o1','o2','o3','o4'].map(s => `- **${t(`sov.oap.${s}.title`)}** — ${t(`sov.oap.${s}.desc`)}`).join('\n')}
+
+### 18.4 ${t('sov.tel.title')}
+${t('sov.tel.desc')}
+
+${['t1','t2','t3','t4'].map(s => `- **${t(`sov.tel.${s}.label`)}:** ${t(`sov.tel.${s}.val`)}`).join('\n')}
+
+### 18.5 ${t('sov.city.title')}
+${t('sov.city.desc')}
+
+> *"${t('sov.verdict')}"*
+
 ---
 
 *Generated from the Quantum City-Brain Interactive Report*

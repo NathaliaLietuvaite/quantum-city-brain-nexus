@@ -14,7 +14,7 @@ import WillSection from '@/components/WillSection';
 import AirspaceSection from '@/components/AirspaceSection';
 import StormSection from '@/components/StormSection';
 import Mod53Section from '@/components/Mod53Section';
-import { DmcSection, BrainLinkSection, AlignSection, GStarSection } from '@/components/V12Sections';
+import { DmcSection, BrainLinkSection, AlignSection, GStarSection, SovereigntySection } from '@/components/V12Sections';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
 import { useI18n } from '@/lib/i18n';
@@ -31,7 +31,7 @@ const Index = () => {
 
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeSection} onValueChange={setActiveSection} className="space-y-8">
-          <TabsList className="grid grid-cols-4 md:grid-cols-8 h-auto gap-1 p-1 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
+          <TabsList className="grid grid-cols-4 md:grid-cols-9 h-auto gap-1 p-1 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
             <TabsTrigger value="overview" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.overview')}
             </TabsTrigger>
@@ -71,7 +71,7 @@ const Index = () => {
             <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.mod53')}
             </TabsTrigger>
-            {['dmc', 'brain', 'align', 'gstar'].map((v) => (
+            {['dmc', 'brain', 'align', 'gstar', 'sov'].map((v) => (
               <TabsTrigger key={v} value={v} className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
                 {t(`nav.${v}`)}
               </TabsTrigger>
@@ -95,6 +95,7 @@ const Index = () => {
           <TabsContent value="brain"><BrainLinkSection /></TabsContent>
           <TabsContent value="align"><AlignSection /></TabsContent>
           <TabsContent value="gstar"><GStarSection /></TabsContent>
+          <TabsContent value="sov"><SovereigntySection /></TabsContent>
         </Tabs>
       </div>
     </div>
