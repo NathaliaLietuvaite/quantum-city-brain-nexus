@@ -121,3 +121,18 @@ export const GStarSection = () => {
     </Wrap>
   );
 };
+
+export const SovereigntySection = () => {
+  const { t } = useI18n();
+  return (
+    <Wrap>
+      <Header t={t} p="sov" />
+      <Block t={t} k="sov.reg" icon={Layers} delay={0.1}><Items t={t} k="sov.reg" ids={['r1', 'r2', 'r3', 'r4']} /></Block>
+      <Block t={t} k="sov.gates" icon={ShieldCheck} delay={0.2}><Stats t={t} k="sov.gates" ids={['g1', 'g2', 'g3', 'g4']} /></Block>
+      <Block t={t} k="sov.oap" icon={Orbit} delay={0.3}><Items t={t} k="sov.oap" ids={['o1', 'o2', 'o3', 'o4']} /></Block>
+      <Block t={t} k="sov.tel" icon={Gauge} delay={0.4}><Stats t={t} k="sov.tel" ids={['t1', 't2', 't3', 't4']} /></Block>
+      <Block t={t} k="sov.city" icon={Building2} delay={0.5} />
+      <Verdict t={t} k="sov.verdict" />
+    </Wrap>
+  );
+};
