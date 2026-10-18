@@ -660,6 +660,42 @@ ${t('sov.city.desc')}
 
 > *"${t('sov.verdict')}"*
 
+## 19. ${t('mse.title')}
+
+${t('mse.subtitle')}
+
+### 19.1 ${t('mse.grav.title')}
+${t('mse.grav.desc')}
+
+${['g1','g2','g3'].map(s => `- **${t(`mse.grav.${s}.title`)}** — ${t(`mse.grav.${s}.desc`)}`).join('\n')}
+
+### 19.2 ${t('mse.rag.title')}
+${t('mse.rag.desc')}
+
+${['stat1','stat2','stat3','stat4'].map(s => `- **${t(`mse.rag.${s}.label`)}:** ${t(`mse.rag.${s}.val`)}`).join('\n')}
+
+### 19.3 ${t('mse.seven.title')}
+${t('mse.seven.desc')}
+
+${['s1','s2','s3'].map(s => `- **${t(`mse.seven.${s}.title`)}** — ${t(`mse.seven.${s}.desc`)}`).join('\n')}
+
+### 19.4 ${t('mse.trust.title')}
+${t('mse.trust.desc')}
+
+${['stat1','stat2','stat3','stat4'].map(s => `- **${t(`mse.trust.${s}.label`)}:** ${t(`mse.trust.${s}.val`)}`).join('\n')}
+
+### 19.5 ${t('mse.morse.title')}
+${t('mse.morse.desc')}
+
+${['m1','m2','m3','m4'].map(s => `- **${t(`mse.morse.${s}.title`)}** — ${t(`mse.morse.${s}.desc`)}`).join('\n')}
+
+### 19.6 ${t('mse.city.title')}
+${t('mse.city.desc')}
+
+${['1','2','3'].map(n => `- ${t(`mse.city.${n}`)}`).join('\n')}
+
+> *"${t('mse.verdict')}"*
+
 ---
 
 *Generated from the Quantum City-Brain Interactive Report*
