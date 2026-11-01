@@ -136,3 +136,20 @@ export const SovereigntySection = () => {
     </Wrap>
   );
 };
+
+export const ArgonSection = () => {
+  const { t } = useI18n();
+  return (
+    <Wrap>
+      <Header t={t} p="argon" />
+      <Block t={t} k="argon.hss" icon={Sparkles} delay={0.1}><Stats t={t} k="argon.hss" ids={['s1', 's2', 's3', 's4']} /></Block>
+      <Block t={t} k="argon.map" icon={Cpu} delay={0.2}><Stats t={t} k="argon.map" ids={['b0', 'b1', 'b2', 'b3', 'b4', 'b5']} /></Block>
+      <Block t={t} k="argon.bubble" icon={Timer} delay={0.3}><Items t={t} k="argon.bubble" ids={['t1', 't2', 't3', 't4']} /></Block>
+      <Block t={t} k="argon.soar" icon={Orbit} delay={0.4}><Items t={t} k="argon.soar" ids={['i1', 'i2', 'i3', 'i4']} /></Block>
+      <Block t={t} k="argon.cluster" icon={Grid3x3} delay={0.5}><Stats t={t} k="argon.cluster" ids={['s1', 's2', 's3', 's4']} /></Block>
+      <Block t={t} k="argon.stance" icon={ShieldCheck} delay={0.6} />
+      <Block t={t} k="argon.city" icon={Building2} delay={0.7} />
+      <Verdict t={t} k="argon.verdict" />
+    </Wrap>
+  );
+};

@@ -14,7 +14,7 @@ import WillSection from '@/components/WillSection';
 import AirspaceSection from '@/components/AirspaceSection';
 import StormSection from '@/components/StormSection';
 import Mod53Section from '@/components/Mod53Section';
-import { DmcSection, BrainLinkSection, AlignSection, GStarSection, SovereigntySection } from '@/components/V12Sections';
+import { DmcSection, BrainLinkSection, AlignSection, GStarSection, SovereigntySection, ArgonSection } from '@/components/V12Sections';
 import MseSection from '@/components/MseSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
@@ -72,7 +72,7 @@ const Index = () => {
             <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
               {t('nav.mod53')}
             </TabsTrigger>
-            {['dmc', 'brain', 'align', 'gstar', 'sov', 'mse'].map((v) => (
+            {['dmc', 'brain', 'align', 'gstar', 'sov', 'mse', 'argon'].map((v) => (
               <TabsTrigger key={v} value={v} className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
                 {t(`nav.${v}`)}
               </TabsTrigger>
@@ -98,6 +98,7 @@ const Index = () => {
           <TabsContent value="gstar"><GStarSection /></TabsContent>
           <TabsContent value="sov"><SovereigntySection /></TabsContent>
           <TabsContent value="mse"><MseSection /></TabsContent>
+          <TabsContent value="argon"><ArgonSection /></TabsContent>
         </Tabs>
       </div>
     </div>

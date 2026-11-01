@@ -698,6 +698,45 @@ ${['1','2','3'].map(n => `- ${t(`mse.city.${n}`)}`).join('\n')}
 
 ---
 
+## 20. ${t('argon.title')}
+
+${t('argon.subtitle')}
+
+### 20.1 ${t('argon.hss.title')}
+${t('argon.hss.desc')}
+
+${['s1','s2','s3','s4'].map(s => `- **${t(`argon.hss.${s}.label`)}:** ${t(`argon.hss.${s}.val`)}`).join('\n')}
+
+### 20.2 ${t('argon.map.title')}
+${t('argon.map.desc')}
+
+${['b0','b1','b2','b3','b4','b5'].map(s => `- **${t(`argon.map.${s}.label`)}:** ${t(`argon.map.${s}.val`)}`).join('\n')}
+
+### 20.3 ${t('argon.bubble.title')}
+${t('argon.bubble.desc')}
+
+${['t1','t2','t3','t4'].map(s => `- **${t(`argon.bubble.${s}.title`)}** — ${t(`argon.bubble.${s}.desc`)}`).join('\n')}
+
+### 20.4 ${t('argon.soar.title')}
+${t('argon.soar.desc')}
+
+${['i1','i2','i3','i4'].map(s => `- **${t(`argon.soar.${s}.title`)}** — ${t(`argon.soar.${s}.desc`)}`).join('\n')}
+
+### 20.5 ${t('argon.cluster.title')}
+${t('argon.cluster.desc')}
+
+${['s1','s2','s3','s4'].map(s => `- **${t(`argon.cluster.${s}.label`)}:** ${t(`argon.cluster.${s}.val`)}`).join('\n')}
+
+### 20.6 ${t('argon.stance.title')}
+${t('argon.stance.desc')}
+
+### 20.7 ${t('argon.city.title')}
+${t('argon.city.desc')}
+
+> *"${t('argon.verdict')}"*
+
+---
+
 *Generated from the Quantum City-Brain Interactive Report*
 *Source: https://github.com/NathaliaLietuvaite/Quantenkommunikation*
 `;
