@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FileText, Copy, Check } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import { alphaReport } from '@/lib/node-alpha-content';
 
 const generateMarkdownReport = (t: (key: string) => string): string => {
   return `# ${t('hero.title')}
@@ -734,6 +735,10 @@ ${t('argon.stance.desc')}
 ${t('argon.city.desc')}
 
 > *"${t('argon.verdict')}"*
+
+---
+
+${alphaReport(t)}
 
 ---
 
