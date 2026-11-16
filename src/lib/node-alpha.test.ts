@@ -14,7 +14,7 @@ describe('Node Alpha V1.3 browser reference', () => {
   });
   test('pure G3 collision gives delta E = 1 and veto', async () => {
     const a = await deriveAnchor(); const g = browserTangent(a.vector); const r = evaluateRawGate(g, a.vector, g);
-    assert.equal(r.passed, false); assert.equal(r.deltaERaw).toBeCloseTo(1, 12); expect(r.bleedPost, 1);
+    assert.equal(r.passed, false); assert.ok(Math.abs(r.deltaERaw - 1) < 10 ** -12); assert.equal(r.bleedPost, 1);
   });
   test('raw RCF floor is inclusive at 0.95 and rejects 0.949', () => {
     const a = [1, ...Array(63).fill(0)], g = [0, 0, 1, ...Array(61).fill(0)];
@@ -25,7 +25,7 @@ describe('Node Alpha V1.3 browser reference', () => {
   test('delta E above 0.05 vetoes even with RCF above 0.95', () => {
     const a = [1, ...Array(63).fill(0)], g = [0, 1, ...Array(62).fill(0)];
     const r = evaluateRawGate([Math.sqrt(0.99), 0.1, ...Array(62).fill(0)], a, g);
-    assert.equal(r.rcfRaw).toBeCloseTo(0.99); assert.ok(Math.abs(r.deltaERaw - 0.055) < 0.005); expect(r.passed, false);
+    assert.ok(Math.abs(r.rcfRaw - 0.99) < 0.005); assert.ok(Math.abs(r.deltaERaw - 0.055) < 0.005); assert.equal(r.passed, false);
   });
   test('zero and nonfinite candidates fail closed', async () => {
     const a = await deriveAnchor(), g = browserTangent(a.vector);
