@@ -82,7 +82,7 @@ export async function appendAudit(entries: AuditEntry[], input: number[], result
   if (!(await verifyAudit(entries))) throw new Error('Audit integrity failure');
   const payload = { schema: 'NODE_ALPHA_BROWSER_V1' as const, index: entries.length + 1,
     source: 'BROWSER_REFERENCE' as const, input: [...input], result: { ...result },
-    parent: entries.at(-1)?.seal ?? ALPHA_CONSTANTS.genesis };
+    parent: entries[entries.length - 1]?.seal ?? ALPHA_CONSTANTS.genesis };
   return [...entries, { ...payload, seal: await entrySeal(payload) }];
 }
 export async function verifyAudit(entries: AuditEntry[]) {
