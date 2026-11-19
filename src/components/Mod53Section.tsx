@@ -15,6 +15,7 @@ import {
   Route,
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import SiliconRooflineCalculator from '@/components/SiliconRooflineCalculator';
 
 const stages = [
   { key: 'p1', icon: CircuitBoard, color: 'from-cyan-600 to-blue-700' },
@@ -49,6 +50,9 @@ const Mod53Section = () => {
           {t('mod53.subtitle')}
         </p>
       </div>
+
+      {/* S-04 Live RTX 4060 Ti L2 Roofline & Silicon Throughput Calculator */}
+      <SiliconRooflineCalculator />
 
       {/* Pipeline */}
       <motion.div

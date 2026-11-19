@@ -31,6 +31,11 @@ import {
   sampleVcdTrackAtCycle,
   tabMatchesTruthFilter,
 } from './mission-control.ts';
+import {
+  calculateSiliconThroughput,
+  evaluateCorridorTick,
+  runKuramotoStormSimulation,
+} from './phase2-simulators.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const telemetry = JSON.parse(
@@ -227,9 +232,10 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
 
   test('Epistemic Truth Lens register filter & priority accurately separate M/D/T/I', () => {
     const counts = countTabsByRegister();
-    assert.equal(counts.M, 2);
+    assert.equal(counts.M, 3);
     assert.equal(tabMatchesTruthFilter('alpha', 'M'), true);
     assert.equal(tabMatchesTruthFilter('argon', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('mod53', 'M'), true);
     assert.equal(tabMatchesTruthFilter('overview', 'M'), false);
     assert.equal(tabMatchesTruthFilter('overview', 'I'), true);
     assert.equal(tabMatchesTruthFilter('freedom', 'ALL'), true);
@@ -288,5 +294,100 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
     assert.equal(pack.expected_q2_30_outputs.gate_pass, true);
     assert.equal(pack.expected_q2_30_outputs.veto_pin, false);
     assert.equal(pack.golden_seals.l_vec_q2_30_hex_sha256, telemetry.golden_seals.l_vec_q2_30_hex_sha256);
+  });
+
+  test('S-02 City-Brain Corridor Simulator passes all 12 ground/aerial agents in nominal mode', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+    const snap = evaluateCorridorTick(7, 'nominal', 0.45, lRom, g3Rom);
+    assert.equal(snap.agents.length, 12);
+    assert.equal(snap.passCount, 12);
+    assert.equal(snap.vetoCount, 0);
+    assert.equal(snap.totalRtlCycles, 12 * 195);
+    assert.ok(snap.meanRcf >= 0.98);
+    assert.ok(snap.maxDeltaE <= 0.05);
+    assert.ok(snap.maxBleedLsb <= 1);
+  });
+
+  test('S-02 Corridor fault injections (G3 spoof, In-Band t_G1, norm_fault) trigger exact fail-closed vetoes', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+
+    const spoof = evaluateCorridorTick(10, 'g3_spoof', 0.5, lRom, g3Rom);
+    assert.equal(spoof.vetoCount, 5);
+    assert.equal(spoof.passCount, 7);
+    assert.equal(spoof.agents.filter((a) => a.targeted).every((a) => a.diverted && a.gate.vetoPin), true);
+
+    const inBand = evaluateCorridorTick(10, 'in_band_tg1', 0.5, lRom, g3Rom);
+    assert.equal(inBand.vetoCount, 5);
+    assert.ok(inBand.maxBleedLsb <= 1, 'In-band attack has minimal G3 bleed yet is caught by raw ODOS gate');
+
+    const normFault = evaluateCorridorTick(10, 'norm_fault', 0.8, lRom, g3Rom);
+    assert.equal(normFault.vetoCount, 5);
+    assert.equal(normFault.agents.filter((a) => a.targeted).every((a) => a.gate.normFault && a.gate.vetoPin), true);
+  });
+
+  test('S-03 Kuramoto & Kahan–Parlett storm preserves FRIDU coherence while PAX collapses', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+    const res = runKuramotoStormSimulation(lRom, g3Rom, {
+      stormBeta: 0.55,
+      couplingK: 2.2,
+      bypassKevlar: false,
+    });
+    assert.equal(res.finalFriduGate.gatePass, true);
+    assert.ok(res.finalFriduGate.bleedPostQ <= 1);
+    assert.equal(res.finalPaxGate.gatePass, false);
+    assert.ok(res.finalRFridu > 0.90, `Expected FRIDU r > 0.90, got ${res.finalRFridu}`);
+    assert.ok(res.finalRPax < res.finalRFridu, `Expected PAX collapse below FRIDU (${res.finalRPax} vs ${res.finalRFridu})`);
+  });
+
+  test('S-03 Negative control bypass_kevlar=true collapses FRIDU identically onto PAX', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+    const res = runKuramotoStormSimulation(lRom, g3Rom, {
+      stormBeta: 0.55,
+      couplingK: 2.2,
+      bypassKevlar: true,
+    });
+    assert.equal(res.finalFriduGate.gatePass, false);
+    assert.equal(res.finalRFridu, res.finalRPax);
+  });
+
+  test('S-04 Silicon throughput & Stage 1/2/3 MAC scaling matches 195-cycle analytical law', () => {
+    const s1 = calculateSiliconThroughput({
+      stageId: 'stage1_baseline',
+      clockMhz: 100,
+      parallelCores: 1,
+      fleetVehicles: 10_000,
+      cadenceHz: 20,
+    });
+    assert.equal(s1.stage.mulBlocks, 9);
+    assert.equal(s1.stage.estimatedGateCells, 89609);
+    assert.ok(Math.abs(s1.latencyUsPerDecision - 1.95) < 1e-9);
+    assert.equal(Math.round(s1.decisionsPerSecPerCore), 512821);
+    assert.equal(s1.fleetSupported, true);
+
+    const s2 = calculateSiliconThroughput({
+      stageId: 'stage2_folded_9to3',
+      clockMhz: 100,
+      parallelCores: 1,
+      fleetVehicles: 100_000,
+      cadenceHz: 50,
+    });
+    assert.equal(s2.stage.mulBlocks, 3);
+    assert.equal(s2.stage.cyclesPerDecision, 195);
+    assert.equal(s2.fleetSupported, false);
+
+    const s3 = calculateSiliconThroughput({
+      stageId: 'stage3_single_mac_9to1',
+      clockMhz: 200,
+      parallelCores: 16,
+      fleetVehicles: 500_000,
+      cadenceHz: 20,
+    });
+    assert.equal(s3.stage.mulBlocks, 1);
+    assert.equal(s3.totalEstimatedMulBlocks, 16);
+    assert.equal(s3.fleetSupported, true);
   });
 });

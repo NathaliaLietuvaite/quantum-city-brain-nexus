@@ -55,7 +55,7 @@ const MissionControlNav = ({
   const regCounts = countTabsByRegister();
 
   return (
-    <div id="mission-control" className="space-y-5 scroll-mt-6">
+    <div id="mission-control" className="space-y-5 scroll-mt-16 pt-4">
       {/* Mission Control Header + Live Telemetry Status Ribbon */}
       <div className="rounded-xl border border-cyan-400/25 bg-slate-950/75 backdrop-blur-md p-4 md:p-6 space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-4">

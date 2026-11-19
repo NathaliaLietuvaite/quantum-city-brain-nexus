@@ -17,6 +17,7 @@ import {
   Car,
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import KuramotoStormSimulator from '@/components/KuramotoStormSimulator';
 
 const phases = [
   { key: 'p1', icon: Megaphone, color: 'from-cyan-600 to-blue-700' },
@@ -55,6 +56,9 @@ const StormSection = () => {
           {t('storm.subtitle')}
         </p>
       </div>
+
+      {/* S-03 Live Kuramoto & Two-Pass Kahan–Parlett Storm Simulator */}
+      <KuramotoStormSimulator />
 
       {/* Coherence load */}
       <motion.div

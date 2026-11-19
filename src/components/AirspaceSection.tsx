@@ -16,6 +16,7 @@ import {
   Boxes,
 } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import CityCorridorSimulator from '@/components/CityCorridorSimulator';
 
 const dimensions = [
   { key: 'd1', icon: Box, color: 'from-cyan-600 to-blue-700', accent: 'text-cyan-100' },
@@ -45,6 +46,9 @@ const AirspaceSection = () => {
           {t('air.subtitle')}
         </p>
       </div>
+
+      {/* S-02 Live Quantum City-Brain Corridor & Q2.30 ODOS Gate Simulator */}
+      <CityCorridorSimulator />
 
       {/* Seven control dimensions */}
       <motion.div

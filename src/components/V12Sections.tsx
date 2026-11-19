@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Rocket, Radio, Cpu, ShieldCheck, Building2, Brain, Layers, Gauge, Orbit, Timer, Grid3x3, Sparkles, LucideIcon } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import SiliconRooflineCalculator from '@/components/SiliconRooflineCalculator';
 
 type T = (k: string) => string;
 
@@ -142,6 +143,7 @@ export const ArgonSection = () => {
   return (
     <Wrap>
       <Header t={t} p="argon" />
+      <SiliconRooflineCalculator />
       <Block t={t} k="argon.hss" icon={Sparkles} delay={0.1}><Stats t={t} k="argon.hss" ids={['s1', 's2', 's3', 's4']} /></Block>
       <Block t={t} k="argon.map" icon={Cpu} delay={0.2}><Stats t={t} k="argon.map" ids={['b0', 'b1', 'b2', 'b3', 'b4', 'b5']} /></Block>
       <Block t={t} k="argon.bubble" icon={Timer} delay={0.3}><Items t={t} k="argon.bubble" ids={['t1', 't2', 't3', 't4']} /></Block>

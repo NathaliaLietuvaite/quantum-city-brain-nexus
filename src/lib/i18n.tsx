@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { alphaTranslations } from './node-alpha-content';
 import { missionControlTranslations } from './mission-control-content';
+import { phase2Translations } from './phase2-content';
 
 export type Language = 'en' | 'de' | 'zh';
 
@@ -2625,6 +2626,7 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
 
   const t = (key: string): string => {
     return (
+      phase2Translations[lang]?.[key] ??
       missionControlTranslations[lang]?.[key] ??
       alphaTranslations[lang]?.[key] ??
       translations[lang]?.[key] ??

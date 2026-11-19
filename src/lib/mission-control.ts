@@ -54,13 +54,13 @@ export const MISSION_CONTROL_SECTORS: readonly MissionSectorMeta[] = [
 export const MISSION_CONTROL_TABS: readonly MissionTabMeta[] = [
   // Sector I · Live Demonstrator & Silicon Labs (5)
   { id: 'alpha', sector: 'labs', navKey: 'nav.alpha', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-01 · VCD' },
-  { id: 'airspace', sector: 'labs', navKey: 'nav.air', registers: ['D', 'T', 'I'], simStatus: 'NEXT', simCode: 'S-02' },
-  { id: 'storm', sector: 'labs', navKey: 'nav.storm', registers: ['T', 'D'], simStatus: 'NEXT', simCode: 'S-03' },
-  { id: 'argon', sector: 'labs', navKey: 'nav.argon', registers: ['M', 'D', 'T'], simStatus: 'NEXT', simCode: 'S-04' },
+  { id: 'airspace', sector: 'labs', navKey: 'nav.air', registers: ['D', 'T', 'I'], simStatus: 'LIVE', simCode: 'S-02' },
+  { id: 'storm', sector: 'labs', navKey: 'nav.storm', registers: ['T', 'D'], simStatus: 'LIVE', simCode: 'S-03' },
+  { id: 'argon', sector: 'labs', navKey: 'nav.argon', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-04' },
   { id: 'ghost', sector: 'labs', navKey: 'nav.ghost', registers: ['T', 'I'], simStatus: 'NEXT', simCode: 'S-07' },
 
   // Sector II · Hardware Evidence & Sovereign Governance (6)
-  { id: 'mod53', sector: 'evidence', navKey: 'nav.mod53', registers: ['D', 'T'], simStatus: 'NEXT', simCode: 'S-04' },
+  { id: 'mod53', sector: 'evidence', navKey: 'nav.mod53', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-04' },
   { id: 'sov', sector: 'evidence', navKey: 'nav.sov', registers: ['D', 'T'], simStatus: 'NEXT', simCode: 'S-05' },
   { id: 'will', sector: 'evidence', navKey: 'nav.will', registers: ['T', 'I'], simStatus: 'NEXT', simCode: 'S-05' },
   { id: 'economics', sector: 'evidence', navKey: 'nav.economics', registers: ['D', 'I'], simStatus: 'NEXT', simCode: 'S-06' },
