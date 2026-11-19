@@ -19,6 +19,7 @@ import MseSection from '@/components/MseSection';
 import NodeAlphaSection from '@/components/NodeAlphaSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
+import { RegisterBadgeBar, TAB_REGISTERS } from '@/components/RegisterBadge';
 import { useI18n } from '@/lib/i18n';
 
 const Index = () => {
@@ -79,6 +80,8 @@ const Index = () => {
               </TabsTrigger>
             ))}
           </TabsList>
+
+          <RegisterBadgeBar registers={TAB_REGISTERS[activeSection] ?? ['I']} />
 
           <TabsContent value="overview"><ConceptOverview /></TabsContent>
           <TabsContent value="quantum"><QuantumFoundation /></TabsContent>

@@ -1,5 +1,7 @@
 # Roadmap
 
-- [x] Add "Argon Core" tab (V-MAX-12-SUPERNOVA-ARGON-CORE REV-1, ENG/DEU/CHN + report section 20): 2 MB L2-SRAM virtual chip on the RTX 4060 Ti, HSS benchmark, Appendix A (cartographic stance), B (GB300 NVL72 cluster), C ("Floating Time Bubble" L2 shielding), D (self-localization, "Thermal Soaring" field navigation).
-- [ ] Implement browser-executable Node Alpha anchor, raw gate, null control and session audit chain; add ENG/DEU/CHN tab, paper evidence and report section 21.
-- [ ] Test Node Alpha rules and verify the interactive flow on desktop and mobile.
+- [x] Add "Argon Core" tab (`V-MAX-12-SUPERNOVA-ARGON-CORE REV-1`, ENG/DEU/CHN + report section 20): 2 MB L2-SRAM virtual chip on the RTX 4060 Ti, HSS benchmark, Appendices A–D.
+- [x] Implement browser-executable Node Alpha anchor, raw gate, null control and session audit chain; add ENG/DEU/CHN tab, paper evidence and report section 21.
+- [x] Phase 1 (`WORK-ORDER-QCBN-01`): Archive baseline (`e867b21`), sync telemetry Single-Source-of-Truth (`V1.8.1 + V2.0-RTL-ALPHA / SYNC-12`), implement bit-exact `Q2.30` `BigInt` RTL core (`S-01`, `0 LSB` vs. Verilator 5.055), interactive Appendix G Fridu/PAX/In-Band defense-in-depth, optional `localhost:8137` live HUD probe, register badges across all 21 tabs, deterministic Hero particles, lazy `preload="metadata"` for `PQMS_V12M.mp4`, canonical `package-lock.json` + `npm test` (`12/12 PASS`), and full project `README.md`.
+- [ ] Phase 2 (`WORK-ORDER-QCBN-02`): Interactive Quantum City Brain 2D/Layer Corridor + `Q2.30` ODOS Gate Simulator (`S-02`), Kuramoto/Kahan–Parlett Storm Simulator (`S-03`), L2-Roofline + Stage 1/2/3 Silicon Throughput Calculator + VCD Timing Waveform Viewer (`S-04`).
+- [ ] Phase 3 (`WORK-ORDER-QCBN-03`): Interactive `F-01` Hard-Negative ROC & `Stage-3` KL Explorer (`S-05`), `HWiNFO64` Fleet Energy Calculator (`S-06`), Ghost 4-Mode Heartbeat/Thermal Simulator (`S-07`), 3-Tier Mission Control Navigation, global `Epistemic Truth Lens`, and GitHub Pages CI deployment.

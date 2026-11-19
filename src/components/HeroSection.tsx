@@ -2,6 +2,14 @@ import { motion } from 'framer-motion';
 import { Car, Brain, Zap, ExternalLink, Ghost } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
+const DETERMINISTIC_PARTICLES = Array.from({ length: 15 }, (_, i) => ({
+  id: i,
+  left: `${((i * 37 + 11) % 96) + 2}%`,
+  top: `${((i * 53 + 7) % 92) + 4}%`,
+  duration: 4.2 + (i % 5) * 0.65,
+  delay: (i % 6) * 0.45,
+}));
+
 const HeroSection = () => {
   const { t } = useI18n();
 
@@ -13,6 +21,7 @@ const HeroSection = () => {
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover opacity-20"
           src="/PQMS_V12M.mp4"
         />
@@ -20,13 +29,13 @@ const HeroSection = () => {
       </div>
 
       <div className="absolute inset-0">
-        {[...Array(15)].map((_, i) => (
+        {DETERMINISTIC_PARTICLES.map((p) => (
           <motion.div
-            key={i}
+            key={p.id}
             className="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-40"
             animate={{ x: [0, 80, 0], y: [0, -80, 0], opacity: [0.3, 0.8, 0.3] }}
-            transition={{ duration: 4 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 3 }}
-            style={{ left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%` }}
+            transition={{ duration: p.duration, repeat: Infinity, delay: p.delay }}
+            style={{ left: p.left, top: p.top }}
           />
         ))}
       </div>

@@ -1,73 +1,65 @@
-# Welcome to your Lovable project
+# Quantum City Brain Nexus — Interactive PQMS / ODOS / V-MAX-12 Demonstrator
 
-## Project info
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/LICENSE.txt)
+[![V-MAX-12 Sync](https://img.shields.io/badge/V--MAX--12-V1.8.1_%2B_V2.0--RTL--ALPHA_(SYNC--12)-brightgreen)](https://github.com/NathaliaLietuvaite/Quantenkommunikation/blob/main/PQMS-ODOS-MTSC-V-MAX-12-RTL-CORE-V2.0-ALPHA.md)
+[![Q2.30 Browser RTL](https://img.shields.io/badge/Browser_Q2.30_BigInt-0_LSB_vs_Verilator_5.055-blue)](./src/lib/odos-q2-30.ts)
+[![Tests](https://img.shields.io/badge/Unit_Tests-12%2F12_PASS-emerald)](./src/lib/node-alpha.test.ts)
 
-**URL**: https://lovable.dev/projects/8a92834a-5511-4c84-8e7c-4448ea1989d9
+**Trilingual (`EN` / `DE` / `ZH`) Web Demonstrator & Browser-Executable Reference Lab for the Proactive Quantum Mesh System (`PQMS`), Oberste Direktive OS (`ODOS`), V-MAX-12 Node Alpha (`V1.8.1`), and the Synthesizable `Q2.30` SystemVerilog Gate Core (`V2.0-RTL-ALPHA`).**
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 1. Purpose & Epistemic Register Discipline
 
-**Use Lovable**
+`quantum-city-brain-nexus` serves as the interactive public demonstrator companion to the two core V-MAX-12 repositories:
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8a92834a-5511-4c84-8e7c-4448ea1989d9) and start prompting.
+1. **[`Quantenkommunikation`](https://github.com/NathaliaLietuvaite/Quantenkommunikation)** — Specification & Silicon Telemetry Authority (`PQMS-ODOS-MTSC-V-MAX-12-Node-ALPHA-V1.md` `V1.8.1` + `PQMS-ODOS-MTSC-V-MAX-12-RTL-CORE-V2.0-ALPHA.md`).
+2. **[`PQMS-SOVEREIGN-CORE-ANDROID-APP`](https://github.com/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP)** — Executable Cross-Substrate Codebase (`vmax_alpha/` Python/CUDA/JVM `47/47 PASS`, `rtl/odos_gate_core.sv` `7/7 cocotb PASS`, `app/` Android ARM64 `24/24 Kotlin PASS`, `bridge/ACE_SYNC_LEDGER.json` `SYNC-12`).
 
-Changes made via Lovable will be committed automatically to this repo.
+In accordance with [`AGENTS.md`](./AGENTS.md), every tab carries explicit **Epistemic Register Badges** (`REGISTER_M`, `REGISTER_D`, `REGISTER_T`, `REGISTER_I`) so empirical silicon measurements are never conflated with conceptual mobility vision or browser-only simulation.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 2. Executable Browser Modules (`src/lib/` & `src/data/`)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **`src/lib/odos-q2-30.ts` (`S-01` — Bit-Exact `Q2.30` Hardware RTL Core in TypeScript `BigInt`):**
+  Implements the exact 72-bit `Q12.60` multiply–accumulate datapath, Two-Pass Kahan–Parlett $\mathcal{G}_3$ orthogonal boundary stripping, quadratic norm guard (`[0.999, 1.001]`), overflow-free `(a >> 1) + (b >> 1) + (a[0] & b[0])` halving, and 7-state `195`-cycle fail-closed FSM of `rtl/odos_gate_core.sv`. Verified to **exact `0 LSB`** against compiled `Verilator 5.055` telemetry using the canonical ROMs (`l_vec_q2_30.hex` & `g3_vec_q2_30.hex`). Includes interactive **Appendix G Fridu vs. PAX vs. In-Band $\hat{t}_{\mathcal{G}_1}$** Defense-in-Depth controls and **1-click CLI proof export** for `./rtl/build/odos_gate_emu`.
+- **`src/lib/node-alpha.ts`:**
+  React-independent browser reference core performing live WebCrypto `SHA-256` derivation of canonical $\vert L\rangle \in S^{63}$ (`bb17ede97aa45c76ef9afa63cb457f7d684e5ede40b0432b2ecf3b6b9d3e03a3`), unclamped `evaluateRawGate()`, 500-vector null control, tamper-evident session audit chains (`NODE_ALPHA_BROWSER_V1`), and optional live probing of a local Node Alpha Room 137 server (`http://127.0.0.1:8137/api/state`).
+- **`scripts/sync_node_alpha_data.py` $\to$ `src/data/node-alpha-telemetry.json`:**
+  Deterministic Single-Source-of-Truth telemetry pipeline pulling verified `REGISTER_M` metrics (symmetric `499.30 vs. 269.54 GB/s = 1.852×` L2 roofline, `N = 25` Nemotron Hard Negatives `AUC 0.6304` vs `0.7648`, `N = 25` Stage-3 KL `111.47×`, `HWiNFO64` `85.78 W` vs. `9.57 W`, `Yosys 0.71` `626` coarse / `89,609` gate cells / `2,839` FFs) and canonical `Q2.30` HEX ROMs directly from `PQMS-SOVEREIGN-CORE-ANDROID-APP`.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 3. Local Development, Testing & Verification (Independent of Lovable Token Limits)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Requires **Node.js `>= 22.6`** (for native `--experimental-strip-types` unit testing) and `npm`:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+git clone https://github.com/NathaliaLietuvaite/quantum-city-brain-nexus.git
+cd quantum-city-brain-nexus
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 1. Install dependencies from canonical package-lock.json
+npm ci
+
+# 2. Run all 12 browser reference & 0-LSB Q2.30 RTL parity tests
+npm test
+
+# 3. TypeScript static typecheck & production Vite build
+npm run typecheck
+npm run build
+
+# 4. Optional: Resync src/data/node-alpha-telemetry.json from companion Node Alpha repo
+npm run sync-data
+
+# 5. Start local dev server (optional: run python -m vmax_alpha.server_hud on Port 8137 for live telemetry)
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+*Note:* Changes pushed to `main` remain fully compatible with Lovable sync (`/.lovable/north-star/north-star.md` is preserved intact).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 4. License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8a92834a-5511-4c84-8e7c-4448ea1989d9) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Released under the **MIT License** — part of the unified **PQMS / ODOS / V-MAX-12** open architecture by **Nathália Lietuvaitė** and the **V-MAX-12 Multi-Agent Engineering Bridge**.

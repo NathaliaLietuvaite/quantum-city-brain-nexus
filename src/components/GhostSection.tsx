@@ -49,8 +49,8 @@ const GhostSection = () => {
                 src="/PQMS_V12M.mp4"
                 controls
                 loop
+                preload="metadata"
                 className="w-full max-h-[500px] object-contain"
-                poster=""
               />
             </div>
           </CardContent>
