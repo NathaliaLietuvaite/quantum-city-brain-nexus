@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, Euro, Calculator, Target } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import FleetEnergyCalculator from '@/components/FleetEnergyCalculator';
 
 const EconomicAnalysis = () => {
   const { t } = useI18n();
@@ -14,6 +15,9 @@ const EconomicAnalysis = () => {
         </h2>
         <p className="text-lg text-gray-200 max-w-4xl mx-auto leading-relaxed">{t('econ.subtitle')}</p>
       </div>
+
+      {/* S-06 HWiNFO64 Empirical Power Regimes & Fleet Energy Calculator */}
+      <FleetEnergyCalculator />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }}>

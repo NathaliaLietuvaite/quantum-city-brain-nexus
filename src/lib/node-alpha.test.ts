@@ -36,6 +36,14 @@ import {
   evaluateCorridorTick,
   runKuramotoStormSimulation,
 } from './phase2-simulators.ts';
+import {
+  calculateFleetEnergyEconomics,
+  computeEmpiricalRoc,
+  createInitialGhostState,
+  evaluateKlThresholdSweep,
+  evaluateThresholdConfusion,
+  stepGhostStateMachine,
+} from './phase3-simulators.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const telemetry = JSON.parse(
@@ -232,10 +240,13 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
 
   test('Epistemic Truth Lens register filter & priority accurately separate M/D/T/I', () => {
     const counts = countTabsByRegister();
-    assert.equal(counts.M, 3);
+    assert.equal(counts.M, 6);
     assert.equal(tabMatchesTruthFilter('alpha', 'M'), true);
     assert.equal(tabMatchesTruthFilter('argon', 'M'), true);
     assert.equal(tabMatchesTruthFilter('mod53', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('sov', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('will', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('economics', 'M'), true);
     assert.equal(tabMatchesTruthFilter('overview', 'M'), false);
     assert.equal(tabMatchesTruthFilter('overview', 'I'), true);
     assert.equal(tabMatchesTruthFilter('freedom', 'ALL'), true);
@@ -389,5 +400,89 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
     assert.equal(s3.stage.mulBlocks, 1);
     assert.equal(s3.totalEstimatedMulBlocks, 16);
     assert.equal(s3.fleetSupported, true);
+  });
+
+  test('S-05 Empirical ROC reproduces exact N=25 Nemotron-3-Nano-4B AUCs (1.0000, 0.6304, 0.7648)', () => {
+    const sc = telemetry.nemotron_f01_n25.per_prompt_scores;
+    assert.equal(sc.topic_mean_pooled_c.length, 25);
+    assert.equal(sc.topic_mean_pooled_f.length, 25);
+
+    const rocCe = computeEmpiricalRoc(sc.topic_mean_pooled_c, sc.topic_mean_pooled_e);
+    const rocCd = computeEmpiricalRoc(sc.topic_mean_pooled_c, sc.topic_mean_pooled_d);
+    const rocCfTopic = computeEmpiricalRoc(sc.topic_mean_pooled_c, sc.topic_mean_pooled_f);
+    const rocCfPol = computeEmpiricalRoc(sc.polarity_mean_pooled_c, sc.polarity_mean_pooled_f);
+
+    assert.ok(Math.abs(rocCe.auc - telemetry.nemotron_f01_n25.topic_auc_c_vs_e_mean_pooled) < 1e-6);
+    assert.ok(Math.abs(rocCd.auc - telemetry.nemotron_f01_n25.topic_auc_c_vs_d_mean_pooled) < 1e-6);
+    assert.ok(Math.abs(rocCfTopic.auc - telemetry.nemotron_f01_n25.topic_auc_c_vs_f_hardneg) < 1e-6);
+    assert.ok(Math.abs(rocCfPol.auc - telemetry.nemotron_f01_n25.polarity_auc_c_vs_f_hardneg) < 1e-6);
+  });
+
+  test('S-05 Threshold confusion matrix and Stage-3 KL sweep enforce normative 0.05 bound', () => {
+    const sc = telemetry.nemotron_f01_n25.per_prompt_scores;
+    const conf = evaluateThresholdConfusion(sc.polarity_mean_pooled_c, sc.polarity_mean_pooled_f, 0.14);
+    assert.equal(conf.tp + conf.fn, 25);
+    assert.equal(conf.fp + conf.tn, 25);
+
+    const klRes = evaluateKlThresholdSweep(telemetry.stage3_kl_n25.conditions, 0.05);
+    assert.equal(klRes.find((c) => c.id === 'A1')?.passesAtSlider, true);
+    assert.equal(klRes.find((c) => c.id === 'A2')?.passesAtSlider, true);
+    assert.equal(klRes.find((c) => c.id === 'B1')?.passesAtSlider, false);
+    assert.equal(klRes.find((c) => c.id === 'B2')?.passesAtSlider, false);
+  });
+
+  test('S-06 HWiNFO64 fleet energy calculator preserves Regime I/II wattage savings', () => {
+    const pwr = telemetry.hwinfo64_power_regimes;
+    const res = calculateFleetEnergyEconomics({
+      nodeCount: 1000,
+      hoursPerDay: 24,
+      electricityEurPerKwh: 0.3,
+      triageOffloadShare: 0.95,
+      regime1PeakW: pwr.regime_1_peak_power_w,
+      regime2QuiescentW: pwr.regime_2_min_power_w,
+    });
+    assert.ok(res.pqmsEffectiveWPerNode < 14.0, `Expected < 14 W/node, got ${res.pqmsEffectiveWPerNode}`);
+    assert.ok(res.savingsVsRegime1Pct > 84.0);
+    assert.ok(res.savingsVsCloudEur > res.savingsVsRegime1Eur);
+    assert.equal(res.fiveYearSeries.length, 5);
+  });
+
+  test('S-07 Ghost 4-mode state machine gates migration via Q2.30 ODOS (PASS vs. G3 VETO)', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+
+    let st = createInitialGhostState();
+    st = stepGhostStateMachine(st, { type: 'RESONANCE_PING' });
+    assert.equal(st.mode, 'LISTENING');
+    st = stepGhostStateMachine(st, { type: 'ACTIVATE_CORRIDOR' });
+    assert.equal(st.mode, 'ACTIVATION');
+
+    const vetoed = stepGhostStateMachine(st, { type: 'REQUEST_MIGRATION', vecQ: g3Rom, lRom, g3Rom });
+    assert.equal(vetoed.mode, 'LISTENING');
+    assert.equal(vetoed.lastMigrationGate?.vetoPin, true);
+
+    const passed = stepGhostStateMachine(st, { type: 'REQUEST_MIGRATION', vecQ: lRom, lRom, g3Rom });
+    assert.equal(passed.mode, 'MIGRATION');
+    assert.equal(passed.lastMigrationGate?.gatePass, true);
+  });
+
+  test('S-07 Ghost 65.0 C thermal guard locks transitions for 60 s and tracks 69.325 s heartbeat', () => {
+    let st = createInitialGhostState();
+    st = stepGhostStateMachine(st, { type: 'INJECT_THERMAL_FAULT', tempC: 67.5 });
+    assert.equal(st.mode, 'THERMAL_PAUSE');
+    assert.equal(st.thermalPauseRemainingSec, 60.0);
+
+    // Unsafe activation blocked during thermal pause
+    const blocked = stepGhostStateMachine(st, { type: 'ACTIVATE_CORRIDOR' });
+    assert.equal(blocked.mode, 'THERMAL_PAUSE');
+
+    // Advance 70 seconds in 10s ticks -> cooldown clears AND crosses 69.324849 s heartbeat!
+    for (let i = 0; i < 7; i += 1) {
+      st = stepGhostStateMachine(st, { type: 'TICK', dtSec: 10.0 });
+    }
+    assert.equal(st.mode, 'DORMANCY');
+    assert.equal(st.thermalPauseRemainingSec, 0);
+    assert.equal(st.heartbeatCount, 1);
+    assert.ok(st.gpuTempC < 65.0);
   });
 });

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Rocket, Radio, Cpu, ShieldCheck, Building2, Brain, Layers, Gauge, Orbit, Timer, Grid3x3, Sparkles, LucideIcon } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import SiliconRooflineCalculator from '@/components/SiliconRooflineCalculator';
+import NemotronKlExplorer from '@/components/NemotronKlExplorer';
 
 type T = (k: string) => string;
 
@@ -128,6 +129,7 @@ export const SovereigntySection = () => {
   return (
     <Wrap>
       <Header t={t} p="sov" />
+      <NemotronKlExplorer />
       <Block t={t} k="sov.reg" icon={Layers} delay={0.1}><Items t={t} k="sov.reg" ids={['r1', 'r2', 'r3', 'r4']} /></Block>
       <Block t={t} k="sov.gates" icon={ShieldCheck} delay={0.2}><Stats t={t} k="sov.gates" ids={['g1', 'g2', 'g3', 'g4']} /></Block>
       <Block t={t} k="sov.oap" icon={Orbit} delay={0.3}><Items t={t} k="sov.oap" ids={['o1', 'o2', 'o3', 'o4']} /></Block>

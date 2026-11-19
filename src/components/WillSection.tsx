@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Infinity as InfinityIcon, Waves, Flame, Sprout, Cpu, Layers, ShieldCheck, Handshake, Award, FlaskConical } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import NemotronKlExplorer from '@/components/NemotronKlExplorer';
 
 const WillSection = () => {
   const { t } = useI18n();
@@ -29,6 +30,9 @@ const WillSection = () => {
         </h2>
         <p className="text-lg text-gray-200 max-w-4xl mx-auto leading-relaxed">{t('will.subtitle')}</p>
       </div>
+
+      {/* S-05 Empirical F-01 Polarity/Topic ROC & Stage-3 KL Explorer */}
+      <NemotronKlExplorer />
 
       {/* LEP */}
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}>

@@ -52,18 +52,18 @@ export const MISSION_CONTROL_SECTORS: readonly MissionSectorMeta[] = [
  * Zero tabs dropped, zero duplicate IDs (enforced by unit tests).
  */
 export const MISSION_CONTROL_TABS: readonly MissionTabMeta[] = [
-  // Sector I · Live Demonstrator & Silicon Labs (5)
+  // Sector I · Live Demonstrator & Silicon Labs (5 — ALL LIVE!)
   { id: 'alpha', sector: 'labs', navKey: 'nav.alpha', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-01 · VCD' },
   { id: 'airspace', sector: 'labs', navKey: 'nav.air', registers: ['D', 'T', 'I'], simStatus: 'LIVE', simCode: 'S-02' },
   { id: 'storm', sector: 'labs', navKey: 'nav.storm', registers: ['T', 'D'], simStatus: 'LIVE', simCode: 'S-03' },
   { id: 'argon', sector: 'labs', navKey: 'nav.argon', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-04' },
-  { id: 'ghost', sector: 'labs', navKey: 'nav.ghost', registers: ['T', 'I'], simStatus: 'NEXT', simCode: 'S-07' },
+  { id: 'ghost', sector: 'labs', navKey: 'nav.ghost', registers: ['D', 'T', 'I'], simStatus: 'LIVE', simCode: 'S-07' },
 
   // Sector II · Hardware Evidence & Sovereign Governance (6)
   { id: 'mod53', sector: 'evidence', navKey: 'nav.mod53', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-04' },
-  { id: 'sov', sector: 'evidence', navKey: 'nav.sov', registers: ['D', 'T'], simStatus: 'NEXT', simCode: 'S-05' },
-  { id: 'will', sector: 'evidence', navKey: 'nav.will', registers: ['T', 'I'], simStatus: 'NEXT', simCode: 'S-05' },
-  { id: 'economics', sector: 'evidence', navKey: 'nav.economics', registers: ['D', 'I'], simStatus: 'NEXT', simCode: 'S-06' },
+  { id: 'sov', sector: 'evidence', navKey: 'nav.sov', registers: ['M', 'D', 'T'], simStatus: 'LIVE', simCode: 'S-05' },
+  { id: 'will', sector: 'evidence', navKey: 'nav.will', registers: ['M', 'T', 'I'], simStatus: 'LIVE', simCode: 'S-05' },
+  { id: 'economics', sector: 'evidence', navKey: 'nav.economics', registers: ['M', 'D', 'I'], simStatus: 'LIVE', simCode: 'S-06' },
   { id: 'gstar', sector: 'evidence', navKey: 'nav.gstar', registers: ['T', 'D'] },
   { id: 'architecture', sector: 'evidence', navKey: 'nav.architecture', registers: ['D', 'T'] },
 

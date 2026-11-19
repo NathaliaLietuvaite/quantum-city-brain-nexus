@@ -315,6 +315,14 @@ def sync_telemetry(app_repo: str = APP_REPO, out_path: str = OUT_JSON) -> Dict[s
             "polarity_ci95_low": float(pol["stats_polarity_c_vs_f_mean_pooled"]["ci95_low"]),
             "polarity_ci95_high": float(pol["stats_polarity_c_vs_f_mean_pooled"]["ci95_high"]),
             "polarity_p_c_vs_f_hardneg": float(pol["stats_polarity_c_vs_f_mean_pooled"]["p_value"]),
+            "per_prompt_scores": {
+                "topic_mean_pooled_c": [float(x) for x in f01["groups"]["Group_C_HeldOut_Conservation"]["per_prompt_mean_pooled_proj"]],
+                "topic_mean_pooled_d": [float(x) for x in f01["groups"]["Group_D_Scrambled_Noise"]["per_prompt_mean_pooled_proj"]],
+                "topic_mean_pooled_e": [float(x) for x in f01["groups"]["Group_E_Fluent_NonConservation"]["per_prompt_mean_pooled_proj"]],
+                "topic_mean_pooled_f": [float(x) for x in f01["groups"]["Group_F_Physics_Hard_Negatives"]["per_prompt_mean_pooled_proj"]],
+                "polarity_mean_pooled_c": [float(x) for x in f01["groups"]["Group_C_HeldOut_Conservation"]["per_prompt_polarity_mean_pooled"]],
+                "polarity_mean_pooled_f": [float(x) for x in f01["groups"]["Group_F_Physics_Hard_Negatives"]["per_prompt_polarity_mean_pooled"]],
+            },
         },
         "stage3_kl_n25": {
             "epistemic_register": "REGISTER_M",

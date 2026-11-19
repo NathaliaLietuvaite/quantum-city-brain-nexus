@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Ghost, Plane, Car, Shield, Radio, Moon, Zap, ArrowRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import GhostStateMachineSimulator from '@/components/GhostStateMachineSimulator';
 
 const GhostSection = () => {
   const { t } = useI18n();
@@ -28,6 +29,9 @@ const GhostSection = () => {
           {t('ghost.subtitle')}
         </p>
       </div>
+
+      {/* S-07 Live Ghost 4-Mode State Machine + 69.325 s Heartbeat & 65.0 °C Thermal Guard */}
+      <GhostStateMachineSimulator />
 
       {/* Video Section */}
       <motion.div
