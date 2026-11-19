@@ -33,6 +33,7 @@ import {
 import telemetry from '@/data/node-alpha-telemetry.json';
 import baseline from '@/assets/node-alpha-mobile-baseline.asset.json';
 import swarm from '@/assets/node-alpha-mobile-swarm.asset.json';
+import verilogArch from '@/assets/node-alpha-verilog-architecture.asset.json';
 
 const GITHUB_RAW_IMG = 'https://raw.githubusercontent.com/NathaliaLietuvaite/Quantenkommunikation/main/assets/images';
 
@@ -191,7 +192,7 @@ const NodeAlphaSection = () => {
       key: 'alpha.photo2',
     },
     {
-      primary: `${GITHUB_RAW_IMG}/V-MAX-12-Verilog.png`,
+      primary: verilogArch.url,
       fallback: `${GITHUB_RAW_IMG}/V-MAX-12-Verilog.png`,
       key: 'alpha.photo3',
     },
