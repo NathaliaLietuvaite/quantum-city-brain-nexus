@@ -203,6 +203,79 @@ export function formatVerilatorEmulatorCommand(vecQ: readonly number[]): string 
   return `printf '${payload}\\n' | ./rtl/build/odos_gate_emu`;
 }
 
+export interface CrossSubstrateProofPack {
+  schema: 'VMAX12_CROSS_SUBSTRATE_PROOF_PACK_V1';
+  sync_id: string;
+  scenario_id: string;
+  generated_at_iso: string;
+  epistemic_register: 'REGISTER_T';
+  verification_instructions: {
+    verilator_cli_command: string;
+    expected_cycle_count: number;
+    expected_max_lsb_diff: 0;
+  };
+  input_vector_q2_30: number[];
+  expected_q2_30_outputs: {
+    norm_sq_q: number;
+    rcf_raw_q: number;
+    g3_overlap_q: number;
+    delta_e_raw_q: number;
+    bleed_post_q: number;
+    gate_pass: boolean;
+    veto_pin: boolean;
+    norm_fault: boolean;
+    pure_g3_collision: boolean;
+  };
+  golden_seals: {
+    l_vec_q2_30_hex_sha256: string;
+    g3_vec_q2_30_hex_sha256: string;
+    rtl_odos_gate_emulator_report_sha256: string;
+  };
+}
+
+export function buildCrossSubstrateProofPack(
+  scenarioId: string,
+  vecQ: readonly number[],
+  evalRes: RtlQ230Result,
+  seals: {
+    syncId: string;
+    lRomSha256: string;
+    g3RomSha256: string;
+    rtlReportSha256: string;
+  },
+): CrossSubstrateProofPack {
+  const truncated = vecQ.map((v) => Math.trunc(v));
+  return {
+    schema: 'VMAX12_CROSS_SUBSTRATE_PROOF_PACK_V1',
+    sync_id: seals.syncId,
+    scenario_id: scenarioId,
+    generated_at_iso: new Date().toISOString(),
+    epistemic_register: 'REGISTER_T',
+    verification_instructions: {
+      verilator_cli_command: formatVerilatorEmulatorCommand(truncated),
+      expected_cycle_count: evalRes.cycleCount,
+      expected_max_lsb_diff: 0,
+    },
+    input_vector_q2_30: truncated,
+    expected_q2_30_outputs: {
+      norm_sq_q: evalRes.normSqQ,
+      rcf_raw_q: evalRes.rcfRawQ,
+      g3_overlap_q: evalRes.g3OverlapQ,
+      delta_e_raw_q: evalRes.deltaERawQ,
+      bleed_post_q: evalRes.bleedPostQ,
+      gate_pass: evalRes.gatePass,
+      veto_pin: evalRes.vetoPin,
+      norm_fault: evalRes.normFault,
+      pure_g3_collision: evalRes.pureG3Collision,
+    },
+    golden_seals: {
+      l_vec_q2_30_hex_sha256: seals.lRomSha256,
+      g3_vec_q2_30_hex_sha256: seals.g3RomSha256,
+      rtl_odos_gate_emulator_report_sha256: seals.rtlReportSha256,
+    },
+  };
+}
+
 export function buildDeterministicFriduBasis(
   lRom: readonly number[],
   g3Rom: readonly number[],

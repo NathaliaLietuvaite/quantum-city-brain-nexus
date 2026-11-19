@@ -27,12 +27,14 @@ import {
 } from '@/lib/node-alpha';
 import type { GateResult, AuditEntry, NodeAlphaLiveHudState } from '@/lib/node-alpha';
 import {
+  buildCrossSubstrateProofPack,
   evalOdosQ230,
   evaluateFriduDefenseInDepthQ230,
   formatVerilatorEmulatorCommand,
   Q2_30_CONSTANTS,
   vecToQ230,
 } from '@/lib/odos-q2-30';
+import RtlVcdWaveformViewer from '@/components/RtlVcdWaveformViewer';
 import telemetry from '@/data/node-alpha-telemetry.json';
 import baseline from '@/assets/node-alpha-mobile-baseline.asset.json';
 import swarm from '@/assets/node-alpha-mobile-swarm.asset.json';
@@ -158,6 +160,23 @@ const NodeAlphaSection = () => {
     }
   };
 
+  const downloadProofPack = () => {
+    const pack = buildCrossSubstrateProofPack(rtlPreset, rtlPresetVecQ, rtlEval, {
+      syncId: telemetry.sync_id,
+      lRomSha256: telemetry.golden_seals.l_vec_q2_30_hex_sha256,
+      g3RomSha256: telemetry.golden_seals.g3_vec_q2_30_hex_sha256,
+      rtlReportSha256: telemetry.golden_seals.rtl_odos_gate_emulator_report_sha256,
+    });
+    const url = URL.createObjectURL(
+      new Blob([JSON.stringify(pack, null, 2) + '\n'], { type: 'application/json' }),
+    );
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `vmax12-rtl-proof-pack-${rtlPreset}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const download = () => {
     const url = URL.createObjectURL(
       new Blob(
@@ -235,10 +254,16 @@ const NodeAlphaSection = () => {
             <Cpu className="w-5 h-5 text-cyan-400" />
             <h3 className="text-xl font-semibold text-primary">{t('alpha.rtlTitle')}</h3>
           </div>
-          <Button variant="secondary" size="sm" onClick={copyVerilatorCli}>
-            {copiedCli ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
-            {t(copiedCli ? 'alpha.rtlCopied' : 'alpha.rtlCopy')}
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="secondary" size="sm" onClick={copyVerilatorCli}>
+              {copiedCli ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
+              {t(copiedCli ? 'alpha.rtlCopied' : 'alpha.rtlCopy')}
+            </Button>
+            <Button variant="outline" size="sm" onClick={downloadProofPack}>
+              <Download className="w-4 h-4 mr-1" />
+              {t('mc.proofPackBtn')}
+            </Button>
+          </div>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed">{t('alpha.rtlDesc')}</p>
 
@@ -320,6 +345,9 @@ const NodeAlphaSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Real Verilator 5.055 Hardware VCD Logic Analyzer (REGISTER_M) */}
+      <RtlVcdWaveformViewer />
 
       {/* Appendix G Interactive Fridu vs PAX vs In-Band t_G1 Defense-in-Depth (Live Q2.30) */}
       <section className="rounded-lg border bg-background/95 p-5 md:p-7 space-y-4">

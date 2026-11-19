@@ -14,16 +14,30 @@ import {
   verifyAudit,
 } from './node-alpha.ts';
 import {
+  buildCrossSubstrateProofPack,
   evalOdosQ230,
   evaluateFriduDefenseInDepthQ230,
   formatVerilatorEmulatorCommand,
   Q2_30_CONSTANTS,
   vecToQ230,
 } from './odos-q2-30.ts';
+import {
+  countTabsByRegister,
+  getPrimaryRegister,
+  getSectorForTab,
+  getTabsBySector,
+  MISSION_CONTROL_SECTORS,
+  MISSION_CONTROL_TABS,
+  sampleVcdTrackAtCycle,
+  tabMatchesTruthFilter,
+} from './mission-control.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const telemetry = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'data', 'node-alpha-telemetry.json'), 'utf-8'),
+);
+const vcdWaveforms = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'data', 'rtl-vcd-waveforms.json'), 'utf-8'),
 );
 
 describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference', () => {
@@ -190,5 +204,89 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
     assert.ok(colab.isotropic_max_bleed_lsb <= 1);
     assert.equal(colab.rtl_ast_semicolon_packers, 0);
     assert.ok(colab.rtl_ast_max_cyclomatic_complexity <= colab.rtl_ast_cc_limit);
+  });
+
+  test('Mission Control 3-sector partition covers all 21 unique modules with zero drops or duplicates', () => {
+    assert.equal(MISSION_CONTROL_SECTORS.length, 3);
+    assert.equal(MISSION_CONTROL_TABS.length, 21);
+    const ids = new Set(MISSION_CONTROL_TABS.map((tab) => tab.id));
+    assert.equal(ids.size, 21);
+
+    const sectorSum = MISSION_CONTROL_SECTORS.reduce(
+      (acc, sec) => acc + getTabsBySector(sec.id).length,
+      0,
+    );
+    assert.equal(sectorSum, 21);
+
+    for (const sec of MISSION_CONTROL_SECTORS) {
+      assert.equal(getSectorForTab(sec.defaultTab), sec.id);
+    }
+    assert.equal(getSectorForTab('alpha'), 'labs');
+    assert.equal(getSectorForTab('overview'), 'vision');
+  });
+
+  test('Epistemic Truth Lens register filter & priority accurately separate M/D/T/I', () => {
+    const counts = countTabsByRegister();
+    assert.equal(counts.M, 2);
+    assert.equal(tabMatchesTruthFilter('alpha', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('argon', 'M'), true);
+    assert.equal(tabMatchesTruthFilter('overview', 'M'), false);
+    assert.equal(tabMatchesTruthFilter('overview', 'I'), true);
+    assert.equal(tabMatchesTruthFilter('freedom', 'ALL'), true);
+    assert.equal(getPrimaryRegister(['I', 'D', 'M']), 'M');
+    assert.equal(getPrimaryRegister(['I', 'T']), 'T');
+    assert.equal(getPrimaryRegister(['I']), 'I');
+  });
+
+  test('Real Verilator 5.055 VCD traces enforce glitch-free 195-cycle fail-closed timing', () => {
+    const passTrace = vcdWaveforms.traces.canonical_l_pass;
+    const vetoTrace = vcdWaveforms.traces.g3_attack_veto;
+
+    assert.equal(passTrace.compute_cycles, 195);
+    assert.equal(vetoTrace.compute_cycles, 195);
+    assert.equal(passTrace.source_vcd_sha256.length, 64);
+    assert.equal(vetoTrace.source_vcd_sha256.length, 64);
+
+    // Fail-closed invariant: veto_pin_o === 1 across ALL compute cycles 0..196 in PASS trace
+    for (let cyc = 0; cyc <= 196; cyc += 1) {
+      assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.veto_pin_o, cyc), 1, `PASS veto low early at ${cyc}`);
+      assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.gate_pass_o, cyc), 0, `PASS high early at ${cyc}`);
+    }
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.veto_pin_o, 197), 0);
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.gate_pass_o, 197), 1);
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.done_o, 197), 1);
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 2), 'S_LOAD_DOT');
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 66), 'S_EVAL_RAW');
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 67), 'S_STRIP_P1');
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 131), 'S_LATCH_P2');
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 132), 'S_STRIP_P2');
+    assert.equal(sampleVcdTrackAtCycle(passTrace.tracks.state_q, 196), 'S_VERDICT');
+
+    // Pure G3 attack trace: veto_pin_o === 1 across EVERY cycle 0..197, zero glitches
+    for (let cyc = 0; cyc <= 197; cyc += 1) {
+      assert.equal(sampleVcdTrackAtCycle(vetoTrace.tracks.veto_pin_o, cyc), 1, `VETO glitch at ${cyc}`);
+      assert.equal(sampleVcdTrackAtCycle(vetoTrace.tracks.gate_pass_o, cyc), 0, `VETO pass glitch at ${cyc}`);
+    }
+    assert.equal(sampleVcdTrackAtCycle(vetoTrace.tracks.pure_g3_collision_o, 197), 1);
+  });
+
+  test('Cross-Substrate Proof Pack JSON matches Q2.30 Verilator outputs and golden seals', () => {
+    const lRom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.l_vec_q;
+    const g3Rom: number[] = telemetry.rtl_v20_alpha.roms_q2_30.g3_vec_q;
+    const res = evalOdosQ230(lRom, lRom, g3Rom);
+    const pack = buildCrossSubstrateProofPack('canonical_l', lRom, res, {
+      syncId: telemetry.sync_id,
+      lRomSha256: telemetry.golden_seals.l_vec_q2_30_hex_sha256,
+      g3RomSha256: telemetry.golden_seals.g3_vec_q2_30_hex_sha256,
+      rtlReportSha256: telemetry.golden_seals.rtl_odos_gate_emulator_report_sha256,
+    });
+    assert.equal(pack.schema, 'VMAX12_CROSS_SUBSTRATE_PROOF_PACK_V1');
+    assert.equal(pack.input_vector_q2_30.length, 64);
+    assert.equal(pack.verification_instructions.expected_cycle_count, 195);
+    assert.equal(pack.verification_instructions.expected_max_lsb_diff, 0);
+    assert.ok(pack.verification_instructions.verilator_cli_command.includes('./rtl/build/odos_gate_emu'));
+    assert.equal(pack.expected_q2_30_outputs.gate_pass, true);
+    assert.equal(pack.expected_q2_30_outputs.veto_pin, false);
+    assert.equal(pack.golden_seals.l_vec_q2_30_hex_sha256, telemetry.golden_seals.l_vec_q2_30_hex_sha256);
   });
 });

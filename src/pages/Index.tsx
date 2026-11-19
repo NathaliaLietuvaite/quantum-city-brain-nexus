@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent } from '@/components/ui/tabs';
 import HeroSection from '@/components/HeroSection';
 import ConceptOverview from '@/components/ConceptOverview';
 import SystemArchitecture from '@/components/SystemArchitecture';
@@ -19,91 +19,127 @@ import MseSection from '@/components/MseSection';
 import NodeAlphaSection from '@/components/NodeAlphaSection';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import MarkdownExport from '@/components/MarkdownExport';
-import { RegisterBadgeBar, TAB_REGISTERS } from '@/components/RegisterBadge';
+import MissionControlNav from '@/components/MissionControlNav';
+import { RegisterBadgeBar, TAB_REGISTERS, TRUTH_LENS_STAGE_FRAME } from '@/components/RegisterBadge';
+import {
+  getPrimaryRegister,
+  getSectorForTab,
+  MISSION_CONTROL_SECTORS,
+  type MissionSectorId,
+  type TruthLensFilter,
+} from '@/lib/mission-control';
 import { useI18n } from '@/lib/i18n';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('overview');
+  const [activeSector, setActiveSector] = useState<MissionSectorId>('labs');
+  const [activeSection, setActiveSection] = useState<string>('alpha');
+  const [showAllTabs, setShowAllTabs] = useState<boolean>(false);
+  const [truthLensEnabled, setTruthLensEnabled] = useState<boolean>(false);
+  const [truthFilter, setTruthFilter] = useState<TruthLensFilter>('ALL');
   const { t } = useI18n();
+
+  const selectTab = (tabId: string) => {
+    setActiveSection(tabId);
+    setActiveSector(getSectorForTab(tabId));
+  };
+
+  const selectSector = (sector: MissionSectorId) => {
+    setShowAllTabs(false);
+    setActiveSector(sector);
+    if (getSectorForTab(activeSection) !== sector) {
+      const target = MISSION_CONTROL_SECTORS.find((s) => s.id === sector)?.defaultTab ?? 'alpha';
+      setActiveSection(target);
+    }
+  };
+
+  const scrollToElement = (elementId: string) => {
+    requestAnimationFrame(() => {
+      document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
+  const launchLiveLab = () => {
+    selectTab('alpha');
+    scrollToElement('mission-control');
+  };
+
+  const inspectVcdTrace = () => {
+    selectTab('alpha');
+    setTimeout(() => scrollToElement('rtl-vcd-viewer'), 80);
+  };
+
+  const openConceptOverview = () => {
+    selectTab('overview');
+    scrollToElement('mission-control');
+  };
+
+  const activeRegisters = TAB_REGISTERS[activeSection] ?? (['I'] as const);
+  const primaryRegister = getPrimaryRegister(activeRegisters);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
-      <LanguageSwitcher />
+      <LanguageSwitcher
+        truthLensEnabled={truthLensEnabled}
+        onToggleTruthLens={() => {
+          setTruthLensEnabled((prev) => {
+            if (prev) setTruthFilter('ALL');
+            return !prev;
+          });
+        }}
+      />
       <MarkdownExport />
-      <HeroSection />
+      <HeroSection
+        onLaunchMissionControl={launchLiveLab}
+        onInspectVcd={inspectVcdTrace}
+        onOpenOverview={openConceptOverview}
+      />
 
       <div className="container mx-auto px-4 py-8">
-        <Tabs value={activeSection} onValueChange={setActiveSection} className="space-y-8">
-          <TabsList className="grid grid-cols-4 md:grid-cols-10 h-auto gap-1 p-1 w-full bg-black/30 backdrop-blur-md border border-cyan-400/10">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.overview')}
-            </TabsTrigger>
-            <TabsTrigger value="quantum" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.quantum')}
-            </TabsTrigger>
-            <TabsTrigger value="architecture" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.architecture')}
-            </TabsTrigger>
-            <TabsTrigger value="ghost" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.ghost')}
-            </TabsTrigger>
-            <TabsTrigger value="freedom" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.freedom')}
-            </TabsTrigger>
-            <TabsTrigger value="economics" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.economics')}
-            </TabsTrigger>
-            <TabsTrigger value="comparison" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.comparison')}
-            </TabsTrigger>
-            <TabsTrigger value="verarubin" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.verarubin')}
-            </TabsTrigger>
-            <TabsTrigger value="n3u" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.n3u')}
-            </TabsTrigger>
-            <TabsTrigger value="will" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.will')}
-            </TabsTrigger>
-            <TabsTrigger value="airspace" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.air')}
-            </TabsTrigger>
-            <TabsTrigger value="storm" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.storm')}
-            </TabsTrigger>
-            <TabsTrigger value="mod53" className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-              {t('nav.mod53')}
-            </TabsTrigger>
-            {['dmc', 'brain', 'align', 'gstar', 'sov', 'mse', 'argon', 'alpha'].map((v) => (
-              <TabsTrigger key={v} value={v} className="data-[state=active]:bg-cyan-600 data-[state=active]:text-white px-1 truncate text-[10px] md:text-xs">
-                {t(`nav.${v}`)}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+        <Tabs value={activeSection} onValueChange={selectTab} className="space-y-6">
+          <MissionControlNav
+            activeSector={activeSector}
+            activeTab={activeSection}
+            showAllTabs={showAllTabs}
+            truthLensEnabled={truthLensEnabled}
+            truthFilter={truthFilter}
+            onSelectSector={selectSector}
+            onSelectTab={selectTab}
+            onToggleShowAll={() => setShowAllTabs((prev) => !prev)}
+            onSetTruthFilter={setTruthFilter}
+          />
 
-          <RegisterBadgeBar registers={TAB_REGISTERS[activeSection] ?? ['I']} />
+          <div className="space-y-3">
+            <RegisterBadgeBar registers={activeRegisters} />
+            {truthLensEnabled && (
+              <p className="text-center font-mono text-xs text-slate-200 max-w-3xl mx-auto">
+                {t(`mc.lens.activeStage.${primaryRegister}`)}
+              </p>
+            )}
+          </div>
 
-          <TabsContent value="overview"><ConceptOverview /></TabsContent>
-          <TabsContent value="quantum"><QuantumFoundation /></TabsContent>
-          <TabsContent value="architecture"><SystemArchitecture /></TabsContent>
-          <TabsContent value="ghost"><GhostSection /></TabsContent>
-          <TabsContent value="freedom"><FreedomMatrix /></TabsContent>
-          <TabsContent value="economics"><EconomicAnalysis /></TabsContent>
-          <TabsContent value="comparison"><ComparisonSection /></TabsContent>
-          <TabsContent value="verarubin"><VeraRubinSection /></TabsContent>
-          <TabsContent value="n3u"><N3USection /></TabsContent>
-          <TabsContent value="will"><WillSection /></TabsContent>
-          <TabsContent value="airspace"><AirspaceSection /></TabsContent>
-          <TabsContent value="storm"><StormSection /></TabsContent>
-          <TabsContent value="mod53"><Mod53Section /></TabsContent>
-          <TabsContent value="dmc"><DmcSection /></TabsContent>
-          <TabsContent value="brain"><BrainLinkSection /></TabsContent>
-          <TabsContent value="align"><AlignSection /></TabsContent>
-          <TabsContent value="gstar"><GStarSection /></TabsContent>
-          <TabsContent value="sov"><SovereigntySection /></TabsContent>
-          <TabsContent value="mse"><MseSection /></TabsContent>
-          <TabsContent value="argon"><ArgonSection /></TabsContent>
-          <TabsContent value="alpha"><NodeAlphaSection /></TabsContent>
+          <div className={truthLensEnabled ? TRUTH_LENS_STAGE_FRAME[primaryRegister] : ''}>
+            <TabsContent value="overview"><ConceptOverview /></TabsContent>
+            <TabsContent value="quantum"><QuantumFoundation /></TabsContent>
+            <TabsContent value="architecture"><SystemArchitecture /></TabsContent>
+            <TabsContent value="ghost"><GhostSection /></TabsContent>
+            <TabsContent value="freedom"><FreedomMatrix /></TabsContent>
+            <TabsContent value="economics"><EconomicAnalysis /></TabsContent>
+            <TabsContent value="comparison"><ComparisonSection /></TabsContent>
+            <TabsContent value="verarubin"><VeraRubinSection /></TabsContent>
+            <TabsContent value="n3u"><N3USection /></TabsContent>
+            <TabsContent value="will"><WillSection /></TabsContent>
+            <TabsContent value="airspace"><AirspaceSection /></TabsContent>
+            <TabsContent value="storm"><StormSection /></TabsContent>
+            <TabsContent value="mod53"><Mod53Section /></TabsContent>
+            <TabsContent value="dmc"><DmcSection /></TabsContent>
+            <TabsContent value="brain"><BrainLinkSection /></TabsContent>
+            <TabsContent value="align"><AlignSection /></TabsContent>
+            <TabsContent value="gstar"><GStarSection /></TabsContent>
+            <TabsContent value="sov"><SovereigntySection /></TabsContent>
+            <TabsContent value="mse"><MseSection /></TabsContent>
+            <TabsContent value="argon"><ArgonSection /></TabsContent>
+            <TabsContent value="alpha"><NodeAlphaSection /></TabsContent>
+          </div>
         </Tabs>
       </div>
     </div>

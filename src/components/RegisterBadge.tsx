@@ -1,8 +1,9 @@
 import { Badge } from '@/components/ui/badge';
+import { TAB_REGISTERS_MAP, type EpistemicRegister } from '@/lib/mission-control';
 
-export type EpistemicRegister = 'M' | 'D' | 'T' | 'I';
+export type { EpistemicRegister };
 
-const REGISTER_STYLES: Record<EpistemicRegister, { label: string; className: string; desc: string }> = {
+export const REGISTER_STYLES: Record<EpistemicRegister, { label: string; className: string; desc: string }> = {
   M: {
     label: 'REGISTER_M · Empirical',
     className: 'bg-emerald-500/20 text-emerald-200 border-emerald-400/40',
@@ -25,32 +26,24 @@ const REGISTER_STYLES: Record<EpistemicRegister, { label: string; className: str
   },
 };
 
-export const TAB_REGISTERS: Record<string, EpistemicRegister[]> = {
-  overview: ['I', 'D'],
-  quantum: ['T', 'I'],
-  architecture: ['D', 'T'],
-  ghost: ['T', 'I'],
-  freedom: ['I'],
-  economics: ['D', 'I'],
-  comparison: ['D', 'I'],
-  verarubin: ['D', 'I'],
-  n3u: ['T', 'I'],
-  will: ['T', 'I'],
-  airspace: ['D', 'T', 'I'],
-  storm: ['T', 'D'],
-  mod53: ['D', 'T'],
-  dmc: ['T', 'I'],
-  brain: ['I'],
-  align: ['T', 'I'],
-  gstar: ['T', 'D'],
-  sov: ['D', 'T'],
-  mse: ['T', 'I'],
-  argon: ['M', 'D', 'T'],
-  alpha: ['M', 'D', 'T'],
+export const REGISTER_DOT_COLORS: Record<EpistemicRegister, string> = {
+  M: 'bg-emerald-400',
+  D: 'bg-sky-400',
+  T: 'bg-violet-400',
+  I: 'bg-amber-400',
 };
 
+export const TRUTH_LENS_STAGE_FRAME: Record<EpistemicRegister, string> = {
+  M: 'rounded-2xl border-2 border-emerald-400/65 bg-emerald-950/15 p-3 md:p-5 shadow-lg shadow-emerald-950/40',
+  T: 'rounded-2xl border-2 border-violet-400/60 bg-violet-950/15 p-3 md:p-5 shadow-lg shadow-violet-950/40',
+  D: 'rounded-2xl border-2 border-sky-400/60 bg-sky-950/15 p-3 md:p-5 shadow-lg shadow-sky-950/40',
+  I: 'rounded-2xl border-2 border-amber-400/65 bg-amber-950/15 p-3 md:p-5 shadow-lg shadow-amber-950/40',
+};
+
+export const TAB_REGISTERS = TAB_REGISTERS_MAP;
+
 interface RegisterBadgeBarProps {
-  registers: EpistemicRegister[];
+  registers: readonly EpistemicRegister[];
   className?: string;
 }
 

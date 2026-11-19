@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Car, Brain, Zap, ExternalLink, Ghost } from 'lucide-react';
+import { Car, Brain, Zap, ExternalLink, Ghost, Cpu, Activity, Compass } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 
 const DETERMINISTIC_PARTICLES = Array.from({ length: 15 }, (_, i) => ({
@@ -10,7 +10,13 @@ const DETERMINISTIC_PARTICLES = Array.from({ length: 15 }, (_, i) => ({
   delay: (i % 6) * 0.45,
 }));
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onLaunchMissionControl?: () => void;
+  onInspectVcd?: () => void;
+  onOpenOverview?: () => void;
+}
+
+const HeroSection = ({ onLaunchMissionControl, onInspectVcd, onOpenOverview }: HeroSectionProps) => {
   const { t } = useI18n();
 
   return (
@@ -91,6 +97,41 @@ const HeroSection = () => {
                 <div className="text-gray-300">{t('hero.stat3.label')}</div>
               </div>
             </div>
+
+            {(onLaunchMissionControl || onInspectVcd || onOpenOverview) && (
+              <div className="flex flex-wrap justify-center gap-3 mt-10">
+                {onLaunchMissionControl && (
+                  <button
+                    type="button"
+                    onClick={onLaunchMissionControl}
+                    className="inline-flex items-center gap-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold px-6 py-3 text-sm shadow-lg shadow-cyan-500/30 transition"
+                  >
+                    <Cpu className="w-4 h-4" />
+                    <span>{t('mc.hero.launchLab')}</span>
+                  </button>
+                )}
+                {onInspectVcd && (
+                  <button
+                    type="button"
+                    onClick={onInspectVcd}
+                    className="inline-flex items-center gap-2 rounded-full border border-emerald-400/50 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-100 font-semibold px-5 py-3 text-sm backdrop-blur-md transition"
+                  >
+                    <Activity className="w-4 h-4 text-emerald-300" />
+                    <span>{t('mc.hero.openVcd')}</span>
+                  </button>
+                )}
+                {onOpenOverview && (
+                  <button
+                    type="button"
+                    onClick={onOpenOverview}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-slate-100 font-medium px-5 py-3 text-sm backdrop-blur-md transition"
+                  >
+                    <Compass className="w-4 h-4 text-cyan-300" />
+                    <span>{t('mc.hero.openOverview')}</span>
+                  </button>
+                )}
+              </div>
+            )}
           </motion.div>
         </motion.div>
       </div>

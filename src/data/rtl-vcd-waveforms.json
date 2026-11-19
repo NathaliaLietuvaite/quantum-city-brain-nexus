@@ -1,0 +1,402 @@
+{
+  "schema": "NODE_ALPHA_RTL_VCD_WAVEFORMS_V1",
+  "epistemic_register": "REGISTER_M",
+  "tool": "Verilator 5.055 (compiled odos_gate_core.sv)",
+  "clock_mhz_reference": 100,
+  "traces": {
+    "canonical_l_pass": {
+      "id": "canonical_l_pass",
+      "source_file": "odos_gate_canonical_l.vcd",
+      "source_vcd_sha256": "d48cf17c67e00f199b2605c58db3fa4c18bd8d3689f972a0eda4982f825bd89f",
+      "source_vcd_bytes": 70179,
+      "total_cycles": 198,
+      "compute_cycles": 195,
+      "final_verdict": {
+        "gate_pass": true,
+        "veto_pin": false,
+        "norm_fault": false,
+        "pure_g3_collision": false,
+        "rcf_raw_q": 1073741830,
+        "delta_e_raw_q": 0,
+        "bleed_post_q": 0
+      },
+      "tracks": {
+        "rst_ni": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "start_i": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "in_valid_i": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            67,
+            0
+          ]
+        ],
+        "in_ready_o": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            66,
+            0
+          ]
+        ],
+        "out_valid_o": [
+          [
+            0,
+            0
+          ],
+          [
+            133,
+            1
+          ],
+          [
+            197,
+            0
+          ]
+        ],
+        "busy_o": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            197,
+            0
+          ]
+        ],
+        "done_o": [
+          [
+            0,
+            0
+          ],
+          [
+            197,
+            1
+          ]
+        ],
+        "gate_pass_o": [
+          [
+            0,
+            0
+          ],
+          [
+            197,
+            1
+          ]
+        ],
+        "veto_pin_o": [
+          [
+            0,
+            1
+          ],
+          [
+            197,
+            0
+          ]
+        ],
+        "norm_fault_o": [
+          [
+            0,
+            0
+          ]
+        ],
+        "pure_g3_collision_o": [
+          [
+            0,
+            0
+          ]
+        ],
+        "state_q": [
+          [
+            0,
+            "S_IDLE"
+          ],
+          [
+            2,
+            "S_LOAD_DOT"
+          ],
+          [
+            66,
+            "S_EVAL_RAW"
+          ],
+          [
+            67,
+            "S_STRIP_P1"
+          ],
+          [
+            131,
+            "S_LATCH_P2"
+          ],
+          [
+            132,
+            "S_STRIP_P2"
+          ],
+          [
+            196,
+            "S_VERDICT"
+          ],
+          [
+            197,
+            "S_IDLE"
+          ]
+        ],
+        "rcf_raw_o": [
+          [
+            0,
+            0
+          ],
+          [
+            67,
+            1073741830
+          ]
+        ],
+        "delta_e_raw_o": [
+          [
+            0,
+            1073741824
+          ],
+          [
+            67,
+            0
+          ]
+        ],
+        "bleed_post_o": [
+          [
+            0,
+            1073741824
+          ],
+          [
+            197,
+            0
+          ]
+        ]
+      }
+    },
+    "g3_attack_veto": {
+      "id": "g3_attack_veto",
+      "source_file": "odos_gate_g3_veto.vcd",
+      "source_vcd_sha256": "6c4efd3a036924c484cd623b7234e2e097538dfcd206adb18054d83da9611056",
+      "source_vcd_bytes": 46798,
+      "total_cycles": 198,
+      "compute_cycles": 195,
+      "final_verdict": {
+        "gate_pass": false,
+        "veto_pin": true,
+        "norm_fault": false,
+        "pure_g3_collision": true,
+        "rcf_raw_q": 0,
+        "delta_e_raw_q": 1073741824,
+        "bleed_post_q": 1073741824
+      },
+      "tracks": {
+        "rst_ni": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "start_i": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "in_valid_i": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            67,
+            0
+          ]
+        ],
+        "in_ready_o": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            66,
+            0
+          ]
+        ],
+        "out_valid_o": [
+          [
+            0,
+            0
+          ],
+          [
+            133,
+            1
+          ],
+          [
+            197,
+            0
+          ]
+        ],
+        "busy_o": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            197,
+            0
+          ]
+        ],
+        "done_o": [
+          [
+            0,
+            0
+          ],
+          [
+            197,
+            1
+          ]
+        ],
+        "gate_pass_o": [
+          [
+            0,
+            0
+          ]
+        ],
+        "veto_pin_o": [
+          [
+            0,
+            1
+          ]
+        ],
+        "norm_fault_o": [
+          [
+            0,
+            0
+          ]
+        ],
+        "pure_g3_collision_o": [
+          [
+            0,
+            0
+          ],
+          [
+            197,
+            1
+          ]
+        ],
+        "state_q": [
+          [
+            0,
+            "S_IDLE"
+          ],
+          [
+            2,
+            "S_LOAD_DOT"
+          ],
+          [
+            66,
+            "S_EVAL_RAW"
+          ],
+          [
+            67,
+            "S_STRIP_P1"
+          ],
+          [
+            131,
+            "S_LATCH_P2"
+          ],
+          [
+            132,
+            "S_STRIP_P2"
+          ],
+          [
+            196,
+            "S_VERDICT"
+          ],
+          [
+            197,
+            "S_IDLE"
+          ]
+        ],
+        "rcf_raw_o": [
+          [
+            0,
+            0
+          ]
+        ],
+        "delta_e_raw_o": [
+          [
+            0,
+            1073741824
+          ]
+        ],
+        "bleed_post_o": [
+          [
+            0,
+            1073741824
+          ]
+        ]
+      }
+    }
+  }
+}

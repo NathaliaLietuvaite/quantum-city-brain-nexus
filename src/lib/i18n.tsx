@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { alphaTranslations } from './node-alpha-content';
+import { missionControlTranslations } from './mission-control-content';
 
 export type Language = 'en' | 'de' | 'zh';
 
@@ -2623,7 +2624,13 @@ export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const [lang, setLang] = useState<Language>('en');
 
   const t = (key: string): string => {
-    return alphaTranslations[lang]?.[key] ?? translations[lang]?.[key] ?? translations['en']?.[key] ?? key;
+    return (
+      missionControlTranslations[lang]?.[key] ??
+      alphaTranslations[lang]?.[key] ??
+      translations[lang]?.[key] ??
+      translations['en']?.[key] ??
+      key
+    );
   };
 
   return (

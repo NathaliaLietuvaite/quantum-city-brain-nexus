@@ -21,6 +21,145 @@ DEFAULT_APP_REPO = os.path.abspath(
 )
 APP_REPO = os.environ.get("VMAX_APP_REPO", DEFAULT_APP_REPO)
 OUT_JSON = os.path.join(REPO_ROOT, "src", "data", "node-alpha-telemetry.json")
+OUT_VCD_JSON = os.path.join(REPO_ROOT, "src", "data", "rtl-vcd-waveforms.json")
+
+VCD_STATE_NAMES: Dict[int, str] = {
+    0: "S_IDLE",
+    1: "S_LOAD_DOT",
+    2: "S_EVAL_RAW",
+    3: "S_STRIP_P1",
+    4: "S_LATCH_P2",
+    5: "S_STRIP_P2",
+    6: "S_VERDICT",
+}
+
+VCD_TARGET_SIGNALS: List[str] = [
+    "clk_i",
+    "rst_ni",
+    "start_i",
+    "in_valid_i",
+    "in_ready_o",
+    "out_valid_o",
+    "busy_o",
+    "done_o",
+    "gate_pass_o",
+    "veto_pin_o",
+    "norm_fault_o",
+    "pure_g3_collision_o",
+    "cycle_count_o",
+    "state_q",
+    "rcf_raw_o",
+    "delta_e_raw_o",
+    "bleed_post_o",
+]
+
+
+def _parse_verilator_vcd(path: str, label: str) -> Dict[str, Any]:
+    with open(path, "rb") as fh:
+        raw = fh.read()
+    sha = hashlib.sha256(raw).hexdigest()
+    lines = raw.decode("ascii", errors="replace").splitlines()
+    code_to_name: Dict[str, str] = {}
+    in_defs = True
+    current_vals: Dict[str, int] = {}
+    samples: List[Dict[str, int]] = []
+    prev_clk = 0
+
+    for line in lines:
+        s = line.strip()
+        if not s:
+            continue
+        if in_defs:
+            if s.startswith("$var "):
+                parts = s.split()
+                code = parts[3]
+                name = parts[4]
+                if name in VCD_TARGET_SIGNALS and code not in code_to_name:
+                    code_to_name[code] = name
+            elif s.startswith("$enddefinitions"):
+                in_defs = False
+            continue
+        if s.startswith("#"):
+            clk = current_vals.get("clk_i", 0)
+            if clk == 1 and prev_clk == 0:
+                samples.append(dict(current_vals))
+            prev_clk = clk
+            continue
+        if s[0] in ("0", "1", "x", "z"):
+            code = s[1:]
+            if code in code_to_name:
+                current_vals[code_to_name[code]] = 1 if s[0] == "1" else 0
+        elif s[0] == "b":
+            val_str, code = s[1:].split()
+            if code in code_to_name:
+                v = 0 if ("x" in val_str or "z" in val_str) else int(val_str, 2)
+                current_vals[code_to_name[code]] = v
+
+    if current_vals.get("clk_i", 0) == 1 and prev_clk == 0:
+        samples.append(dict(current_vals))
+
+    tracks: Dict[str, List[List[Any]]] = {}
+    for sig in VCD_TARGET_SIGNALS:
+        if sig in ("clk_i", "cycle_count_o"):
+            continue
+        runs: List[List[Any]] = []
+        last: Any = None
+        for cyc, snap in enumerate(samples):
+            val: Any = snap.get(sig, 0)
+            if sig == "state_q":
+                val = VCD_STATE_NAMES.get(int(val), f"S_{val}")
+            if val != last:
+                runs.append([cyc, val])
+                last = val
+        tracks[sig] = runs
+
+    final_snap = samples[-1] if samples else {}
+    return {
+        "id": label,
+        "source_file": os.path.basename(path),
+        "source_vcd_sha256": sha,
+        "source_vcd_bytes": len(raw),
+        "total_cycles": len(samples),
+        "compute_cycles": int(final_snap.get("cycle_count_o", 0)),
+        "final_verdict": {
+            "gate_pass": bool(final_snap.get("gate_pass_o", 0)),
+            "veto_pin": bool(final_snap.get("veto_pin_o", 1)),
+            "norm_fault": bool(final_snap.get("norm_fault_o", 0)),
+            "pure_g3_collision": bool(final_snap.get("pure_g3_collision_o", 0)),
+            "rcf_raw_q": int(final_snap.get("rcf_raw_o", 0)),
+            "delta_e_raw_q": int(final_snap.get("delta_e_raw_o", 0)),
+            "bleed_post_q": int(final_snap.get("bleed_post_o", 0)),
+        },
+        "tracks": tracks,
+    }
+
+
+def sync_vcd_waveforms(app_repo: str = APP_REPO, out_path: str = OUT_VCD_JSON) -> Dict[str, Any]:
+    build_dir = os.path.join(app_repo, "rtl", "build")
+    canonical_vcd = os.path.join(build_dir, "odos_gate_canonical_l.vcd")
+    g3_vcd = os.path.join(build_dir, "odos_gate_g3_veto.vcd")
+    if not (os.path.isfile(canonical_vcd) and os.path.isfile(g3_vcd)):
+        return {"skipped": True, "reason": "Compiled Verilator VCD files not present in rtl/build/"}
+
+    payload: Dict[str, Any] = {
+        "schema": "NODE_ALPHA_RTL_VCD_WAVEFORMS_V1",
+        "epistemic_register": "REGISTER_M",
+        "tool": "Verilator 5.055 (compiled odos_gate_core.sv)",
+        "clock_mhz_reference": 100,
+        "traces": {
+            "canonical_l_pass": _parse_verilator_vcd(canonical_vcd, "canonical_l_pass"),
+            "g3_attack_veto": _parse_verilator_vcd(g3_vcd, "g3_attack_veto"),
+        },
+    }
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    raw_out = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
+    with open(out_path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(raw_out)
+    return {
+        "out_path": out_path,
+        "bytes": len(raw_out.encode("utf-8")),
+        "sha256": hashlib.sha256(raw_out.encode("utf-8")).hexdigest(),
+    }
 
 
 def _load_json(path: str) -> Dict[str, Any]:
@@ -269,4 +408,12 @@ def sync_telemetry(app_repo: str = APP_REPO, out_path: str = OUT_JSON) -> Dict[s
 
 
 if __name__ == "__main__":
-    print(json.dumps(sync_telemetry(), indent=2))
+    print(
+        json.dumps(
+            {
+                "telemetry": sync_telemetry(),
+                "vcd_waveforms": sync_vcd_waveforms(),
+            },
+            indent=2,
+        )
+    )
