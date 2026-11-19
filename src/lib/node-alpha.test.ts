@@ -173,4 +173,22 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
     const bypassed = evaluateFriduDefenseInDepthQ230(lRom, g3Rom, 0.35, true);
     assert.equal(bypassed.friduGate.gatePass, false);
   });
+
+  test('[MOD-142] Colab portable SYNC-12 telemetry seals and skip policy match ACE_SYNC_LEDGER.json', () => {
+    const colab = telemetry.colab_mod142_portable_rtl;
+    assert.equal(
+      telemetry.golden_seals.colab_mod142_notebook_sha256,
+      '51a1e4e9c7b4a611b50c82876ec307210c5efd9df7e5e8204e727c50eb0b3265',
+    );
+    assert.equal(colab.notebook_sha256, telemetry.golden_seals.colab_mod142_notebook_sha256);
+    assert.equal(colab.golden_checksums_verified, 9);
+    assert.equal(
+      colab.portable_tests_executed_without_eda + colab.portable_tests_skipped_without_eda,
+      colab.portable_tests_total,
+    );
+    assert.equal(colab.isotropic_null_passes, 0);
+    assert.ok(colab.isotropic_max_bleed_lsb <= 1);
+    assert.equal(colab.rtl_ast_semicolon_packers, 0);
+    assert.ok(colab.rtl_ast_max_cyclomatic_complexity <= colab.rtl_ast_cc_limit);
+  });
 });

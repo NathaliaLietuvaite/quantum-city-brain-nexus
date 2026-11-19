@@ -23,8 +23,28 @@
     "appendix_g_cross_cpu_verdict_seal_sha256": "0538b809f7e75c348db26025ae446f18127e665c2244a06457f15152cda59dc7",
     "rtl_odos_gate_emulator_report_sha256": "6df78bc254c129c5beb68089f93363bb1ab15aec8aff1cc528b7f0f85c5c83bc",
     "rtl_spec_v20_alpha_md_sha256": "620a190a71bc81d2198c1809a5b0afbff757247b83abb1c319a3aa223cb28cb3",
+    "colab_mod142_notebook_sha256": "51a1e4e9c7b4a611b50c82876ec307210c5efd9df7e5e8204e727c50eb0b3265",
     "l_vec_q2_30_hex_sha256": "3d18f24028dedcca22ee41d69d00d361100b7533db23cf84130c64a114a26fb6",
     "g3_vec_q2_30_hex_sha256": "3b890d14dac5faf9456fdab31b172578b47a3254fff4d51dfe3bd663f9688a73"
+  },
+  "colab_mod142_portable_rtl": {
+    "epistemic_register": "REGISTER_M",
+    "notebook_filename": "PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+    "notebook_sha256": "51a1e4e9c7b4a611b50c82876ec307210c5efd9df7e5e8204e727c50eb0b3265",
+    "colab_url": "https://colab.research.google.com/github/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP/blob/main/PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+    "github_url": "https://github.com/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP/blob/main/PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+    "golden_checksums_verified": 9,
+    "portable_test_modules": 7,
+    "portable_tests_total": 36,
+    "portable_tests_executed_without_eda": 34,
+    "portable_tests_skipped_without_eda": 2,
+    "isotropic_null_controls": 50,
+    "isotropic_null_passes": 0,
+    "isotropic_max_bleed_lsb": 1,
+    "rtl_ast_py_files": 5,
+    "rtl_ast_semicolon_packers": 0,
+    "rtl_ast_max_cyclomatic_complexity": 9,
+    "rtl_ast_cc_limit": 15
   },
   "hardware_l2_roofline": {
     "epistemic_register": "REGISTER_M",

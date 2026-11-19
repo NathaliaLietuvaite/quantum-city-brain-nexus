@@ -9,6 +9,9 @@ import {
   Check,
   Radio,
   ShieldAlert,
+  Cloud,
+  ExternalLink,
+  FileCode2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useI18n } from '@/lib/i18n';
@@ -185,16 +188,19 @@ const NodeAlphaSection = () => {
       primary: baseline.url,
       fallback: `${GITHUB_RAW_IMG}/V-MAX-12-APP-NOV01.jpg`,
       key: 'alpha.photo1',
+      dims: '2569 × 1186',
     },
     {
       primary: swarm.url,
       fallback: `${GITHUB_RAW_IMG}/V-MAX-12-APP-NOV02.jpg`,
       key: 'alpha.photo2',
+      dims: '2612 × 1206',
     },
     {
       primary: verilogArch.url,
       fallback: `${GITHUB_RAW_IMG}/V-MAX-12-Verilog.png`,
       key: 'alpha.photo3',
+      dims: '2730 × 1536',
     },
   ];
 
@@ -539,6 +545,57 @@ const NodeAlphaSection = () => {
         <p className="leading-relaxed">{t('alpha.siliconDesc')}</p>
       </section>
 
+      {/* [MOD-142] Portable Cloud Verification · Google Colab (SYNC-12) */}
+      <section className="rounded-lg border border-emerald-500/35 bg-background/95 p-5 md:p-7 space-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Cloud className="w-5 h-5 text-emerald-400 shrink-0" />
+            <h3 className="text-xl font-semibold text-primary">{t('alpha.colabTitle')}</h3>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="default" size="sm" asChild>
+              <a href={telemetry.colab_mod142_portable_rtl.colab_url} target="_blank" rel="noreferrer">
+                <ExternalLink className="w-4 h-4 mr-1" />
+                {t('alpha.colabOpen')}
+              </a>
+            </Button>
+            <Button variant="secondary" size="sm" asChild>
+              <a href={telemetry.colab_mod142_portable_rtl.github_url} target="_blank" rel="noreferrer">
+                <FileCode2 className="w-4 h-4 mr-1" />
+                {t('alpha.colabSource')}
+              </a>
+            </Button>
+          </div>
+        </div>
+        <p className="text-sm text-muted-foreground leading-relaxed">{t('alpha.colabDesc')}</p>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          {[1, 2, 3].map((idx) => (
+            <div key={idx} className="rounded-lg border bg-card p-4 space-y-2">
+              <div className="font-semibold text-sm text-emerald-300">{t(`alpha.colabCard${idx}Title`)}</div>
+              <p className="text-xs text-muted-foreground leading-relaxed">{t(`alpha.colabCard${idx}Desc`)}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-md border bg-card/70 px-4 py-3 font-mono text-xs text-muted-foreground break-all space-y-1">
+          <div>
+            notebook_sha256 ({telemetry.colab_mod142_portable_rtl.notebook_filename}):{' '}
+            <span className="text-emerald-300">{telemetry.golden_seals.colab_mod142_notebook_sha256}</span>
+          </div>
+          <div>
+            portable_policy: {telemetry.colab_mod142_portable_rtl.portable_tests_executed_without_eda}/
+            {telemetry.colab_mod142_portable_rtl.portable_tests_total} PASS · skipped=
+            {telemetry.colab_mod142_portable_rtl.portable_tests_skipped_without_eda} (@unittest.skipUnless) ·
+            checksums={telemetry.colab_mod142_portable_rtl.golden_checksums_verified}/
+            {telemetry.colab_mod142_portable_rtl.golden_checksums_verified} MATCH · iso_null=
+            {telemetry.colab_mod142_portable_rtl.isotropic_null_passes}/
+            {telemetry.colab_mod142_portable_rtl.isotropic_null_controls} (≤{' '}
+            {telemetry.colab_mod142_portable_rtl.isotropic_max_bleed_lsb} LSB)
+          </div>
+        </div>
+      </section>
+
       <section className="space-y-4">
         <h3 className="text-xl font-semibold text-primary">{t('alpha.mobile')}</h3>
         <div className="grid md:grid-cols-3 gap-6">
@@ -560,7 +617,9 @@ const NodeAlphaSection = () => {
               </a>
               <figcaption className="text-sm text-muted-foreground">
                 {t(img.key)}
-                <span className="mt-1 block font-mono text-xs text-cyan-300">{t('alpha.zoom')}</span>
+                <span className="mt-1 block font-mono text-xs text-cyan-300">
+                  {t('alpha.zoom')} ({img.dims})
+                </span>
               </figcaption>
             </figure>
           ))}

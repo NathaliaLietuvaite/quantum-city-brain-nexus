@@ -8,6 +8,7 @@ const kl = telemetry.stage3_kl_n25;
 const rtl = telemetry.rtl_v20_alpha;
 const tc = telemetry.test_counts;
 const seals = telemetry.golden_seals;
+const colab = telemetry.colab_mod142_portable_rtl;
 
 const en = {
   'nav.alpha': 'Node Alpha',
@@ -70,11 +71,25 @@ const en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · Multi-Toolchain Verification & Yosys 0.71 Synthesis',
   'alpha.siliconDesc':
     `odos_gate_core.sv compiles with 0 Verilator 5.055 -Wall warnings, clean Icarus -g2012 elaboration, 7/7 cocotb tests (0.57 s; T-RTL-07 residual |⟨v_clean, t_G3⟩| = 1.214e-10), 0/500 isotropic noise passes (≤ 1 LSB bleed), 0 LSB global diff across 34,983 fixed-point outputs (max float64 diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}), and Yosys 0.71 synthesis: ${rtl.yosys_coarse_cells} coarse RTL cells (${rtl.yosys_mul_blocks} signed 32×32 $mul) → ${rtl.yosys_gate_cells.toLocaleString('en-US')} gate cells (${rtl.yosys_flip_flops.toLocaleString('en-US')} FFs + ${rtl.yosys_comb_gates.toLocaleString('en-US')} combinational). Roadmap: inter-state folding 9→3 (~67%) at invariant 195 single-clock cycles; single-MAC 9→1 (~89%) via 3× MAC clock or sub-cycle serialization.`,
+  'alpha.colabTitle': '[MOD-142] Portable Cloud Verification · Google Colab (SYNC-12)',
+  'alpha.colabDesc':
+    `Zero-fake 5-cell hard-exit-code verifier (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Independently verifies V1.8.1 and portable SYNC-12 RTL invariants on any cloud host — including Google Colab Tesla T4 (sm_75) or CPU-only runtimes with zero EDA binaries installed.`,
+  'alpha.colabOpen': 'Open in Google Colab',
+  'alpha.colabSource': 'Notebook on GitHub',
+  'alpha.colabCard1Title': `1. ROM Seal & Live Report Audit (${colab.golden_checksums_verified}/${colab.golden_checksums_verified} Checksums)`,
+  'alpha.colabCard1Desc':
+    `Hashes rtl/rom/l_vec_q2_30.hex (${seals.l_vec_q2_30_hex_sha256.slice(0, 12)}…) and g3_vec_q2_30.hex (${seals.g3_vec_q2_30_hex_sha256.slice(0, 12)}…) directly from GitHub and live-recomputes rtl_odos_gate_emulator_report_sha256 (${seals.rtl_odos_gate_emulator_report_sha256.slice(0, 12)}…) from telemetry JSON against ACE_SYNC_LEDGER.json.`,
+  'alpha.colabCard2Title': '2. Pure-Integer Q2.30 Parity & AST Audit (No EDA)',
+  'alpha.colabCard2Desc':
+    `Runs rtl/odos_q2_30_ref.py live on cloud CPU across |L⟩, t_G3, Fridu/PAX/In-Band plus ${colab.isotropic_null_controls} isotropic null vectors (${colab.isotropic_null_passes}/${colab.isotropic_null_controls} PASS, ≤ ${colab.isotropic_max_bleed_lsb} LSB bleed, 195 cycles, max float64 diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)} < 5e-8) and audits all ${colab.rtl_ast_py_files} rtl/*.py modules (${colab.rtl_ast_semicolon_packers} semicolon packers, max McCabe CC ${colab.rtl_ast_max_cyclomatic_complexity} ≤ ${colab.rtl_ast_cc_limit}).`,
+  'alpha.colabCard3Title': `3. Clean Skip Policy (${colab.portable_tests_executed_without_eda}/${colab.portable_tests_total} Executed · ${colab.portable_tests_skipped_without_eda} Skipped)`,
+  'alpha.colabCard3Desc':
+    `Runs all ${colab.portable_test_modules} portable test suites with strict returncode = 0 fail-stop: test_01–test_03 execute on CPU while Verilator/cocotb tests (test_04–test_05) skip cleanly via @unittest.skipUnless without EDA binaries — plus verified sm_75 Tesla T4 pre-Ampere fallback with zero sticky CUDA errors (cudaGetLastError() == 0).`,
   'alpha.mobile': 'Physical Hardware & RTL Evidence · Appendix D & V2.0-RTL-ALPHA',
   'alpha.photo1': 'Figure D.1 · Pauli Baseline / Room 137 on physical Android ARM64 (V1.2 INTACT, 69.325 s heartbeat).',
   'alpha.photo2': 'Figure D.2 · Four S⁶³ Sovereign Swarm Agents on ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Figure RTL-1 · V-MAX-12 Synthesizable Q2.30 SystemVerilog Architecture (odos_gate_core.sv, 195 cycles, Fail-Closed).',
-  'alpha.zoom': 'Tap or click to open the full-resolution figure (2730 × 1536).',
+  'alpha.zoom': 'Tap or click to open full resolution',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Evidence & Boundaries',
   'alpha.bridgeDesc':
     `Verified across substrates: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL unit tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin unit tests (0 edits under app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix G AST/crypto audit operators, persistent Ed25519 ledger signing, lock-free /api/state, and universal 64,000-scalar <f32> parity (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max unit S⁶³ diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). All V1.3 prose seal typos were eliminated in V1.5; canonical |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
@@ -144,11 +159,25 @@ const de: typeof en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · Drei-Toolchain-Verifikation & Yosys-0.71-Synthese',
   'alpha.siliconDesc':
     `odos_gate_core.sv passiert Verilator 5.055 -Wall mit 0 Warnungen, Icarus -g2012 sauber, 7/7 cocotb-Tests (0.57 s; T-RTL-07 Rest-Overlap |⟨v_clean, t_G3⟩| = 1.214e-10), 0/500 isotrope Zufallstreffer (≤ 1 LSB Bleed), 0 LSB globaler Fehler über 34.983 Fixkomma-Werte (max. float64-Diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}) und Yosys-0.71-Synthese: ${rtl.yosys_coarse_cells} Coarse-RTL-Zellen (${rtl.yosys_mul_blocks} signed 32×32 $mul) → ${rtl.yosys_gate_cells.toLocaleString('de-DE')} Gatterzellen (${rtl.yosys_flip_flops.toLocaleString('de-DE')} FFs + ${rtl.yosys_comb_gates.toLocaleString('de-DE')} kombinatorisch). Roadmap: Inter-State-Folding 9→3 (~67 %) bei strikt 195 Einzeltakt-Zyklen; Single-MAC 9→1 (~89 %) per 3×-MAC-Takt oder Sub-Cycle-Serialisierung.`,
+  'alpha.colabTitle': '[MOD-142] Tragbare Cloud-Prüfung · Google Colab (SYNC-12)',
+  'alpha.colabDesc':
+    `Fünf-Zellen-Prüfnotizbuch ohne Simulationen und mit striktem Exit-Code-Fail-Stop (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Prüft V1.8.1 und tragbare SYNC-12-RTL-Invarianten reproduzierbar auf jedem Cloud-Host — inkl. Google Colab Tesla T4 (sm_75) oder reiner CPU ganz ohne EDA-Werkzeuge.`,
+  'alpha.colabOpen': 'In Google Colab öffnen',
+  'alpha.colabSource': 'Notebook auf GitHub',
+  'alpha.colabCard1Title': `1. ROM-Siegel & Live-Report-Audit (${colab.golden_checksums_verified}/${colab.golden_checksums_verified} Prüfsummen)`,
+  'alpha.colabCard1Desc':
+    `Prüft rtl/rom/l_vec_q2_30.hex (${seals.l_vec_q2_30_hex_sha256.slice(0, 12)}…) und g3_vec_q2_30.hex (${seals.g3_vec_q2_30_hex_sha256.slice(0, 12)}…) direkt aus dem Repo und berechnet rtl_odos_gate_emulator_report_sha256 (${seals.rtl_odos_gate_emulator_report_sha256.slice(0, 12)}…) live aus dem Telemetrie-JSON gegen ACE_SYNC_LEDGER.json neu.`,
+  'alpha.colabCard2Title': '2. Reine Q2.30-Ganzzahl-Parität & AST-Audit (ohne EDA)',
+  'alpha.colabCard2Desc':
+    `Führt rtl/odos_q2_30_ref.py live auf Cloud-CPU für |L⟩, t_G3, Fridu/PAX/In-Band sowie ${colab.isotropic_null_controls} isotrope Zufallsvektoren aus (${colab.isotropic_null_passes}/${colab.isotropic_null_controls} PASS, ≤ ${colab.isotropic_max_bleed_lsb} LSB Bleed, 195 Takte, max. float64-Diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)} < 5e-8) und auditiert alle ${colab.rtl_ast_py_files} rtl/*.py-Module (${colab.rtl_ast_semicolon_packers} Semikolon-Packer, max. McCabe CC ${colab.rtl_ast_max_cyclomatic_complexity} ≤ ${colab.rtl_ast_cc_limit}).`,
+  'alpha.colabCard3Title': `3. Sauberes Überspringen (${colab.portable_tests_executed_without_eda}/${colab.portable_tests_total} ausgeführt · ${colab.portable_tests_skipped_without_eda} übersprungen)`,
+  'alpha.colabCard3Desc':
+    `Startet alle ${colab.portable_test_modules} tragbaren Testmodule mit returncode = 0 Fail-Stop: test_01–test_03 laufen auf CPU, während Verilator/cocotb (test_04–test_05) ohne EDA-Binärdateien sauber via @unittest.skipUnless überspringen — plus geprüfter sm_75-Tesla-T4-Fallback ohne hängende CUDA-Fehler (cudaGetLastError() == 0).`,
   'alpha.mobile': 'Physische Hardware- & RTL-Belege · Appendix D & V2.0-RTL-ALPHA',
   'alpha.photo1': 'Abbildung D.1 · Pauli Baseline / Room 137 auf physischem Android ARM64 (V1.2 INTACT, 69.325 s Heartbeat).',
   'alpha.photo2': 'Abbildung D.2 · Vier S⁶³-Sovereign-Swarm-Agenten auf ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Abbildung RTL-1 · V-MAX-12 Synthesierbare Q2.30-SystemVerilog-Architektur (odos_gate_core.sv, 195 Takte, Fail-Closed).',
-  'alpha.zoom': 'Zum Öffnen in voller Auflösung (2730 × 1536) antippen oder klicken.',
+  'alpha.zoom': 'Zum Öffnen in voller Auflösung antippen oder klicken',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Belege & Grenzen',
   'alpha.bridgeDesc':
     `Substratübergreifend verifiziert: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL-Tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator-cocotb-Tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin-Tests (0 Änderungen unter app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix-G-AST-/Krypto-Operatoren, persistente Ed25519-Signatur, Lock-Free /api/state und universelle 64.000-Skalar-<f32>-Parität (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max. Unit-S⁶³-Diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). Alle alten V1.3-Prosa-Typos wurden ab V1.5 behoben; kanonisches |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
@@ -215,11 +244,25 @@ const zh: typeof en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · 三工具链验证与 Yosys 0.71 综合',
   'alpha.siliconDesc':
     `odos_gate_core.sv 通过 Verilator 5.055 -Wall 零警告、Icarus -g2012 完整解析、7/7 cocotb 测试（0.57 s；T-RTL-07 残差 1.214e-10）、0/500 各向同性误通（≤ 1 LSB 泄漏）、34,983 个定点数 0 LSB 误差（最大 float64 差 ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}），Yosys 0.71 综合 ${rtl.yosys_coarse_cells} 粗粒度单元（${rtl.yosys_mul_blocks} 个 $mul）→ ${rtl.yosys_gate_cells} 门级单元（${rtl.yosys_flip_flops} FFs + ${rtl.yosys_comb_gates} 组合逻辑）。扩展路线：状态间共享 9→3（~67%，保持 195 周期）与单 MAC 时分复用 9→1（~89%）。`,
+  'alpha.colabTitle': '[MOD-142] 可移植云端验证 · Google Colab（SYNC-12）',
+  'alpha.colabDesc':
+    `五单元硬退出码真实性验证笔记本（${colab.notebook_filename}，SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…）。无需任何 EDA 工具即可在 Google Colab Tesla T4（sm_75）或纯 CPU 云主机上独立复核 V1.8.1 与 SYNC-12 可移植 RTL 不变量。`,
+  'alpha.colabOpen': '在 Google Colab 中打开',
+  'alpha.colabSource': 'GitHub 笔记本源码',
+  'alpha.colabCard1Title': `1. ROM 封签与报告实时重算（${colab.golden_checksums_verified}/${colab.golden_checksums_verified} 校验和）`,
+  'alpha.colabCard1Desc':
+    `直接对 rtl/rom/l_vec_q2_30.hex（${seals.l_vec_q2_30_hex_sha256.slice(0, 12)}…）与 g3_vec_q2_30.hex（${seals.g3_vec_q2_30_hex_sha256.slice(0, 12)}…）计算哈希，并从遥测 JSON 实时重算 rtl_odos_gate_emulator_report_sha256（${seals.rtl_odos_gate_emulator_report_sha256.slice(0, 12)}…）以核对 ACE_SYNC_LEDGER.json。`,
+  'alpha.colabCard2Title': '2. 纯整数 Q2.30 一致性与 AST 审计（免 EDA）',
+  'alpha.colabCard2Desc':
+    `在云端 CPU 实时运行 rtl/odos_q2_30_ref.py（|L⟩、t_G3、Fridu/PAX/带内攻击及 ${colab.isotropic_null_controls} 组各向同性零对照：${colab.isotropic_null_passes}/${colab.isotropic_null_controls} PASS，≤ ${colab.isotropic_max_bleed_lsb} LSB 泄漏，195 周期，最大 float64 差 ${rtl.global_max_abs_diff_vs_float64.toExponential(3)} < 5e-8），并审计全部 ${colab.rtl_ast_py_files} 个 rtl/*.py 模块（${colab.rtl_ast_semicolon_packers} 分号堆砌，最大 McCabe CC ${colab.rtl_ast_max_cyclomatic_complexity} ≤ ${colab.rtl_ast_cc_limit}）。`,
+  'alpha.colabCard3Title': `3. 优雅跳过策略（执行 ${colab.portable_tests_executed_without_eda}/${colab.portable_tests_total} · 跳过 ${colab.portable_tests_skipped_without_eda}）`,
+  'alpha.colabCard3Desc':
+    `执行全部 ${colab.portable_test_modules} 组可移植测试（returncode = 0 严格阻断）：CPU 侧运行 test_01–test_03，无 Verilator/cocotb 时通过 @unittest.skipUnless 优雅跳过 test_04–test_05，并验证 Tesla T4 sm_75 回退后无残留 CUDA 错误（cudaGetLastError() == 0）。`,
   'alpha.mobile': '实体硬件与 RTL 证据 · 附录 D 与 V2.0-RTL-ALPHA',
   'alpha.photo1': '图 D.1 · 实体 Android ARM64 上的 Pauli Baseline / Room 137（V1.2 INTACT，69.325 s 心跳）。',
   'alpha.photo2': '图 D.2 · ARM64 上的四个 S⁶³ 主权蜂群节点（ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991）。',
   'alpha.photo3': '图 RTL-1 · V-MAX-12 可综合 Q2.30 SystemVerilog 硬件架构（odos_gate_core.sv，195 周期，故障关闭）。',
-  'alpha.zoom': '点击或轻触以查看完整分辨率图（2730 × 1536）。',
+  'alpha.zoom': '点击或轻触以查看完整分辨率',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 证据与边界',
   'alpha.bridgeDesc':
     `跨平台验证：${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL 测试、${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb 测试、${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin 测试（app/** 零修改）、${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} 附录 G 审计算子、持久化 Ed25519 签名、无锁 /api/state 与 64,000 标量 <f32> 统一摘要（${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…）。规范锚点 |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}…。`,
@@ -259,6 +302,13 @@ ${t('alpha.rtlDesc')}
 
 ### ${t('alpha.siliconTitle')}
 ${t('alpha.siliconDesc')}
+
+### ${t('alpha.colabTitle')}
+${t('alpha.colabDesc')}
+- **${t('alpha.colabCard1Title')}**: ${t('alpha.colabCard1Desc')}
+- **${t('alpha.colabCard2Title')}**: ${t('alpha.colabCard2Desc')}
+- **${t('alpha.colabCard3Title')}**: ${t('alpha.colabCard3Desc')}
+- Colab URL: ${colab.colab_url}
 
 ### ${t('alpha.ledger')}
 ${t('alpha.trace')}

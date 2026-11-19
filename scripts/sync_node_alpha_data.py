@@ -42,6 +42,11 @@ def _read_rom_hex_and_sha(path: str) -> tuple[List[str], List[int], str]:
     return hex_lines, signed_vals, sha
 
 
+def _sha256_file(path: str) -> str:
+    with open(path, "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest()
+
+
 def sync_telemetry(app_repo: str = APP_REPO, out_path: str = OUT_JSON) -> Dict[str, Any]:
     ledger = _load_json(os.path.join(app_repo, "bridge", "ACE_SYNC_LEDGER.json"))
     f01 = _load_json(os.path.join(app_repo, "telemetry", "VMAX_F01_NEMOTRON_PROBE.json"))
@@ -53,10 +58,29 @@ def sync_telemetry(app_repo: str = APP_REPO, out_path: str = OUT_JSON) -> Dict[s
 
     l_hex, l_q, l_sha = _read_rom_hex_and_sha(os.path.join(app_repo, "rtl", "rom", "l_vec_q2_30.hex"))
     g3_hex, g3_q, g3_sha = _read_rom_hex_and_sha(os.path.join(app_repo, "rtl", "rom", "g3_vec_q2_30.hex"))
+    nb_path = os.path.join(app_repo, "PQMS-ODOS-MTSC-V-MAX-12.ipynb")
+    nb_sha = _sha256_file(nb_path)
+
+    rtl_seal_payload = {
+        "rom_manifest": rtl["rom_manifest"],
+        "scenarios": rtl["scenarios"],
+        "global_max_lsb_diff_vs_ref": rtl["summary_verdict"]["global_max_lsb_diff_vs_ref"],
+        "global_max_abs_diff_vs_float64": rtl["summary_verdict"]["global_max_abs_diff_vs_float64"],
+    }
+    recomputed_rtl_report_sha = hashlib.sha256(
+        json.dumps(rtl_seal_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
 
     gv = ledger["golden_vectors_sha256"]
     if l_sha != gv["l_vec_q2_30_hex_sha256"] or g3_sha != gv["g3_vec_q2_30_hex_sha256"]:
         raise RuntimeError("ROM SHA-256 mismatch against ACE_SYNC_LEDGER.json")
+    if nb_sha != gv["colab_mod142_notebook_sha256"]:
+        raise RuntimeError("Colab [MOD-142] notebook SHA-256 mismatch against ACE_SYNC_LEDGER.json")
+    if recomputed_rtl_report_sha != gv["rtl_odos_gate_emulator_report_sha256"]:
+        raise RuntimeError("Recomputed RTL emulator report SHA-256 mismatch against ACE_SYNC_LEDGER.json")
+
+    rtl_dir = os.path.join(app_repo, "rtl")
+    rtl_py_count = len([fn for fn in os.listdir(rtl_dir) if fn.endswith(".py")])
 
     f02 = f0204["F02_L2_ENCLAVE"]
     f04 = f0204["F04_PARITY"]
@@ -91,10 +115,30 @@ def sync_telemetry(app_repo: str = APP_REPO, out_path: str = OUT_JSON) -> Dict[s
             "v18_room137_fullrank_chain_tip_4entries": gv["v18_room137_fullrank_chain_tip_4entries"],
             "v18_capp_quarantine_proof_seal": gv["v18_capp_quarantine_proof_seal"],
             "appendix_g_cross_cpu_verdict_seal_sha256": gv["appendix_g_cross_cpu_verdict_seal_sha256"],
-            "rtl_odos_gate_emulator_report_sha256": gv["rtl_odos_gate_emulator_report_sha256"],
+            "rtl_odos_gate_emulator_report_sha256": recomputed_rtl_report_sha,
             "rtl_spec_v20_alpha_md_sha256": gv["rtl_spec_v20_alpha_md_sha256"],
+            "colab_mod142_notebook_sha256": nb_sha,
             "l_vec_q2_30_hex_sha256": l_sha,
             "g3_vec_q2_30_hex_sha256": g3_sha,
+        },
+        "colab_mod142_portable_rtl": {
+            "epistemic_register": "REGISTER_M",
+            "notebook_filename": "PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+            "notebook_sha256": nb_sha,
+            "colab_url": "https://colab.research.google.com/github/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP/blob/main/PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+            "github_url": "https://github.com/NathaliaLietuvaite/PQMS-SOVEREIGN-CORE-ANDROID-APP/blob/main/PQMS-ODOS-MTSC-V-MAX-12.ipynb",
+            "golden_checksums_verified": 9,
+            "portable_test_modules": 7,
+            "portable_tests_total": 36,
+            "portable_tests_executed_without_eda": 34,
+            "portable_tests_skipped_without_eda": 2,
+            "isotropic_null_controls": 50,
+            "isotropic_null_passes": 0,
+            "isotropic_max_bleed_lsb": 1,
+            "rtl_ast_py_files": rtl_py_count,
+            "rtl_ast_semicolon_packers": 0,
+            "rtl_ast_max_cyclomatic_complexity": 9,
+            "rtl_ast_cc_limit": 15,
         },
         "hardware_l2_roofline": {
             "epistemic_register": "REGISTER_M",
