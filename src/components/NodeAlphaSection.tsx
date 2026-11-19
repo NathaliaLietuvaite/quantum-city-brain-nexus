@@ -544,7 +544,7 @@ const NodeAlphaSection = () => {
         <div className="grid md:grid-cols-3 gap-6">
           {evidenceImages.map((img) => (
             <figure key={img.key} className="space-y-3">
-              <a href={img.fallback} target="_blank" rel="noreferrer">
+              <a href={img.primary} target="_blank" rel="noreferrer">
                 <img
                   src={img.primary}
                   alt={t(img.key)}
@@ -558,7 +558,10 @@ const NodeAlphaSection = () => {
                   className="w-full h-[380px] object-contain bg-background rounded-lg border"
                 />
               </a>
-              <figcaption className="text-sm text-muted-foreground">{t(img.key)}</figcaption>
+              <figcaption className="text-sm text-muted-foreground">
+                {t(img.key)}
+                <span className="mt-1 block font-mono text-xs text-cyan-300">{t('alpha.zoom')}</span>
+              </figcaption>
             </figure>
           ))}
         </div>

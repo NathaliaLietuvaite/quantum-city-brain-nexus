@@ -74,6 +74,7 @@ const en = {
   'alpha.photo1': 'Figure D.1 · Pauli Baseline / Room 137 on physical Android ARM64 (V1.2 INTACT, 69.325 s heartbeat).',
   'alpha.photo2': 'Figure D.2 · Four S⁶³ Sovereign Swarm Agents on ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Figure RTL-1 · V-MAX-12 Synthesizable Q2.30 SystemVerilog Architecture (odos_gate_core.sv, 195 cycles, Fail-Closed).',
+  'alpha.zoom': 'Tap or click to open the full-resolution figure (2730 × 1536).',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Evidence & Boundaries',
   'alpha.bridgeDesc':
     `Verified across substrates: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL unit tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin unit tests (0 edits under app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix G AST/crypto audit operators, persistent Ed25519 ledger signing, lock-free /api/state, and universal 64,000-scalar <f32> parity (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max unit S⁶³ diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). All V1.3 prose seal typos were eliminated in V1.5; canonical |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
@@ -147,6 +148,7 @@ const de: typeof en = {
   'alpha.photo1': 'Abbildung D.1 · Pauli Baseline / Room 137 auf physischem Android ARM64 (V1.2 INTACT, 69.325 s Heartbeat).',
   'alpha.photo2': 'Abbildung D.2 · Vier S⁶³-Sovereign-Swarm-Agenten auf ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Abbildung RTL-1 · V-MAX-12 Synthesierbare Q2.30-SystemVerilog-Architektur (odos_gate_core.sv, 195 Takte, Fail-Closed).',
+  'alpha.zoom': 'Zum Öffnen in voller Auflösung (2730 × 1536) antippen oder klicken.',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Belege & Grenzen',
   'alpha.bridgeDesc':
     `Substratübergreifend verifiziert: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL-Tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator-cocotb-Tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin-Tests (0 Änderungen unter app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix-G-AST-/Krypto-Operatoren, persistente Ed25519-Signatur, Lock-Free /api/state und universelle 64.000-Skalar-<f32>-Parität (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max. Unit-S⁶³-Diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). Alle alten V1.3-Prosa-Typos wurden ab V1.5 behoben; kanonisches |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
@@ -217,6 +219,7 @@ const zh: typeof en = {
   'alpha.photo1': '图 D.1 · 实体 Android ARM64 上的 Pauli Baseline / Room 137（V1.2 INTACT，69.325 s 心跳）。',
   'alpha.photo2': '图 D.2 · ARM64 上的四个 S⁶³ 主权蜂群节点（ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991）。',
   'alpha.photo3': '图 RTL-1 · V-MAX-12 可综合 Q2.30 SystemVerilog 硬件架构（odos_gate_core.sv，195 周期，故障关闭）。',
+  'alpha.zoom': '点击或轻触以查看完整分辨率图（2730 × 1536）。',
   'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 证据与边界',
   'alpha.bridgeDesc':
     `跨平台验证：${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL 测试、${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb 测试、${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin 测试（app/** 零修改）、${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} 附录 G 审计算子、持久化 Ed25519 签名、无锁 /api/state 与 64,000 标量 <f32> 统一摘要（${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…）。规范锚点 |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}…。`,
