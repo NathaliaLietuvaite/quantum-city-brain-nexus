@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Cpu, Lock, ShieldCheck, Layers, Gauge, Zap, Car, Network, GitMerge } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
+import V42CorewareRackControl from '@/components/V42CorewareRackControl';
 
 const VeraRubinSection = () => {
   const { t } = useI18n();
@@ -132,6 +133,9 @@ const VeraRubinSection = () => {
           </CardContent>
         </Card>
       </motion.div>
+
+      {/* V4.2-COREWARE Interactive Rack & FSD Stop-and-Go Elimination */}
+      <V42CorewareRackControl />
 
       {/* Tesla FSD compatibility */}
       <motion.div
