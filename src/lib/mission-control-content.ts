@@ -15,10 +15,10 @@ const en = {
   'mc.showSector': 'Sector View',
   'mc.liveBadge': 'LIVE',
   'mc.nextBadge': 'ROADMAP',
-  'mc.telemetry.sync': 'SYNC-12 Sealed',
-  'mc.telemetry.rtl': 'Q2.30 RTL · 195 cyc · 0 LSB',
+  'mc.telemetry.sync': 'SYNC-22 Sealed',
+  'mc.telemetry.rtl': '130nm V4.0-GDSII · 200 cyc · 1.921 µs · 34.06 nJ/tx',
   'mc.telemetry.l2': 'L2 Enclave · 499.30 GB/s (1.852×)',
-  'mc.telemetry.tests': 'Tests · 47 Py · 7 cocotb · 24 Kt · 9/9 Colab',
+  'mc.telemetry.tests': 'Tests · 91 Py/RTL · 30 Kt · 10/10 OP · ML-DSA-65',
 
   // 3 Sectors
   'mc.sector.labs.title': 'Live Demonstrator & Labs',
@@ -73,10 +73,10 @@ const de: typeof en = {
   'mc.showSector': 'Sektor-Ansicht',
   'mc.liveBadge': 'LIVE',
   'mc.nextBadge': 'ROADMAP',
-  'mc.telemetry.sync': 'SYNC-12 Versiegelt',
+  'mc.telemetry.sync': 'SYNC-22 Versiegelt',
   'mc.telemetry.rtl': 'Q2.30 RTL · 195 Takte · 0 LSB',
   'mc.telemetry.l2': 'L2-Enklave · 499,30 GB/s (1,852×)',
-  'mc.telemetry.tests': 'Tests · 47 Py · 7 cocotb · 24 Kt · 9/9 Colab',
+  'mc.telemetry.tests': 'Tests · 91 Py/RTL · 30 Kt · 10/10 OP · ML-DSA-65',
 
   // 3 Sectors
   'mc.sector.labs.title': 'Live-Demonstrator & Labore',
@@ -131,10 +131,10 @@ const zh: typeof en = {
   'mc.showSector': '分区视图',
   'mc.liveBadge': '实时运行',
   'mc.nextBadge': '路线图',
-  'mc.telemetry.sync': 'SYNC-12 已封签',
+  'mc.telemetry.sync': 'SYNC-22 已封签',
   'mc.telemetry.rtl': 'Q2.30 RTL · 195 周期 · 0 LSB',
   'mc.telemetry.l2': 'L2 飞地 · 499.30 GB/s (1.852×)',
-  'mc.telemetry.tests': '测试 · 47 Py · 7 cocotb · 24 Kt · 9/9 Colab',
+  'mc.telemetry.tests': '测试 · 91 Py/RTL · 30 Kt · 10/10 OP · ML-DSA-65',
 
   // 3 Sectors
   'mc.sector.labs.title': '实时演示与硅片实验室',

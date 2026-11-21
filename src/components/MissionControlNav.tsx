@@ -75,7 +75,7 @@ const MissionControlNav = ({
           </Button>
         </div>
 
-        {/* Sealed SYNC-12 Telemetry Ribbon */}
+        {/* Sealed SYNC-22 Telemetry Ribbon */}
         <div className="flex flex-wrap gap-2 font-mono text-[11px]">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/40 bg-emerald-500/15 px-3 py-1 text-emerald-200">
             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />

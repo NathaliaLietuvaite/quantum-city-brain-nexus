@@ -227,7 +227,7 @@ const NodeAlphaSection = () => {
     <div className="node-alpha space-y-8 text-foreground">
       <header className="text-center space-y-4">
         <p className="font-mono text-xs text-primary">
-          PQMS / NODE ALPHA / V1.8.1 + V2.0-RTL-ALPHA ({telemetry.sync_id})
+          PQMS / NODE ALPHA / V4.0-GDSII + V4.2-COREWARE ({telemetry.sync_id})
         </p>
         <h2 className="text-3xl md:text-4xl font-bold text-primary">{t('alpha.title')}</h2>
         <p className="text-lg">{t('alpha.subtitle')}</p>
@@ -573,7 +573,7 @@ const NodeAlphaSection = () => {
         <p className="leading-relaxed">{t('alpha.siliconDesc')}</p>
       </section>
 
-      {/* [MOD-142] Portable Cloud Verification · Google Colab (SYNC-12) */}
+      {/* [MOD-142] Portable Cloud Verification · Google Colab (SYNC-22) */}
       <section className="rounded-lg border border-emerald-500/35 bg-background/95 p-5 md:p-7 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">

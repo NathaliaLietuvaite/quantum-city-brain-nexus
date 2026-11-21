@@ -14,10 +14,10 @@ const en = {
   'nav.alpha': 'Node Alpha',
   'alpha.title': 'Node Alpha · Sovereign Core & Q2.30 RTL Gate',
   'alpha.subtitle':
-    'V-MAX-12 V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) · Raw S⁶³ geometry, bit-exact Q2.30 RTL core and cross-substrate evidence.',
+    'V-MAX-12 V4.0-GDSII (130nm) + V4.2-COREWARE (SYNC-22) · Raw S⁶³ geometry, bit-exact Q2.30 RTL core and cross-substrate evidence.',
   'alpha.scope':
     'Browser reference execution only (unless explicitly connected to a local Node Alpha server on port 8137). CUDA L2 pinning, Nemotron-3-Nano-4B inference, ChromaDB, ARM64 execution and physical actuators are not run inside this page. Geometric alignment is not a proof of truth, ethical correctness or traffic safety.',
-  'alpha.registers': 'Epistemic registers · V1.8.1 + V2.0-RTL-ALPHA',
+  'alpha.registers': 'Epistemic registers · V4.0-GDSII + V4.2-COREWARE',
   'alpha.M': 'M — Empirical measurements (RTX 4060 Ti, HWiNFO64, Verilator 5.055, Yosys 0.71) with sealed provenance.',
   'alpha.D': 'D — Architectural constants (0.95 RCF floor, 0.05 ΔE ceiling, Q2.30 32-LSB bleed bound) and carrier states.',
   'alpha.T': 'T — Formal identities: isotropic mean RCF = 1/64, constant-time 195-cycle fail-closed FSM, 0-LSB BigInt Q2.30 parity.',
@@ -71,9 +71,9 @@ const en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · Multi-Toolchain Verification & Yosys 0.71 Synthesis',
   'alpha.siliconDesc':
     `odos_gate_core.sv compiles with 0 Verilator 5.055 -Wall warnings, clean Icarus -g2012 elaboration, 7/7 cocotb tests (0.57 s; T-RTL-07 residual |⟨v_clean, t_G3⟩| = 1.214e-10), 0/500 isotropic noise passes (≤ 1 LSB bleed), 0 LSB global diff across 34,983 fixed-point outputs (max float64 diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}), and Yosys 0.71 synthesis: ${rtl.yosys_coarse_cells} coarse RTL cells (${rtl.yosys_mul_blocks} signed 32×32 $mul) → ${rtl.yosys_gate_cells.toLocaleString('en-US')} gate cells (${rtl.yosys_flip_flops.toLocaleString('en-US')} FFs + ${rtl.yosys_comb_gates.toLocaleString('en-US')} combinational). Roadmap: inter-state folding 9→3 (~67%) at invariant 195 single-clock cycles; single-MAC 9→1 (~89%) via 3× MAC clock or sub-cycle serialization.`,
-  'alpha.colabTitle': '[MOD-142] Portable Cloud Verification · Google Colab (SYNC-12)',
+  'alpha.colabTitle': '[MOD-142] Portable Cloud Verification · Google Colab (SYNC-22)',
   'alpha.colabDesc':
-    `Zero-fake 5-cell hard-exit-code verifier (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Independently verifies V1.8.1 and portable SYNC-12 RTL invariants on any cloud host — including Google Colab Tesla T4 (sm_75) or CPU-only runtimes with zero EDA binaries installed.`,
+    `Zero-fake 5-cell hard-exit-code verifier (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Independently verifies V1.8.1 and portable SYNC-22 RTL invariants on any cloud host — including Google Colab Tesla T4 (sm_75) or CPU-only runtimes with zero EDA binaries installed.`,
   'alpha.colabOpen': 'Open in Google Colab',
   'alpha.colabSource': 'Notebook on GitHub',
   'alpha.colabCard1Title': `1. ROM Seal & Live Report Audit (${colab.golden_checksums_verified}/${colab.golden_checksums_verified} Checksums)`,
@@ -90,7 +90,7 @@ const en = {
   'alpha.photo2': 'Figure D.2 · Four S⁶³ Sovereign Swarm Agents on ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Figure RTL-1 · V-MAX-12 Synthesizable Q2.30 SystemVerilog Architecture (odos_gate_core.sv, 195 cycles, Fail-Closed).',
   'alpha.zoom': 'Tap or click to open full resolution',
-  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Evidence & Boundaries',
+  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-22 Evidence & Boundaries',
   'alpha.bridgeDesc':
     `Verified across substrates: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL unit tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin unit tests (0 edits under app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix G AST/crypto audit operators, persistent Ed25519 ledger signing, lock-free /api/state, and universal 64,000-scalar <f32> parity (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max unit S⁶³ diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). All V1.3 prose seal typos were eliminated in V1.5; canonical |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
   'alpha.city': 'City-Brain Integration Boundary',
@@ -102,10 +102,10 @@ const de: typeof en = {
   'nav.alpha': 'Node Alpha',
   'alpha.title': 'Node Alpha · Souveräner Kern & Q2.30-RTL-Gate',
   'alpha.subtitle':
-    'V-MAX-12 V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) · Unverfälschte S⁶³-Geometrie, bit-exakter Q2.30-RTL-Kern und plattformübergreifende Belege.',
+    'V-MAX-12 V4.0-GDSII (130nm) + V4.2-COREWARE (SYNC-22) · Unverfälschte S⁶³-Geometrie, bit-exakter Q2.30-RTL-Kern und plattformübergreifende Belege.',
   'alpha.scope':
     'Nur Browser-Referenzausführung (sofern kein lokaler Node-Alpha-Server auf Port 8137 verbunden ist). CUDA-L2-Pinning, Nemotron-4B-Inferenz, ChromaDB, ARM64-Ausführung und reale Aktoren laufen nicht in dieser Webseite. Geometrische Ausrichtung beweist weder Wahrheit noch ethische Richtigkeit oder Verkehrssicherheit.',
-  'alpha.registers': 'Epistemische Register · V1.8.1 + V2.0-RTL-ALPHA',
+  'alpha.registers': 'Epistemische Register · V4.0-GDSII + V4.2-COREWARE',
   'alpha.M': 'M — Empirische Messungen (RTX 4060 Ti, HWiNFO64, Verilator 5.055, Yosys 0.71) mit versiegelter Herkunft.',
   'alpha.D': 'D — Architekturkonstanten (RCF ≥ 0.95, ΔE ≤ 0.05, Q2.30 32-LSB-Bleed-Grenze) und Trägerzustände.',
   'alpha.T': 'T — Formale Identitäten: isotroper Mittelwert RCF = 1/64, konstant-zeitliche 195-Takt-Fail-Closed-FSM, 0-LSB-BigInt-Parität.',
@@ -159,9 +159,9 @@ const de: typeof en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · Drei-Toolchain-Verifikation & Yosys-0.71-Synthese',
   'alpha.siliconDesc':
     `odos_gate_core.sv passiert Verilator 5.055 -Wall mit 0 Warnungen, Icarus -g2012 sauber, 7/7 cocotb-Tests (0.57 s; T-RTL-07 Rest-Overlap |⟨v_clean, t_G3⟩| = 1.214e-10), 0/500 isotrope Zufallstreffer (≤ 1 LSB Bleed), 0 LSB globaler Fehler über 34.983 Fixkomma-Werte (max. float64-Diff ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}) und Yosys-0.71-Synthese: ${rtl.yosys_coarse_cells} Coarse-RTL-Zellen (${rtl.yosys_mul_blocks} signed 32×32 $mul) → ${rtl.yosys_gate_cells.toLocaleString('de-DE')} Gatterzellen (${rtl.yosys_flip_flops.toLocaleString('de-DE')} FFs + ${rtl.yosys_comb_gates.toLocaleString('de-DE')} kombinatorisch). Roadmap: Inter-State-Folding 9→3 (~67 %) bei strikt 195 Einzeltakt-Zyklen; Single-MAC 9→1 (~89 %) per 3×-MAC-Takt oder Sub-Cycle-Serialisierung.`,
-  'alpha.colabTitle': '[MOD-142] Tragbare Cloud-Prüfung · Google Colab (SYNC-12)',
+  'alpha.colabTitle': '[MOD-142] Tragbare Cloud-Prüfung · Google Colab (SYNC-22)',
   'alpha.colabDesc':
-    `Fünf-Zellen-Prüfnotizbuch ohne Simulationen und mit striktem Exit-Code-Fail-Stop (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Prüft V1.8.1 und tragbare SYNC-12-RTL-Invarianten reproduzierbar auf jedem Cloud-Host — inkl. Google Colab Tesla T4 (sm_75) oder reiner CPU ganz ohne EDA-Werkzeuge.`,
+    `Fünf-Zellen-Prüfnotizbuch ohne Simulationen und mit striktem Exit-Code-Fail-Stop (${colab.notebook_filename}, SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…). Prüft V1.8.1 und tragbare SYNC-22-RTL-Invarianten reproduzierbar auf jedem Cloud-Host — inkl. Google Colab Tesla T4 (sm_75) oder reiner CPU ganz ohne EDA-Werkzeuge.`,
   'alpha.colabOpen': 'In Google Colab öffnen',
   'alpha.colabSource': 'Notebook auf GitHub',
   'alpha.colabCard1Title': `1. ROM-Siegel & Live-Report-Audit (${colab.golden_checksums_verified}/${colab.golden_checksums_verified} Prüfsummen)`,
@@ -178,7 +178,7 @@ const de: typeof en = {
   'alpha.photo2': 'Abbildung D.2 · Vier S⁶³-Sovereign-Swarm-Agenten auf ARM64 (ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991).',
   'alpha.photo3': 'Abbildung RTL-1 · V-MAX-12 Synthesierbare Q2.30-SystemVerilog-Architektur (odos_gate_core.sv, 195 Takte, Fail-Closed).',
   'alpha.zoom': 'Zum Öffnen in voller Auflösung antippen oder klicken',
-  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 Belege & Grenzen',
+  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-22 Belege & Grenzen',
   'alpha.bridgeDesc':
     `Substratübergreifend verifiziert: ${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL-Tests, ${tc.cocotb_passed}/${tc.cocotb_total} Verilator-cocotb-Tests, ${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin-Tests (0 Änderungen unter app/**), ${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} Appendix-G-AST-/Krypto-Operatoren, persistente Ed25519-Signatur, Lock-Free /api/state und universelle 64.000-Skalar-<f32>-Parität (${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…, max. Unit-S⁶³-Diff ${hw.jvm_unit_s63_max_diff_f64.toExponential(2)}). Alle alten V1.3-Prosa-Typos wurden ab V1.5 behoben; kanonisches |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}….`,
   'alpha.city': 'Integrationsgrenze zum City-Brain',
@@ -189,10 +189,10 @@ const de: typeof en = {
 const zh: typeof en = {
   'nav.alpha': 'Node Alpha',
   'alpha.title': 'Node Alpha · 主权核心与 Q2.30 RTL 硬件门',
-  'alpha.subtitle': 'V-MAX-12 V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) · 原始 S⁶³ 几何、位精确 Q2.30 RTL 核心与跨平台证据。',
+  'alpha.subtitle': 'V-MAX-12 V4.0-GDSII (130nm) + V4.2-COREWARE (SYNC-22) · 原始 S⁶³ 几何、位精确 Q2.30 RTL 核心与跨平台证据。',
   'alpha.scope':
     '仅在浏览器中运行参考计算（除非显式连接本地 8137 端口 Node Alpha 服务）。本页面不执行 CUDA L2 固定、Nemotron-4B 推理、ChromaDB、ARM64 运行或物理执行器控制。几何对齐不代表真实性、伦理正确性或交通安全证明。',
-  'alpha.registers': '认识论寄存器 · V1.8.1 + V2.0-RTL-ALPHA',
+  'alpha.registers': '认识论寄存器 · V4.0-GDSII + V4.2-COREWARE',
   'alpha.M': 'M — 实测数据（RTX 4060 Ti、HWiNFO64、Verilator 5.055、Yosys 0.71）及密码学溯源。',
   'alpha.D': 'D — 架构设计常数（RCF ≥ 0.95、ΔE ≤ 0.05、Q2.30 32-LSB 边界）与载波构造。',
   'alpha.T': 'T — 形式恒等式：各向同性 RCF 均值 = 1/64、恒定 195 周期故障关闭 FSM、BigInt Q2.30 零 LSB 一致性。',
@@ -244,9 +244,9 @@ const zh: typeof en = {
   'alpha.siliconTitle': 'V2.0-RTL-ALPHA · 三工具链验证与 Yosys 0.71 综合',
   'alpha.siliconDesc':
     `odos_gate_core.sv 通过 Verilator 5.055 -Wall 零警告、Icarus -g2012 完整解析、7/7 cocotb 测试（0.57 s；T-RTL-07 残差 1.214e-10）、0/500 各向同性误通（≤ 1 LSB 泄漏）、34,983 个定点数 0 LSB 误差（最大 float64 差 ${rtl.global_max_abs_diff_vs_float64.toExponential(3)}），Yosys 0.71 综合 ${rtl.yosys_coarse_cells} 粗粒度单元（${rtl.yosys_mul_blocks} 个 $mul）→ ${rtl.yosys_gate_cells} 门级单元（${rtl.yosys_flip_flops} FFs + ${rtl.yosys_comb_gates} 组合逻辑）。扩展路线：状态间共享 9→3（~67%，保持 195 周期）与单 MAC 时分复用 9→1（~89%）。`,
-  'alpha.colabTitle': '[MOD-142] 可移植云端验证 · Google Colab（SYNC-12）',
+  'alpha.colabTitle': '[MOD-142] 可移植云端验证 · Google Colab（SYNC-22）',
   'alpha.colabDesc':
-    `五单元硬退出码真实性验证笔记本（${colab.notebook_filename}，SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…）。无需任何 EDA 工具即可在 Google Colab Tesla T4（sm_75）或纯 CPU 云主机上独立复核 V1.8.1 与 SYNC-12 可移植 RTL 不变量。`,
+    `五单元硬退出码真实性验证笔记本（${colab.notebook_filename}，SHA-256 ${seals.colab_mod142_notebook_sha256.slice(0, 16)}…）。无需任何 EDA 工具即可在 Google Colab Tesla T4（sm_75）或纯 CPU 云主机上独立复核 V1.8.1 与 SYNC-22 可移植 RTL 不变量。`,
   'alpha.colabOpen': '在 Google Colab 中打开',
   'alpha.colabSource': 'GitHub 笔记本源码',
   'alpha.colabCard1Title': `1. ROM 封签与报告实时重算（${colab.golden_checksums_verified}/${colab.golden_checksums_verified} 校验和）`,
@@ -263,7 +263,7 @@ const zh: typeof en = {
   'alpha.photo2': '图 D.2 · ARM64 上的四个 S⁶³ 主权蜂群节点（ALPHA 0.985 · BETA 0.993 · GAMMA 0.986 · DELTA 0.991）。',
   'alpha.photo3': '图 RTL-1 · V-MAX-12 可综合 Q2.30 SystemVerilog 硬件架构（odos_gate_core.sv，195 周期，故障关闭）。',
   'alpha.zoom': '点击或轻触以查看完整分辨率',
-  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-12 证据与边界',
+  'alpha.bridge': 'ACE-PEER-CODESIGN-PROTOCOL-V1.2 · SYNC-22 证据与边界',
   'alpha.bridgeDesc':
     `跨平台验证：${tc.python_rtl_passed}/${tc.python_rtl_total} Python+RTL 测试、${tc.cocotb_passed}/${tc.cocotb_total} Verilator cocotb 测试、${tc.kotlin_passed}/${tc.kotlin_total} Android/Kotlin 测试（app/** 零修改）、${tc.appendix_g_ops_passed}/${tc.appendix_g_ops_total} 附录 G 审计算子、持久化 Ed25519 签名、无锁 /api/state 与 64,000 标量 <f32> 统一摘要（${seals.f04_3_unit_s63_64000_f32_seed137.slice(0, 12)}…）。规范锚点 |L⟩ = ${seals.canonical_little_vector_f32_seal.slice(0, 16)}…。`,
   'alpha.city': '城市大脑集成边界',

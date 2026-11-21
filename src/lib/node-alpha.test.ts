@@ -53,7 +53,7 @@ const vcdWaveforms = JSON.parse(
   fs.readFileSync(path.join(__dirname, '..', 'data', 'rtl-vcd-waveforms.json'), 'utf-8'),
 );
 
-describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference', () => {
+describe('Node Alpha V4.0-GDSII (130nm) + V4.2-COREWARE (SYNC-22) browser & Q2.30 reference', () => {
   test('canonical <64f> seal matches config.py and ACE_SYNC_LEDGER.json', async () => {
     const a = await deriveAnchor();
     assert.equal(a.seal, 'bb17ede97aa45c76ef9afa63cb457f7d684e5ede40b0432b2ecf3b6b9d3e03a3');
@@ -201,7 +201,7 @@ describe('Node Alpha V1.8.1 + V2.0-RTL-ALPHA (SYNC-12) browser & Q2.30 reference
     assert.equal(bypassed.friduGate.gatePass, false);
   });
 
-  test('[MOD-142] Colab portable SYNC-12 telemetry seals and skip policy match ACE_SYNC_LEDGER.json', () => {
+  test('[MOD-142] Colab portable SYNC-22 telemetry seals and skip policy match ACE_SYNC_LEDGER.json', () => {
     const colab = telemetry.colab_mod142_portable_rtl;
     assert.equal(
       telemetry.golden_seals.colab_mod142_notebook_sha256,
