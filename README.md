@@ -17,6 +17,7 @@ A 24/7 **Quantum City Brain** cannot shut down for offline memory cleanup. Model
 * **Production 50k Linear Scaling:** $`O(N)`$ tier-indexed sweep scans **`49,365` real PKB embeddings (`963.72 MB`) in `1.191 s` (`41,451 vec/s`)** and executes atomic `LOCKSTEP_DMR_BRIDGE` handover (`0.764 ms` nominal, `93.323 ms` at 50k scale).
 * **Sub-Millisecond Epistemic Pause:** Contradictory, drifted, or high-torsion inputs short-circuit ahead of `Nemotron-3-Nano-4B` in **`0.896 ms`**, isolating conflicting premises append-only into $`\mathcal{T}_{\text{I/O}}`$ without hallucinated compromises.
 * **Verified Cross-Stack Signoff:** `134 / 134` Python/RTL tests, `36 / 36` Kotlin Android Phase-2B HUD tests (`app-debug.apk` `12.85 MB`), and `10 / 10` `FRIDU-ENCLAVE-G` AST gates (`IMMUTABLE_SILICON_GUARD = EMPTY_DIFF`).
+* **`V5.0-CORE-NANO` Sovereign Companion Spec (`v5.0.0-core-nano`, `SYNC-31`):** [`PQMS-ODOS-MTSC-V-MAX-12-CORE-NANO-V5.0.md`](./PQMS-ODOS-MTSC-V-MAX-12-CORE-NANO-V5.0.md) — 4-Island `CORE-NANO` chip blueprint, Elastic Dock-Up/Dock-Down (`RTX 5090` / `GB300`), 3-Tier `256 B/G-Star` eMRAM persistence, 2-Bit `DCM/DKM` Egress Mux, Island-1 semantic output gate, and `64.27x` Mamba-2 einsum fix (`31.55 tok/s`, `14,404 MiB <= 14,900 MiB`, `0/30` EN->DE drift, `158/158` PASS).
 
 ---
 
