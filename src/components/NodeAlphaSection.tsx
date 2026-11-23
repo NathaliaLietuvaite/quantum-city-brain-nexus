@@ -1,3 +1,4 @@
+import V46DolphinPauseControl from '@/components/V46DolphinPauseControl';
 import { useMemo, useState } from 'react';
 import {
   Play,
@@ -658,6 +659,8 @@ const NodeAlphaSection = () => {
         <h3 className="text-xl font-semibold text-primary">{t('alpha.bridge')}</h3>
         <p className="leading-relaxed">{t('alpha.bridgeDesc')}</p>
       </section>
+
+      <V46DolphinPauseControl />
 
       <section className="space-y-3">
         <h3 className="text-xl font-semibold text-primary">{t('alpha.city')}</h3>

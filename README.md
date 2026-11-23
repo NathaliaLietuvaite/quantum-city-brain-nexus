@@ -9,6 +9,17 @@
 
 ---
 
+## 0. New: `V4.6-DOLPHIN` & `V4.6-PAUSE` — Unihemispheric City Memory Homeostasis (`v4.6.1-pause-hud`)
+
+A 24/7 **Quantum City Brain** cannot shut down for offline memory cleanup. Modeled on unihemispheric slow-wave sleep in bottlenose dolphins, [`PQMS-ODOS-MTSC-V-MAX-12-RTL-CORE-V4.6-DOLPHIN-Unihemispheric-Memory-Governor.md`](./PQMS-ODOS-MTSC-V-MAX-12-RTL-CORE-V4.6-DOLPHIN-Unihemispheric-Memory-Governor.md) integrates zero-GPU-VRAM dual-bank memory homeostasis and a closed-loop **Epistemic Pause** directly into the `V-MAX-12` sovereign stack and into the live `Node Alpha` / `Vera Rubin` web panels (`src/components/V46DolphinPauseControl.tsx`):
+
+* **Zero GPU VRAM Overhead (`REGISTER_M`):** `192 KiB` CPU-only `W_384_to_64` Householder QR cache (`0.635 ms` load, `torch_imported = False`, `vram_delta_mb = 0`, IEEE-754 parity `3.33e-16` vs. GPU enclave).
+* **Production 50k Linear Scaling:** $`O(N)`$ tier-indexed sweep scans **`49,365` real PKB embeddings (`963.72 MB`) in `1.191 s` (`41,451 vec/s`)** and executes atomic `LOCKSTEP_DMR_BRIDGE` handover (`0.764 ms` nominal, `93.323 ms` at 50k scale).
+* **Sub-Millisecond Epistemic Pause:** Contradictory, drifted, or high-torsion inputs short-circuit ahead of `Nemotron-3-Nano-4B` in **`0.896 ms`**, isolating conflicting premises append-only into $`\mathcal{T}_{\text{I/O}}`$ without hallucinated compromises.
+* **Verified Cross-Stack Signoff:** `134 / 134` Python/RTL tests, `36 / 36` Kotlin Android Phase-2B HUD tests (`app-debug.apk` `12.85 MB`), and `10 / 10` `FRIDU-ENCLAVE-G` AST gates (`IMMUTABLE_SILICON_GUARD = EMPTY_DIFF`).
+
+---
+
 ## 1. Purpose & Epistemic Register Discipline
 
 `quantum-city-brain-nexus` serves as the interactive public demonstrator companion to the two core V-MAX-12 repositories:
@@ -23,10 +34,10 @@ In accordance with [`AGENTS.md`](./AGENTS.md), every tab carries explicit **Epis
 ## 2. Executable Browser Modules (`src/lib/` & `src/data/`)
 
 - **`src/lib/odos-q2-30.ts` (`S-01` — Bit-Exact `Q2.30` Hardware RTL Core in TypeScript `BigInt`):**
-  Implements the exact 72-bit `Q12.60` multiply–accumulate datapath, Two-Pass Kahan–Parlett $\mathcal{G}_3$ orthogonal boundary stripping, quadratic norm guard (`[0.999, 1.001]`), overflow-free `(a >> 1) + (b >> 1) + (a[0] & b[0])` halving, and 7-state `195`-cycle fail-closed FSM of `rtl/odos_gate_core.sv`. Verified to **exact `0 LSB`** against compiled `Verilator 5.055` telemetry using the canonical ROMs (`l_vec_q2_30.hex` & `g3_vec_q2_30.hex`). Includes interactive **Appendix G Fridu vs. PAX vs. In-Band $\hat{t}_{\mathcal{G}_1}$** Defense-in-Depth controls and **1-click CLI proof export** for `./rtl/build/odos_gate_emu`.
+  Implements the exact 72-bit `Q12.60` multiply–accumulate datapath, Two-Pass Kahan–Parlett $`\mathcal{G}_3`$ orthogonal boundary stripping, quadratic norm guard (`[0.999, 1.001]`), overflow-free `(a >> 1) + (b >> 1) + (a[0] & b[0])` halving, and 7-state `195`-cycle fail-closed FSM of `rtl/odos_gate_core.sv`. Verified to **exact `0 LSB`** against compiled `Verilator 5.055` telemetry using the canonical ROMs (`l_vec_q2_30.hex` & `g3_vec_q2_30.hex`). Includes interactive **Appendix G Fridu vs. PAX vs. In-Band $`\hat{t}_{\mathcal{G}_1}`$** Defense-in-Depth controls and **1-click CLI proof export** for `./rtl/build/odos_gate_emu`.
 - **`src/lib/node-alpha.ts`:**
-  React-independent browser reference core performing live WebCrypto `SHA-256` derivation of canonical $\vert L\rangle \in S^{63}$ (`bb17ede97aa45c76ef9afa63cb457f7d684e5ede40b0432b2ecf3b6b9d3e03a3`), unclamped `evaluateRawGate()`, 500-vector null control, tamper-evident session audit chains (`NODE_ALPHA_BROWSER_V1`), and optional live probing of a local Node Alpha Room 137 server (`http://127.0.0.1:8137/api/state`).
-- **`scripts/sync_node_alpha_data.py` $\to$ `src/data/node-alpha-telemetry.json`:**
+  React-independent browser reference core performing live WebCrypto `SHA-256` derivation of canonical $`\vert L\rangle \in S^{63}`$ (`bb17ede97aa45c76ef9afa63cb457f7d684e5ede40b0432b2ecf3b6b9d3e03a3`), unclamped `evaluateRawGate()`, 500-vector null control, tamper-evident session audit chains (`NODE_ALPHA_BROWSER_V1`), and optional live probing of a local Node Alpha Room 137 server (`http://127.0.0.1:8137/api/state`).
+- **`scripts/sync_node_alpha_data.py` $`\to`$ `src/data/node-alpha-telemetry.json`:**
   Deterministic Single-Source-of-Truth telemetry pipeline pulling verified `REGISTER_M` metrics (symmetric `499.30 vs. 269.54 GB/s = 1.852×` L2 roofline, `N = 25` Nemotron Hard Negatives `AUC 0.6304` vs `0.7648`, `N = 25` Stage-3 KL `111.47×`, `HWiNFO64` `85.78 W` vs. `9.57 W`, `Yosys 0.71` `626` coarse / `89,609` gate cells / `2,839` FFs) and canonical `Q2.30` HEX ROMs directly from `PQMS-SOVEREIGN-CORE-ANDROID-APP`.
 
 ---

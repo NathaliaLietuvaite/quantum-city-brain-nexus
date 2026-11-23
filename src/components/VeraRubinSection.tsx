@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Cpu, Lock, ShieldCheck, Layers, Gauge, Zap, Car, Network, GitMerge } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
 import V42CorewareRackControl from '@/components/V42CorewareRackControl';
+import V46DolphinPauseControl from '@/components/V46DolphinPauseControl';
 
 const VeraRubinSection = () => {
   const { t } = useI18n();
@@ -136,6 +137,7 @@ const VeraRubinSection = () => {
 
       {/* V4.2-COREWARE Interactive Rack & FSD Stop-and-Go Elimination */}
       <V42CorewareRackControl />
+      <V46DolphinPauseControl />
 
       {/* Tesla FSD compatibility */}
       <motion.div
